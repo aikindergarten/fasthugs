@@ -15,6 +15,12 @@ entries:
     - output: web,pdf
       title: Learner for transformers
       url: learner.html
+    - output: web,pdf
+      title: 'Text classification: IMDB dataset'
+      url: examples.classification-imdb.html
+    - output: web,pdf
+      title: Title
+      url: examples.mlm-imdb.html
     output: web
     title: fasthugs
   output: web
