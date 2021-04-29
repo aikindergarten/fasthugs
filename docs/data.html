@@ -1,13 +1,13 @@
 ---
 
-title: module name here
+title: Data
 
 
 keywords: fastai
 sidebar: home_sidebar
 
-summary: "API details."
-description: "API details."
+summary: "Transforms and DataBlocks."
+description: "Transforms and DataBlocks."
 nb_path: "nbs/00_data.ipynb"
 ---
 <!--
@@ -22,6 +22,136 @@ nb_path: "nbs/00_data.ipynb"
 
 <div class="container" id="notebook-container">
         
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>/home/arto/anaconda3/envs/torchenv/lib/python3.8/site-packages/torch/cuda/__init__.py:52: UserWarning: CUDA initialization: Unexpected error from cudaGetDeviceCount(). Did you run some cuda functions before calling NumCudaDevices() that might have already set an error? Error 804: forward compatibility was attempted on non supported HW (Triggered internally at  /opt/conda/conda-bld/pytorch_1607370172916/work/c10/cuda/CUDAFunctions.cpp:100.)
+  return torch._C._cuda_getDeviceCount() &gt; 0
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Transforms">Transforms<a class="anchor-link" href="#Transforms"> </a></h2>
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h2 id="TokBatchTransform" class="doc_header"><code>class</code> <code>TokBatchTransform</code><a href="https://github.com/aikindergarten/fasthugs/tree/master/fasthugs/data.py#L13" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>TokBatchTransform</code>(<strong><code>pretrained_model_name</code></strong>=<em><code>None</code></em>, <strong><code>tokenizer_cls</code></strong>=<em><code>AutoTokenizer</code></em>, <strong><code>config</code></strong>=<em><code>None</code></em>, <strong><code>tokenizer</code></strong>=<em><code>None</code></em>, <strong><code>is_lm</code></strong>=<em><code>False</code></em>, <strong><code>with_labels</code></strong>=<em><code>False</code></em>, <strong><code>padding</code></strong>=<em><code>True</code></em>, <strong><code>truncation</code></strong>=<em><code>True</code></em>, <strong><code>max_length</code></strong>=<em><code>None</code></em>, <strong><code>do_targets</code></strong>=<em><code>False</code></em>, <strong>**<code>kwargs</code></strong>) :: <code>Transform</code></p>
+</blockquote>
+<p>Delegates (<code>__call__</code>,<code>decode</code>,<code>setup</code>) to (<code>encodes</code>,<code>decodes</code>,<code>setups</code>) if <code>split_idx</code> matches</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h2 id="Undict" class="doc_header"><code>class</code> <code>Undict</code><a href="https://github.com/aikindergarten/fasthugs/tree/master/fasthugs/data.py#L70" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>Undict</code>(<strong><code>enc</code></strong>=<em><code>None</code></em>, <strong><code>dec</code></strong>=<em><code>None</code></em>, <strong><code>split_idx</code></strong>=<em><code>None</code></em>, <strong><code>order</code></strong>=<em><code>None</code></em>) :: <code>ItemTransform</code></p>
+</blockquote>
+<p>A transform that always take tuples as items</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="DataBlocks">DataBlocks<a class="anchor-link" href="#DataBlocks"> </a></h2>
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h2 id="TransformersTextBlock" class="doc_header"><code>class</code> <code>TransformersTextBlock</code><a href="https://github.com/aikindergarten/fasthugs/tree/master/fasthugs/data.py#L81" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>TransformersTextBlock</code>(<strong><code>pretrained_model_name</code></strong>=<em><code>None</code></em>, <strong><code>tokenizer_cls</code></strong>=<em><code>AutoTokenizer</code></em>, <strong><code>config</code></strong>=<em><code>None</code></em>, <strong><code>tokenizer</code></strong>=<em><code>None</code></em>, <strong><code>is_lm</code></strong>=<em><code>False</code></em>, <strong><code>with_labels</code></strong>=<em><code>False</code></em>, <strong><code>padding</code></strong>=<em><code>True</code></em>, <strong><code>truncation</code></strong>=<em><code>True</code></em>, <strong><code>max_length</code></strong>=<em><code>None</code></em>, <strong><code>do_targets</code></strong>=<em><code>False</code></em>) :: <code>TransformBlock</code></p>
+</blockquote>
+<p>A <code>TransformBlock</code> for texts using pretrained tokenizers from Huggingface</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">

@@ -10,8 +10,11 @@ entries:
       title: Overview
       url: /
     - output: web,pdf
-      title: module name here
+      title: Data
       url: data.html
+    - output: web,pdf
+      title: Learner for transformers
+      url: learner.html
     output: web
     title: fasthugs
   output: web

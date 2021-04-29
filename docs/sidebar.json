@@ -1,6 +1,7 @@
 {
   "fasthugs": {
     "Overview": "/",
-    "module name here": "data.html"
+    "Data": "data.html",
+    "Learner for transformers": "learner.html"
   }
 }

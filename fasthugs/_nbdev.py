@@ -2,9 +2,15 @@
 
 __all__ = ["index", "modules", "custom_doc_links", "git_url"]
 
-index = {}
+index = {"TokBatchTransform": "00_data.ipynb",
+         "Undict": "00_data.ipynb",
+         "TransformersTextBlock": "00_data.ipynb",
+         "default_splitter": "01_learner.ipynb",
+         "to_device": "01_learner.ipynb",
+         "TransCallback": "01_learner.ipynb",
+         "TransLearner": "01_learner.ipynb"}
 
-modules = []
+modules = ["data.py"]
 
 doc_url = "https://aikindergarten.github.io/fasthugs/"
 
