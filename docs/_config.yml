@@ -64,3 +64,6 @@ plugins:
     
 remote_theme: fastai/nbdev-jekyll-theme
 baseurl: /fasthugs/
+
+default_badges:
+  colab: true
