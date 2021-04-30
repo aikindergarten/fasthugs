@@ -1,3 +1,4 @@
+
 # FastHugs
 > Training HuggingFace models using fastai
 
@@ -10,7 +11,7 @@
 
 wip...
 
-```python
+```
 4 + 2 == 42
 ```
 

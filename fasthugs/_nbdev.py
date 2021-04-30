@@ -2,12 +2,16 @@
 
 __all__ = ["index", "modules", "custom_doc_links", "git_url"]
 
-index = {"TokBatchTransform": "00_data.ipynb",
-         "Undict": "00_data.ipynb",
-         "TransformersTextBlock": "00_data.ipynb",
+index = {"TokTransform": "00_data.ipynb",
+         "TokBatchTransform": "00_data.ipynb",
          "untuple": "00_data.ipynb",
          "to_tuple": "00_data.ipynb",
+         "LMBatchTfm": "00_data.ipynb",
+         "Undict": "00_data.ipynb",
+         "TransformersTextBlock": "00_data.ipynb",
          "TransformersLMBlock": "00_data.ipynb",
+         "tokenize": "00_data.ipynb",
+         "group_texts": "00_data.ipynb",
          "default_splitter": "01_learner.ipynb",
          "to_device": "01_learner.ipynb",
          "TransCallback": "01_learner.ipynb",

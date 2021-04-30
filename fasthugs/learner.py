@@ -7,7 +7,7 @@ from fastai.basics import *
 from inspect import signature
 from .data import TransformersTextBlock
 
-from transformers import AutoTokenizer, AutoConfig, AutoModelForSequenceClassification
+from transformers import AutoTokenizer, AutoConfig, AutoModelForSequenceClassification, BatchEncoding
 
 # Cell
 def default_splitter(model):
@@ -16,13 +16,14 @@ def default_splitter(model):
 
 # Cell
 def to_device(b, device=None):
-    "Recursively put `b` on `device`. Handles `dict`s"
+    "Recursively put `b` on `device`. Handles `BatchEncoding`s"
     if defaults.use_cuda==False: device='cpu'
     elif device is None: device=default_device()
     def _inner(o):
         if isinstance(o,Tensor): return o.to(device, non_blocking=True)
+        elif isinstance(o, (dict, BatchEncoding)):
+            return {k:to_device(v) for k,v in o.items()}
         elif hasattr(o, "to_device"): return o.to_device(device)
-        elif isinstance(o, dict): return {k:to_device(v) for k,v in o.items()}
         else: return o
     return apply(_inner, b)
 
