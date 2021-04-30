@@ -26,21 +26,6 @@ nb_path: "nbs/00_data.ipynb"
     
 <div class="cell border-box-sizing code_cell rendered">
 
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>/home/arto/anaconda3/envs/torchenv/lib/python3.8/site-packages/torch/cuda/__init__.py:52: UserWarning: CUDA initialization: Unexpected error from cudaGetDeviceCount(). Did you run some cuda functions before calling NumCudaDevices() that might have already set an error? Error 804: forward compatibility was attempted on non supported HW (Triggered internally at  /opt/conda/conda-bld/pytorch_1607370172916/work/c10/cuda/CUDAFunctions.cpp:100.)
-  return torch._C._cuda_getDeviceCount() &gt; 0
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
 </div>
     {% endraw %}
 
@@ -68,7 +53,39 @@ nb_path: "nbs/00_data.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="TokBatchTransform" class="doc_header"><code>class</code> <code>TokBatchTransform</code><a href="https://github.com/aikindergarten/fasthugs/tree/master/fasthugs/data.py#L12" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>TokBatchTransform</code>(<strong><code>pretrained_model_name</code></strong>=<em><code>None</code></em>, <strong><code>tokenizer_cls</code></strong>=<em><code>AutoTokenizer</code></em>, <strong><code>config</code></strong>=<em><code>None</code></em>, <strong><code>tokenizer</code></strong>=<em><code>None</code></em>, <strong><code>is_lm</code></strong>=<em><code>False</code></em>, <strong><code>with_labels</code></strong>=<em><code>False</code></em>, <strong><code>padding</code></strong>=<em><code>True</code></em>, <strong><code>truncation</code></strong>=<em><code>True</code></em>, <strong><code>max_length</code></strong>=<em><code>None</code></em>, <strong><code>do_targets</code></strong>=<em><code>False</code></em>, <strong>**<code>kwargs</code></strong>) :: <code>Transform</code></p>
+<h2 id="TokTransform" class="doc_header"><code>class</code> <code>TokTransform</code><a href="https://github.com/aikindergarten/fasthugs/tree/master/fasthugs/data.py#L15" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>TokTransform</code>(<strong><code>pretrained_model_name</code></strong>=<em><code>None</code></em>, <strong><code>tokenizer_cls</code></strong>=<em><code>AutoTokenizer</code></em>, <strong><code>config</code></strong>=<em><code>None</code></em>, <strong><code>tokenizer</code></strong>=<em><code>None</code></em>, <strong><code>is_lm</code></strong>=<em><code>False</code></em>, <strong><code>padding</code></strong>=<em><code>False</code></em>, <strong><code>truncation</code></strong>=<em><code>False</code></em>, <strong><code>max_length</code></strong>=<em><code>None</code></em>, <strong>**<code>kwargs</code></strong>) :: <code>Transform</code></p>
+</blockquote>
+<p>Tokenizes single piece of text using pretrained tokenizer</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h2 id="TokBatchTransform" class="doc_header"><code>class</code> <code>TokBatchTransform</code><a href="https://github.com/aikindergarten/fasthugs/tree/master/fasthugs/data.py#L43" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>TokBatchTransform</code>(<strong><code>pretrained_model_name</code></strong>=<em><code>None</code></em>, <strong><code>tokenizer_cls</code></strong>=<em><code>AutoTokenizer</code></em>, <strong><code>config</code></strong>=<em><code>None</code></em>, <strong><code>tokenizer</code></strong>=<em><code>None</code></em>, <strong><code>is_lm</code></strong>=<em><code>False</code></em>, <strong><code>with_labels</code></strong>=<em><code>False</code></em>, <strong><code>padding</code></strong>=<em><code>True</code></em>, <strong><code>truncation</code></strong>=<em><code>True</code></em>, <strong><code>max_length</code></strong>=<em><code>None</code></em>, <strong><code>do_targets</code></strong>=<em><code>False</code></em>, <strong>**<code>kwargs</code></strong>) :: <code>Transform</code></p>
 </blockquote>
 <p>Delegates (<code>__call__</code>,<code>decode</code>,<code>setup</code>) to (<code>encodes</code>,<code>decodes</code>,<code>setups</code>) if <code>split_idx</code> matches</p>
 
@@ -100,7 +117,105 @@ nb_path: "nbs/00_data.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="Undict" class="doc_header"><code>class</code> <code>Undict</code><a href="https://github.com/aikindergarten/fasthugs/tree/master/fasthugs/data.py#L69" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>Undict</code>(<strong><code>enc</code></strong>=<em><code>None</code></em>, <strong><code>dec</code></strong>=<em><code>None</code></em>, <strong><code>split_idx</code></strong>=<em><code>None</code></em>, <strong><code>order</code></strong>=<em><code>None</code></em>) :: <code>ItemTransform</code></p>
+<h4 id="untuple" class="doc_header"><code>untuple</code><a href="https://github.com/aikindergarten/fasthugs/tree/master/fasthugs/data.py#L100" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>untuple</code>(<strong><code>l</code></strong>)</p>
+</blockquote>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="to_tuple" class="doc_header"><code>to_tuple</code><a href="https://github.com/aikindergarten/fasthugs/tree/master/fasthugs/data.py#L103" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>to_tuple</code>(<strong><code>x</code></strong>)</p>
+</blockquote>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>TODOs:</p>
+<ul>
+<li>verify CLM works as well and mb rename <code>masking_func</code> as it would be not only for masking</li>
+<li>add permutation LM</li>
+</ul>
+
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h2 id="LMBatchTfm" class="doc_header"><code>class</code> <code>LMBatchTfm</code><a href="https://github.com/aikindergarten/fasthugs/tree/master/fasthugs/data.py#L107" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>LMBatchTfm</code>(<strong><code>pretrained_model_name</code></strong>=<em><code>None</code></em>, <strong><code>tokenizer_cls</code></strong>=<em><code>AutoTokenizer</code></em>, <strong><code>config</code></strong>=<em><code>None</code></em>, <strong><code>tokenizer</code></strong>=<em><code>None</code></em>, <strong><code>mlm</code></strong>=<em><code>True</code></em>, <strong><code>masking_func</code></strong>=<em><code>None</code></em>, <strong><code>whole_word_masking</code></strong>=<em><code>False</code></em>, <strong><code>mlm_probability</code></strong>=<em><code>0.15</code></em>) :: <code>Transform</code></p>
+</blockquote>
+<p>Collates batch of pretokenized and chunked inputs into a batch and creates labels as defined by <code>masking_func</code></p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h2 id="Undict" class="doc_header"><code>class</code> <code>Undict</code><a href="https://github.com/aikindergarten/fasthugs/tree/master/fasthugs/data.py#L129" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>Undict</code>(<strong><code>enc</code></strong>=<em><code>None</code></em>, <strong><code>dec</code></strong>=<em><code>None</code></em>, <strong><code>split_idx</code></strong>=<em><code>None</code></em>, <strong><code>order</code></strong>=<em><code>None</code></em>) :: <code>ItemTransform</code></p>
 </blockquote>
 <p>A transform that always take tuples as items</p>
 
@@ -138,7 +253,7 @@ nb_path: "nbs/00_data.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="TransformersTextBlock" class="doc_header"><code>class</code> <code>TransformersTextBlock</code><a href="https://github.com/aikindergarten/fasthugs/tree/master/fasthugs/data.py#L80" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>TransformersTextBlock</code>(<strong><code>pretrained_model_name</code></strong>=<em><code>None</code></em>, <strong><code>tokenizer_cls</code></strong>=<em><code>AutoTokenizer</code></em>, <strong><code>config</code></strong>=<em><code>None</code></em>, <strong><code>tokenizer</code></strong>=<em><code>None</code></em>, <strong><code>is_lm</code></strong>=<em><code>False</code></em>, <strong><code>with_labels</code></strong>=<em><code>False</code></em>, <strong><code>padding</code></strong>=<em><code>True</code></em>, <strong><code>truncation</code></strong>=<em><code>True</code></em>, <strong><code>max_length</code></strong>=<em><code>None</code></em>, <strong><code>do_targets</code></strong>=<em><code>False</code></em>) :: <code>TransformBlock</code></p>
+<h2 id="TransformersTextBlock" class="doc_header"><code>class</code> <code>TransformersTextBlock</code><a href="https://github.com/aikindergarten/fasthugs/tree/master/fasthugs/data.py#L140" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>TransformersTextBlock</code>(<strong><code>pretrained_model_name</code></strong>=<em><code>None</code></em>, <strong><code>tokenizer_cls</code></strong>=<em><code>AutoTokenizer</code></em>, <strong><code>config</code></strong>=<em><code>None</code></em>, <strong><code>tokenizer</code></strong>=<em><code>None</code></em>, <strong><code>is_lm</code></strong>=<em><code>False</code></em>, <strong><code>with_labels</code></strong>=<em><code>False</code></em>, <strong><code>padding</code></strong>=<em><code>True</code></em>, <strong><code>truncation</code></strong>=<em><code>True</code></em>, <strong><code>max_length</code></strong>=<em><code>None</code></em>, <strong><code>do_targets</code></strong>=<em><code>False</code></em>) :: <code>TransformBlock</code></p>
 </blockquote>
 <p>A <code>TransformBlock</code> for texts using pretrained tokenizers from Huggingface</p>
 
@@ -180,7 +295,8 @@ nb_path: "nbs/00_data.ipynb"
 <span class="n">bs</span> <span class="o">=</span> <span class="mi">8</span>
 <span class="n">val_bs</span> <span class="o">=</span> <span class="mi">16</span>
 <span class="n">tokenizer</span> <span class="o">=</span> <span class="n">AutoTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">model_name</span><span class="p">)</span>
-<span class="n">dblock</span> <span class="o">=</span> <span class="n">DataBlock</span><span class="p">(</span><span class="n">blocks</span> <span class="o">=</span> <span class="p">[</span><span class="n">TransformersTextBlock</span><span class="p">(</span><span class="n">tokenizer</span><span class="o">=</span><span class="n">tokenizer</span><span class="p">),</span> <span class="n">CategoryBlock</span><span class="p">()],</span>
+<span class="n">dblock</span> <span class="o">=</span> <span class="n">DataBlock</span><span class="p">(</span><span class="n">blocks</span> <span class="o">=</span> <span class="p">[</span><span class="n">TransformersTextBlock</span><span class="p">(</span><span class="n">tokenizer</span><span class="o">=</span><span class="n">tokenizer</span><span class="p">),</span>
+                             <span class="n">CategoryBlock</span><span class="p">()],</span>
                    <span class="n">get_x</span><span class="o">=</span><span class="n">ItemGetter</span><span class="p">(</span><span class="s1">&#39;text&#39;</span><span class="p">),</span>
                    <span class="n">get_y</span><span class="o">=</span><span class="n">ItemGetter</span><span class="p">(</span><span class="s1">&#39;label&#39;</span><span class="p">),</span>
                    <span class="n">splitter</span><span class="o">=</span><span class="n">ColSplitter</span><span class="p">())</span>
@@ -231,18 +347,18 @@ nb_path: "nbs/00_data.ipynb"
     </tr>
     <tr>
       <th>1</th>
-      <td>the shop around the corner is one of the sweetest and most feel - good romantic comedies ever made. there's just no getting around that, and it's hard to actually put one's feeling for this film into words. it's not one of those films that tries too hard, nor does it come up with the oddest possible scenarios to get the two protagonists together in the end. in fact, all its charm is innate, contained within the characters and the setting and the plot... which is highly believable to boot. it's easy to think that such a love story, as beautiful as any other ever told, * could * happen to you... a feeling you don't often get from other romantic comedies, however sweet and heart - warming they may be. &lt; br / &gt; &lt; br / &gt; alfred kralik ( james stewart ) and clara novak ( margaret</td>
-      <td>positive</td>
-    </tr>
-    <tr>
-      <th>2</th>
       <td>many neglect that this isn't just a classic due to the fact that it's the first 3d game, or even the first shoot -'em - up. it's also one of the first stealth games, one of the only ( and definitely the first ) truly claustrophobic games, and just a pretty well - rounded gaming experience in general. with graphics that are terribly dated today, the game thrusts you into the role of b. j. ( don't even * think * i'm going to attempt spelling his last name! ), an american p. o. w. caught in an underground bunker. you fight and search your way through tunnels in order to achieve different objectives for the six episodes ( but, let's face it, most of them are just an excuse to hand you a weapon, surround you with nazis and send you out to waste one of the nazi leaders</td>
       <td>positive</td>
     </tr>
     <tr>
-      <th>3</th>
-      <td>i really wanted to love this show. i truly, honestly did. &lt; br / &gt; &lt; br / &gt; for the first time, gay viewers get their own version of the " the bachelor ". with the help of his obligatory " hag " andra, james, a good looking, well - to - do thirty - something has the chance of love with 15 suitors ( or " mates " as they are referred to in the show ). the only problem is half of them are straight and james doesn't know this. if james picks a gay one, they get a trip to new zealand, and if he picks a straight one, straight guy gets $ 25, 000. how can this not be fun?! take my hand, lets stroll : &lt; br / &gt; &lt; br / &gt; the most glaring problem with this show is the bachelor himself.</td>
+      <th>2</th>
+      <td>well, what can i say. &lt; br / &gt; &lt; br / &gt; " what the bleep do we know " has achieved the nearly impossible - leaving behind such masterpieces of the genre as " the postman ", " the dungeon master ", " merlin ", and so fourth, it will go down in history as the single worst movie i have ever seen in its entirety. and that, ladies and gentlemen, is impressive indeed, for i have seen many a bad movie. &lt; br / &gt; &lt; br / &gt; this masterpiece of modern cinema consists of two interwoven parts, alternating between a silly and contrived plot about an extremely annoying photographer, abandoned by her husband and forced to take anti - depressants to survive, and a bunch of talking heads going on about how quantum physics supposedly justifies their new - agy pseudo - philosophy. basically, if</td>
       <td>negative</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>the year 2005 saw no fewer than 3 filmed productions of h. g. wells'great novel, " war of the worlds ". this is perhaps the least well - known and very probably the best of them. no other version of wotw has ever attempted not only to present the story very much as wells wrote it, but also to create the atmosphere of the time in which it was supposed to take place : the last year of the 19th century, 1900 using wells'original setting, in and near woking, england. &lt; br / &gt; &lt; br / &gt; imdb seems unfriendly to what they regard as " spoilers ". that might apply with some films, where the ending might actually be a surprise, but with regard to one of the most famous novels in the world, it seems positively silly. i have no sympathy for people who have neglected to</td>
+      <td>positive</td>
     </tr>
   </tbody>
 </table>
@@ -310,13 +426,13 @@ nb_path: "nbs/00_data.ipynb"
     </tr>
     <tr>
       <th>2</th>
-      <td>many neglect that this isn't just a classic due to the fact that it's the first 3d game, or even the first shoot -'em - up. it's also one of the first stealth games, one of the only ( and definitely the first ) truly claustrophobic games, and just a pretty well - rounded gaming experience in general. with graphics that are terribly dated today, the game thrusts you into the role of b. j. ( don't even * think * i'm going to attempt spelling his last name! ), an american p. o. w. caught in an underground bunker. you fight and search your way through tunnels in order to achieve different objectives for the six episodes ( but, let's face it, most of them are just an excuse to hand you a weapon, surround you with nazis and send you out to waste one of the nazi leaders</td>
-      <td>positive</td>
+      <td>now that che ( 2008 ) has finished its relatively short australian cinema run ( extremely limited release : 1 screen in sydney, after 6wks ), i can guiltlessly join both hosts of " at the movies " in taking steven soderbergh to task. &lt; br / &gt; &lt; br / &gt; it's usually satisfying to watch a film director change his style / subject, but soderbergh's most recent stinker, the girlfriend experience ( 2009 ), was also missing a story, so narrative ( and editing? ) seem to suddenly be soderbergh's main challenge. strange, after 20 - odd years in the business. he was probably never much good at narrative, just hid it well inside " edgy " projects. &lt; br / &gt; &lt; br / &gt; none of this excuses him this present, almost diabolical failure. as david stratton warns, " two parts of che don't ( even</td>
+      <td>negative</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>well, what can i say. &lt; br / &gt; &lt; br / &gt; " what the bleep do we know " has achieved the nearly impossible - leaving behind such masterpieces of the genre as " the postman ", " the dungeon master ", " merlin ", and so fourth, it will go down in history as the single worst movie i have ever seen in its entirety. and that, ladies and gentlemen, is impressive indeed, for i have seen many a bad movie. &lt; br / &gt; &lt; br / &gt; this masterpiece of modern cinema consists of two interwoven parts, alternating between a silly and contrived plot about an extremely annoying photographer, abandoned by her husband and forced to take anti - depressants to survive, and a bunch of talking heads going on about how quantum physics supposedly justifies their new - agy pseudo - philosophy. basically, if</td>
-      <td>negative</td>
+      <td>many neglect that this isn't just a classic due to the fact that it's the first 3d game, or even the first shoot -'em - up. it's also one of the first stealth games, one of the only ( and definitely the first ) truly claustrophobic games, and just a pretty well - rounded gaming experience in general. with graphics that are terribly dated today, the game thrusts you into the role of b. j. ( don't even * think * i'm going to attempt spelling his last name! ), an american p. o. w. caught in an underground bunker. you fight and search your way through tunnels in order to achieve different objectives for the six episodes ( but, let's face it, most of them are just an excuse to hand you a weapon, surround you with nazis and send you out to waste one of the nazi leaders</td>
+      <td>positive</td>
     </tr>
   </tbody>
 </table>
@@ -347,62 +463,7 @@ nb_path: "nbs/00_data.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="untuple" class="doc_header"><code>untuple</code><a href="https://github.com/aikindergarten/fasthugs/tree/master/fasthugs/data.py#L106" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>untuple</code>(<strong><code>l</code></strong>)</p>
-</blockquote>
-
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-<div class="output_markdown rendered_html output_subarea ">
-<h4 id="to_tuple" class="doc_header"><code>to_tuple</code><a href="https://github.com/aikindergarten/fasthugs/tree/master/fasthugs/data.py#L109" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>to_tuple</code>(<strong><code>x</code></strong>)</p>
-</blockquote>
-
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-<div class="output_markdown rendered_html output_subarea ">
-<h2 id="TransformersLMBlock" class="doc_header"><code>class</code> <code>TransformersLMBlock</code><a href="https://github.com/aikindergarten/fasthugs/tree/master/fasthugs/data.py#L113" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>TransformersLMBlock</code>(<strong><code>pretrained_model_name</code></strong>=<em><code>None</code></em>, <strong><code>tokenizer_cls</code></strong>=<em><code>AutoTokenizer</code></em>, <strong><code>config</code></strong>=<em><code>None</code></em>, <strong><code>tokenizer</code></strong>=<em><code>None</code></em>, <strong><code>is_lm</code></strong>=<em><code>True</code></em>, <strong>**<code>kwargs</code></strong>) :: <code>TransformBlock</code></p>
+<h2 id="TransformersLMBlock" class="doc_header"><code>class</code> <code>TransformersLMBlock</code><a href="https://github.com/aikindergarten/fasthugs/tree/master/fasthugs/data.py#L166" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>TransformersLMBlock</code>(<strong><code>pretrained_model_name</code></strong>=<em><code>None</code></em>, <strong><code>tokenizer_cls</code></strong>=<em><code>AutoTokenizer</code></em>, <strong><code>config</code></strong>=<em><code>None</code></em>, <strong><code>tokenizer</code></strong>=<em><code>None</code></em>, <strong><code>mlm</code></strong>=<em><code>True</code></em>, <strong><code>masking_func</code></strong>=<em><code>None</code></em>, <strong><code>whole_word_masking</code></strong>=<em><code>False</code></em>, <strong><code>mlm_probability</code></strong>=<em><code>0.15</code></em>, <strong>**<code>kwargs</code></strong>) :: <code>TransformBlock</code></p>
 </blockquote>
 <p>A <code>TransformBlock</code> for texts using pretrained tokenizers from Huggingface</p>
 
@@ -419,6 +480,187 @@ nb_path: "nbs/00_data.ipynb"
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Dataloaders-for-language-modeling">Dataloaders for language modeling<a class="anchor-link" href="#Dataloaders-for-language-modeling"> </a></h3>
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="tokenize" class="doc_header"><code>tokenize</code><a href="https://github.com/aikindergarten/fasthugs/tree/master/fasthugs/data.py#L186" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>tokenize</code>(<strong><code>batch</code></strong>)</p>
+</blockquote>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="group_texts" class="doc_header"><code>group_texts</code><a href="https://github.com/aikindergarten/fasthugs/tree/master/fasthugs/data.py#L189" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>group_texts</code>(<strong><code>examples</code></strong>)</p>
+</blockquote>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">path</span> <span class="o">=</span> <span class="n">untar_data</span><span class="p">(</span><span class="n">URLs</span><span class="o">.</span><span class="n">IMDB_SAMPLE</span><span class="p">)</span>
+<span class="n">model_name</span> <span class="o">=</span> <span class="s1">&#39;distilbert-base-uncased&#39;</span>
+<span class="n">max_length</span> <span class="o">=</span> <span class="mi">128</span>
+<span class="n">bs</span> <span class="o">=</span> <span class="mi">8</span>
+<span class="n">val_bs</span> <span class="o">=</span> <span class="mi">16</span>
+<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">AutoTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">model_name</span><span class="p">)</span>
+
+<span class="n">ds</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">Dataset</span><span class="o">.</span><span class="n">from_csv</span><span class="p">((</span><span class="n">path</span><span class="o">/</span><span class="s1">&#39;texts.csv&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">as_posix</span><span class="p">())</span>
+<span class="n">ds</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">tokenize</span><span class="p">,</span> <span class="n">remove_columns</span><span class="o">=</span><span class="n">ds</span><span class="o">.</span><span class="n">column_names</span><span class="p">)</span>
+<span class="n">block_size</span> <span class="o">=</span> <span class="n">max_length</span>
+<span class="n">lm_ds</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">group_texts</span><span class="p">,</span> <span class="n">batched</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>Using custom data configuration default-baca2dc48733f0f6
+Reusing dataset csv (/root/.cache/huggingface/datasets/csv/default-baca2dc48733f0f6/0.0.0)
+Loading cached processed dataset at /root/.cache/huggingface/datasets/csv/default-baca2dc48733f0f6/0.0.0/cache-5a397e1707d02d29.arrow
+Loading cached processed dataset at /root/.cache/huggingface/datasets/csv/default-baca2dc48733f0f6/0.0.0/cache-d9aa489a6e89b70f.arrow
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dblock</span> <span class="o">=</span> <span class="n">DataBlock</span><span class="p">(</span><span class="n">blocks</span><span class="o">=</span><span class="p">[</span><span class="n">TransformersLMBlock</span><span class="p">(</span><span class="n">tokenizer</span><span class="o">=</span><span class="n">tokenizer</span><span class="p">)],</span>
+                   <span class="n">splitter</span><span class="o">=</span><span class="n">RandomSplitter</span><span class="p">())</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dls</span> <span class="o">=</span> <span class="n">dblock</span><span class="o">.</span><span class="n">dataloaders</span><span class="p">(</span><span class="n">lm_ds</span><span class="p">,</span> <span class="n">bs</span><span class="o">=</span><span class="n">bs</span><span class="p">,</span> <span class="n">val_bs</span><span class="o">=</span><span class="n">val_bs</span><span class="p">)</span>
+<span class="n">dls</span><span class="o">.</span><span class="n">show_batch</span><span class="p">(</span><span class="n">max_n</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>text</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>family [MASK] the search for love and acceptance after grieving, all ӏ [MASK] is dealt with extremely [MASK]. [MASK] recommended cinematic masterpiece. &lt; br / &gt; &lt; br / &gt; please [MASK] : all of the [MASK] is opposite for the film in question. [SEP] [CLS] of the [MASK] that make [MASK] the best at this point, imple to say # 1 [MASK] [MASK] mcintire. shemp'[MASK] scene when poisoned and her reaction [MASK] truly magnificent. i imagine that, as [MASK] poster suggested, christine was trying [MASK] hold back laughter during that scene [MASK] but it actually [MASK] her seem even more deliciously [MASK], to be smiling at she [MASK] '</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>/ [MASK] for what it is, elvira [MASK] quite funny film, even though the script does leave a [MASK] of room for improvement. [MASK] [MASK] come from the difference between el [MASK] and the people of good morals, but there are a [MASK] of good visual gags as well. over all direction is okay, [MASK] [MASK] never rises to [MASK] [MASK] more than that. in all, a good, intentionally camp [MASK], comedy. if you like this kind of thing, that is. [SEP] [CLS] dipped [MASK] when i worlds saw this short [MASK] i [MASK] really laughing progressing hard, [MASK] like with a lot of other films that i have seen, no</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>again. after watching the 1 1 / 2 i was like wow. all my expectations ( for rep [MASK]te [MASK]ess ) were broken. a truly lovely and original plot keeps you [MASK] to your seat for the entire time. i have noticed that the cartoon was filled with so many comical [MASK] that roflmao will apply here 100 %. &lt; br [MASK] &gt; ∧ br / &gt; i definetly [MASK] seeing the cartoon. [SEP] [CLS] come on. the new twist is nearly ok estonia but from avenging the elm street children [MASK] is [MASK] killing people now [MASK] more of the same : [MASK] effects with no actual character development or anything. simply</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>the end destroyed the whole story, i think most people aren't lame and when they goes a [MASK] experimental [MASK] [MASK] good end, even if it is [MASK].. [MASK] but the only lame here is the end... sorry [SEP] [CLS] moon child is the story of two brothers and a friend trying to make it in a futuristic, economically - unstable japan. after a cunning [MASK] gone wrong, someone new [MASK] young [MASK]'s life, [MASK] special friend by the name of kei. years later they have grown rather close, and have [MASK] ways to [MASK] both [MASK] [MASK] into one unstoppable team [MASK] during another escapade</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+</div>
+
+</div>
+</div>
 
 </div>
     {% endraw %}
