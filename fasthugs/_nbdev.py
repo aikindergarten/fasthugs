@@ -2,7 +2,11 @@
 
 __all__ = ["index", "modules", "custom_doc_links", "git_url"]
 
-index = {"TokTransform": "00_data.ipynb",
+index = {"get_splits": "00_data.ipynb",
+         "TextGetter": "00_data.ipynb",
+         "find_first": "00_data.ipynb",
+         "split_by_sep": "00_data.ipynb",
+         "TokTransform": "00_data.ipynb",
          "TokBatchTransform": "00_data.ipynb",
          "untuple": "00_data.ipynb",
          "to_tuple": "00_data.ipynb",
