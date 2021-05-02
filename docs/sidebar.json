@@ -4,7 +4,7 @@
     "Data": "data.html",
     "Learner for transformers": "learner.html",
     "Text classification: IMDB dataset": "examples.classification-imdb.html",
-    "Title": "examples.mlm-imdb.html",
+    "Masked Language Modeling": "examples.mlm-imdb.html",
     "GLUE Benchmark": "examples.glue-benchmark.html"
   }
 }

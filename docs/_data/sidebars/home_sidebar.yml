@@ -19,7 +19,7 @@ entries:
       title: 'Text classification: IMDB dataset'
       url: examples.classification-imdb.html
     - output: web,pdf
-      title: Title
+      title: Masked Language Modeling
       url: examples.mlm-imdb.html
     - output: web,pdf
       title: GLUE Benchmark

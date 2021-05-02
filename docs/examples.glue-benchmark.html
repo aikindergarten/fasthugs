@@ -59,23 +59,8 @@ nb_path: "nbs/12_examples.glue-benchmark.ipynb"
 
 <span class="kn">from</span> <span class="nn">fasthugs.learner</span> <span class="k">import</span> <span class="n">TransLearner</span>
 <span class="kn">from</span> <span class="nn">fasthugs.data</span> <span class="k">import</span> <span class="n">TransformersTextBlock</span><span class="p">,</span> <span class="n">TextGetter</span><span class="p">,</span> <span class="n">get_splits</span>
-</pre></div>
 
-    </div>
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">datasets</span> <span class="k">import</span> <span class="n">load_dataset</span><span class="p">,</span> <span class="n">concatenate_datasets</span>
+<span class="kn">from</span> <span class="nn">datasets</span> <span class="k">import</span> <span class="n">load_dataset</span><span class="p">,</span> <span class="n">concatenate_datasets</span>
 </pre></div>
 
     </div>
@@ -551,38 +536,6 @@ Wall time: 8.1 s
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>Failed to query for notebook name, you can set it manually with the WANDB_NOTEBOOK_NAME environment variable
-<span class="ansi-blue-intense-fg ansi-bold">wandb</span>: Currently logged in as: <span class="ansi-yellow-fg">fastai_community</span> (use `wandb login --relogin` to force relogin)
-<span class="ansi-blue-intense-fg ansi-bold">wandb</span>: wandb version 0.10.28 is available!  To upgrade, please run:
-<span class="ansi-blue-intense-fg ansi-bold">wandb</span>:  $ pip install wandb --upgrade
-</pre>
-</div>
-</div>
-
-<div class="output_area">
-
-
-<div class="output_html rendered_html output_subarea ">
-
-                Tracking run with wandb version 0.10.18<br/>
-                Syncing run <strong style="color:#cdcd00">imdb-distilroberta-base</strong> to <a href="https://wandb.ai" target="_blank">Weights & Biases</a> <a href="https://docs.wandb.com/integrations/jupyter.html" target="_blank">(Documentation)</a>.<br/>
-                Project page: <a href="https://wandb.ai/fastai_community/fasthugs" target="_blank">https://wandb.ai/fastai_community/fasthugs</a><br/>
-                Run page: <a href="https://wandb.ai/fastai_community/fasthugs/runs/18cwvdx0" target="_blank">https://wandb.ai/fastai_community/fasthugs/runs/18cwvdx0</a><br/>
-                Run data is saved locally in <code>/notebooks/fasthugs/nbs/wandb/run-20210429_183326-18cwvdx0</code><br/><br/>
-            
-</div>
-
-</div>
-
-</div>
-</div>
-
 </div>
     {% endraw %}
 
@@ -605,24 +558,6 @@ Wall time: 8.1 s
 </pre></div>
 
     </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>Some weights of the model checkpoint at distilroberta-base were not used when initializing RobertaForSequenceClassification: [&#39;lm_head.bias&#39;, &#39;lm_head.dense.weight&#39;, &#39;lm_head.dense.bias&#39;, &#39;lm_head.layer_norm.weight&#39;, &#39;lm_head.layer_norm.bias&#39;, &#39;lm_head.decoder.weight&#39;, &#39;roberta.pooler.dense.weight&#39;, &#39;roberta.pooler.dense.bias&#39;]
-- This IS expected if you are initializing RobertaForSequenceClassification from the checkpoint of a model trained on another task or with another architecture (e.g. initializing a BertForSequenceClassification model from a BertForPreTraining model).
-- This IS NOT expected if you are initializing RobertaForSequenceClassification from the checkpoint of a model that you expect to be exactly identical (initializing a BertForSequenceClassification model from a BertForSequenceClassification model).
-Some weights of RobertaForSequenceClassification were not initialized from the model checkpoint at distilroberta-base and are newly initialized: [&#39;classifier.dense.weight&#39;, &#39;classifier.dense.bias&#39;, &#39;classifier.out_proj.weight&#39;, &#39;classifier.out_proj.bias&#39;]
-You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
-</pre>
-</div>
-</div>
-
 </div>
 </div>
 
@@ -1173,38 +1108,6 @@ Wall time: 42 s
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>Failed to query for notebook name, you can set it manually with the WANDB_NOTEBOOK_NAME environment variable
-<span class="ansi-blue-intense-fg ansi-bold">wandb</span>: Currently logged in as: <span class="ansi-yellow-fg">fastai_community</span> (use `wandb login --relogin` to force relogin)
-<span class="ansi-blue-intense-fg ansi-bold">wandb</span>: wandb version 0.10.28 is available!  To upgrade, please run:
-<span class="ansi-blue-intense-fg ansi-bold">wandb</span>:  $ pip install wandb --upgrade
-</pre>
-</div>
-</div>
-
-<div class="output_area">
-
-
-<div class="output_html rendered_html output_subarea ">
-
-                Tracking run with wandb version 0.10.18<br/>
-                Syncing run <strong style="color:#cdcd00">imdb-distilroberta-base</strong> to <a href="https://wandb.ai" target="_blank">Weights & Biases</a> <a href="https://docs.wandb.com/integrations/jupyter.html" target="_blank">(Documentation)</a>.<br/>
-                Project page: <a href="https://wandb.ai/fastai_community/fasthugs" target="_blank">https://wandb.ai/fastai_community/fasthugs</a><br/>
-                Run page: <a href="https://wandb.ai/fastai_community/fasthugs/runs/18cwvdx0" target="_blank">https://wandb.ai/fastai_community/fasthugs/runs/18cwvdx0</a><br/>
-                Run data is saved locally in <code>/notebooks/fasthugs/nbs/wandb/run-20210429_183326-18cwvdx0</code><br/><br/>
-            
-</div>
-
-</div>
-
-</div>
-</div>
-
 </div>
     {% endraw %}
 
@@ -1227,24 +1130,6 @@ Wall time: 42 s
 </pre></div>
 
     </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>Some weights of the model checkpoint at distilroberta-base were not used when initializing RobertaForSequenceClassification: [&#39;lm_head.bias&#39;, &#39;lm_head.dense.weight&#39;, &#39;lm_head.dense.bias&#39;, &#39;lm_head.layer_norm.weight&#39;, &#39;lm_head.layer_norm.bias&#39;, &#39;lm_head.decoder.weight&#39;, &#39;roberta.pooler.dense.weight&#39;, &#39;roberta.pooler.dense.bias&#39;]
-- This IS expected if you are initializing RobertaForSequenceClassification from the checkpoint of a model trained on another task or with another architecture (e.g. initializing a BertForSequenceClassification model from a BertForPreTraining model).
-- This IS NOT expected if you are initializing RobertaForSequenceClassification from the checkpoint of a model that you expect to be exactly identical (initializing a BertForSequenceClassification model from a BertForSequenceClassification model).
-Some weights of RobertaForSequenceClassification were not initialized from the model checkpoint at distilroberta-base and are newly initialized: [&#39;classifier.dense.weight&#39;, &#39;classifier.dense.bias&#39;, &#39;classifier.out_proj.weight&#39;, &#39;classifier.out_proj.bias&#39;]
-You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
-</pre>
-</div>
-</div>
-
 </div>
 </div>
 
@@ -1766,38 +1651,6 @@ Wall time: 5.18 s
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>Failed to query for notebook name, you can set it manually with the WANDB_NOTEBOOK_NAME environment variable
-<span class="ansi-blue-intense-fg ansi-bold">wandb</span>: Currently logged in as: <span class="ansi-yellow-fg">fastai_community</span> (use `wandb login --relogin` to force relogin)
-<span class="ansi-blue-intense-fg ansi-bold">wandb</span>: wandb version 0.10.28 is available!  To upgrade, please run:
-<span class="ansi-blue-intense-fg ansi-bold">wandb</span>:  $ pip install wandb --upgrade
-</pre>
-</div>
-</div>
-
-<div class="output_area">
-
-
-<div class="output_html rendered_html output_subarea ">
-
-                Tracking run with wandb version 0.10.18<br/>
-                Syncing run <strong style="color:#cdcd00">imdb-distilroberta-base</strong> to <a href="https://wandb.ai" target="_blank">Weights & Biases</a> <a href="https://docs.wandb.com/integrations/jupyter.html" target="_blank">(Documentation)</a>.<br/>
-                Project page: <a href="https://wandb.ai/fastai_community/fasthugs" target="_blank">https://wandb.ai/fastai_community/fasthugs</a><br/>
-                Run page: <a href="https://wandb.ai/fastai_community/fasthugs/runs/18cwvdx0" target="_blank">https://wandb.ai/fastai_community/fasthugs/runs/18cwvdx0</a><br/>
-                Run data is saved locally in <code>/notebooks/fasthugs/nbs/wandb/run-20210429_183326-18cwvdx0</code><br/><br/>
-            
-</div>
-
-</div>
-
-</div>
-</div>
-
 </div>
     {% endraw %}
 
@@ -1820,24 +1673,6 @@ Wall time: 5.18 s
 </pre></div>
 
     </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>Some weights of the model checkpoint at distilroberta-base were not used when initializing RobertaForSequenceClassification: [&#39;lm_head.bias&#39;, &#39;lm_head.dense.weight&#39;, &#39;lm_head.dense.bias&#39;, &#39;lm_head.layer_norm.weight&#39;, &#39;lm_head.layer_norm.bias&#39;, &#39;lm_head.decoder.weight&#39;, &#39;roberta.pooler.dense.weight&#39;, &#39;roberta.pooler.dense.bias&#39;]
-- This IS expected if you are initializing RobertaForSequenceClassification from the checkpoint of a model trained on another task or with another architecture (e.g. initializing a BertForSequenceClassification model from a BertForPreTraining model).
-- This IS NOT expected if you are initializing RobertaForSequenceClassification from the checkpoint of a model that you expect to be exactly identical (initializing a BertForSequenceClassification model from a BertForSequenceClassification model).
-Some weights of RobertaForSequenceClassification were not initialized from the model checkpoint at distilroberta-base and are newly initialized: [&#39;classifier.dense.weight&#39;, &#39;classifier.dense.bias&#39;, &#39;classifier.out_proj.weight&#39;, &#39;classifier.out_proj.bias&#39;]
-You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
-</pre>
-</div>
-</div>
-
 </div>
 </div>
 
@@ -2364,38 +2199,6 @@ Wall time: 4.33 s
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>Failed to query for notebook name, you can set it manually with the WANDB_NOTEBOOK_NAME environment variable
-<span class="ansi-blue-intense-fg ansi-bold">wandb</span>: Currently logged in as: <span class="ansi-yellow-fg">fastai_community</span> (use `wandb login --relogin` to force relogin)
-<span class="ansi-blue-intense-fg ansi-bold">wandb</span>: wandb version 0.10.28 is available!  To upgrade, please run:
-<span class="ansi-blue-intense-fg ansi-bold">wandb</span>:  $ pip install wandb --upgrade
-</pre>
-</div>
-</div>
-
-<div class="output_area">
-
-
-<div class="output_html rendered_html output_subarea ">
-
-                Tracking run with wandb version 0.10.18<br/>
-                Syncing run <strong style="color:#cdcd00">imdb-distilroberta-base</strong> to <a href="https://wandb.ai" target="_blank">Weights & Biases</a> <a href="https://docs.wandb.com/integrations/jupyter.html" target="_blank">(Documentation)</a>.<br/>
-                Project page: <a href="https://wandb.ai/fastai_community/fasthugs" target="_blank">https://wandb.ai/fastai_community/fasthugs</a><br/>
-                Run page: <a href="https://wandb.ai/fastai_community/fasthugs/runs/18cwvdx0" target="_blank">https://wandb.ai/fastai_community/fasthugs/runs/18cwvdx0</a><br/>
-                Run data is saved locally in <code>/notebooks/fasthugs/nbs/wandb/run-20210429_183326-18cwvdx0</code><br/><br/>
-            
-</div>
-
-</div>
-
-</div>
-</div>
-
 </div>
     {% endraw %}
 
@@ -2418,24 +2221,6 @@ Wall time: 4.33 s
 </pre></div>
 
     </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>Some weights of the model checkpoint at distilroberta-base were not used when initializing RobertaForSequenceClassification: [&#39;lm_head.bias&#39;, &#39;lm_head.dense.weight&#39;, &#39;lm_head.dense.bias&#39;, &#39;lm_head.layer_norm.weight&#39;, &#39;lm_head.layer_norm.bias&#39;, &#39;lm_head.decoder.weight&#39;, &#39;roberta.pooler.dense.weight&#39;, &#39;roberta.pooler.dense.bias&#39;]
-- This IS expected if you are initializing RobertaForSequenceClassification from the checkpoint of a model trained on another task or with another architecture (e.g. initializing a BertForSequenceClassification model from a BertForPreTraining model).
-- This IS NOT expected if you are initializing RobertaForSequenceClassification from the checkpoint of a model that you expect to be exactly identical (initializing a BertForSequenceClassification model from a BertForSequenceClassification model).
-Some weights of RobertaForSequenceClassification were not initialized from the model checkpoint at distilroberta-base and are newly initialized: [&#39;classifier.dense.weight&#39;, &#39;classifier.dense.bias&#39;, &#39;classifier.out_proj.weight&#39;, &#39;classifier.out_proj.bias&#39;]
-You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
-</pre>
-</div>
-</div>
-
 </div>
 </div>
 
@@ -2962,38 +2747,6 @@ Wall time: 4min 41s
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>Failed to query for notebook name, you can set it manually with the WANDB_NOTEBOOK_NAME environment variable
-<span class="ansi-blue-intense-fg ansi-bold">wandb</span>: Currently logged in as: <span class="ansi-yellow-fg">fastai_community</span> (use `wandb login --relogin` to force relogin)
-<span class="ansi-blue-intense-fg ansi-bold">wandb</span>: wandb version 0.10.28 is available!  To upgrade, please run:
-<span class="ansi-blue-intense-fg ansi-bold">wandb</span>:  $ pip install wandb --upgrade
-</pre>
-</div>
-</div>
-
-<div class="output_area">
-
-
-<div class="output_html rendered_html output_subarea ">
-
-                Tracking run with wandb version 0.10.18<br/>
-                Syncing run <strong style="color:#cdcd00">imdb-distilroberta-base</strong> to <a href="https://wandb.ai" target="_blank">Weights & Biases</a> <a href="https://docs.wandb.com/integrations/jupyter.html" target="_blank">(Documentation)</a>.<br/>
-                Project page: <a href="https://wandb.ai/fastai_community/fasthugs" target="_blank">https://wandb.ai/fastai_community/fasthugs</a><br/>
-                Run page: <a href="https://wandb.ai/fastai_community/fasthugs/runs/18cwvdx0" target="_blank">https://wandb.ai/fastai_community/fasthugs/runs/18cwvdx0</a><br/>
-                Run data is saved locally in <code>/notebooks/fasthugs/nbs/wandb/run-20210429_183326-18cwvdx0</code><br/><br/>
-            
-</div>
-
-</div>
-
-</div>
-</div>
-
 </div>
     {% endraw %}
 
@@ -3016,24 +2769,6 @@ Wall time: 4min 41s
 </pre></div>
 
     </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>Some weights of the model checkpoint at distilroberta-base were not used when initializing RobertaForSequenceClassification: [&#39;lm_head.bias&#39;, &#39;lm_head.dense.weight&#39;, &#39;lm_head.dense.bias&#39;, &#39;lm_head.layer_norm.weight&#39;, &#39;lm_head.layer_norm.bias&#39;, &#39;lm_head.decoder.weight&#39;, &#39;roberta.pooler.dense.weight&#39;, &#39;roberta.pooler.dense.bias&#39;]
-- This IS expected if you are initializing RobertaForSequenceClassification from the checkpoint of a model trained on another task or with another architecture (e.g. initializing a BertForSequenceClassification model from a BertForPreTraining model).
-- This IS NOT expected if you are initializing RobertaForSequenceClassification from the checkpoint of a model that you expect to be exactly identical (initializing a BertForSequenceClassification model from a BertForSequenceClassification model).
-Some weights of RobertaForSequenceClassification were not initialized from the model checkpoint at distilroberta-base and are newly initialized: [&#39;classifier.dense.weight&#39;, &#39;classifier.dense.bias&#39;, &#39;classifier.out_proj.weight&#39;, &#39;classifier.out_proj.bias&#39;]
-You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
-</pre>
-</div>
-</div>
-
 </div>
 </div>
 
@@ -3598,38 +3333,6 @@ Wall time: 56.4 s
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>Failed to query for notebook name, you can set it manually with the WANDB_NOTEBOOK_NAME environment variable
-<span class="ansi-blue-intense-fg ansi-bold">wandb</span>: Currently logged in as: <span class="ansi-yellow-fg">fastai_community</span> (use `wandb login --relogin` to force relogin)
-<span class="ansi-blue-intense-fg ansi-bold">wandb</span>: wandb version 0.10.28 is available!  To upgrade, please run:
-<span class="ansi-blue-intense-fg ansi-bold">wandb</span>:  $ pip install wandb --upgrade
-</pre>
-</div>
-</div>
-
-<div class="output_area">
-
-
-<div class="output_html rendered_html output_subarea ">
-
-                Tracking run with wandb version 0.10.18<br/>
-                Syncing run <strong style="color:#cdcd00">imdb-distilroberta-base</strong> to <a href="https://wandb.ai" target="_blank">Weights & Biases</a> <a href="https://docs.wandb.com/integrations/jupyter.html" target="_blank">(Documentation)</a>.<br/>
-                Project page: <a href="https://wandb.ai/fastai_community/fasthugs" target="_blank">https://wandb.ai/fastai_community/fasthugs</a><br/>
-                Run page: <a href="https://wandb.ai/fastai_community/fasthugs/runs/18cwvdx0" target="_blank">https://wandb.ai/fastai_community/fasthugs/runs/18cwvdx0</a><br/>
-                Run data is saved locally in <code>/notebooks/fasthugs/nbs/wandb/run-20210429_183326-18cwvdx0</code><br/><br/>
-            
-</div>
-
-</div>
-
-</div>
-</div>
-
 </div>
     {% endraw %}
 
@@ -3652,24 +3355,6 @@ Wall time: 56.4 s
 </pre></div>
 
     </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>Some weights of the model checkpoint at distilroberta-base were not used when initializing RobertaForSequenceClassification: [&#39;lm_head.bias&#39;, &#39;lm_head.dense.weight&#39;, &#39;lm_head.dense.bias&#39;, &#39;lm_head.layer_norm.weight&#39;, &#39;lm_head.layer_norm.bias&#39;, &#39;lm_head.decoder.weight&#39;, &#39;roberta.pooler.dense.weight&#39;, &#39;roberta.pooler.dense.bias&#39;]
-- This IS expected if you are initializing RobertaForSequenceClassification from the checkpoint of a model trained on another task or with another architecture (e.g. initializing a BertForSequenceClassification model from a BertForPreTraining model).
-- This IS NOT expected if you are initializing RobertaForSequenceClassification from the checkpoint of a model that you expect to be exactly identical (initializing a BertForSequenceClassification model from a BertForSequenceClassification model).
-Some weights of RobertaForSequenceClassification were not initialized from the model checkpoint at distilroberta-base and are newly initialized: [&#39;classifier.dense.weight&#39;, &#39;classifier.dense.bias&#39;, &#39;classifier.out_proj.weight&#39;, &#39;classifier.out_proj.bias&#39;]
-You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
-</pre>
-</div>
-</div>
-
 </div>
 </div>
 
@@ -4234,38 +3919,6 @@ Wall time: 1min 17s
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>Failed to query for notebook name, you can set it manually with the WANDB_NOTEBOOK_NAME environment variable
-<span class="ansi-blue-intense-fg ansi-bold">wandb</span>: Currently logged in as: <span class="ansi-yellow-fg">fastai_community</span> (use `wandb login --relogin` to force relogin)
-<span class="ansi-blue-intense-fg ansi-bold">wandb</span>: wandb version 0.10.28 is available!  To upgrade, please run:
-<span class="ansi-blue-intense-fg ansi-bold">wandb</span>:  $ pip install wandb --upgrade
-</pre>
-</div>
-</div>
-
-<div class="output_area">
-
-
-<div class="output_html rendered_html output_subarea ">
-
-                Tracking run with wandb version 0.10.18<br/>
-                Syncing run <strong style="color:#cdcd00">imdb-distilroberta-base</strong> to <a href="https://wandb.ai" target="_blank">Weights & Biases</a> <a href="https://docs.wandb.com/integrations/jupyter.html" target="_blank">(Documentation)</a>.<br/>
-                Project page: <a href="https://wandb.ai/fastai_community/fasthugs" target="_blank">https://wandb.ai/fastai_community/fasthugs</a><br/>
-                Run page: <a href="https://wandb.ai/fastai_community/fasthugs/runs/18cwvdx0" target="_blank">https://wandb.ai/fastai_community/fasthugs/runs/18cwvdx0</a><br/>
-                Run data is saved locally in <code>/notebooks/fasthugs/nbs/wandb/run-20210429_183326-18cwvdx0</code><br/><br/>
-            
-</div>
-
-</div>
-
-</div>
-</div>
-
 </div>
     {% endraw %}
 
@@ -4288,24 +3941,6 @@ Wall time: 1min 17s
 </pre></div>
 
     </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>Some weights of the model checkpoint at distilroberta-base were not used when initializing RobertaForSequenceClassification: [&#39;lm_head.bias&#39;, &#39;lm_head.dense.weight&#39;, &#39;lm_head.dense.bias&#39;, &#39;lm_head.layer_norm.weight&#39;, &#39;lm_head.layer_norm.bias&#39;, &#39;lm_head.decoder.weight&#39;, &#39;roberta.pooler.dense.weight&#39;, &#39;roberta.pooler.dense.bias&#39;]
-- This IS expected if you are initializing RobertaForSequenceClassification from the checkpoint of a model trained on another task or with another architecture (e.g. initializing a BertForSequenceClassification model from a BertForPreTraining model).
-- This IS NOT expected if you are initializing RobertaForSequenceClassification from the checkpoint of a model that you expect to be exactly identical (initializing a BertForSequenceClassification model from a BertForSequenceClassification model).
-Some weights of RobertaForSequenceClassification were not initialized from the model checkpoint at distilroberta-base and are newly initialized: [&#39;classifier.dense.weight&#39;, &#39;classifier.dense.bias&#39;, &#39;classifier.out_proj.weight&#39;, &#39;classifier.out_proj.bias&#39;]
-You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
-</pre>
-</div>
-</div>
-
 </div>
 </div>
 
@@ -4827,38 +4462,6 @@ Wall time: 1.94 s
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>Failed to query for notebook name, you can set it manually with the WANDB_NOTEBOOK_NAME environment variable
-<span class="ansi-blue-intense-fg ansi-bold">wandb</span>: Currently logged in as: <span class="ansi-yellow-fg">fastai_community</span> (use `wandb login --relogin` to force relogin)
-<span class="ansi-blue-intense-fg ansi-bold">wandb</span>: wandb version 0.10.28 is available!  To upgrade, please run:
-<span class="ansi-blue-intense-fg ansi-bold">wandb</span>:  $ pip install wandb --upgrade
-</pre>
-</div>
-</div>
-
-<div class="output_area">
-
-
-<div class="output_html rendered_html output_subarea ">
-
-                Tracking run with wandb version 0.10.18<br/>
-                Syncing run <strong style="color:#cdcd00">imdb-distilroberta-base</strong> to <a href="https://wandb.ai" target="_blank">Weights & Biases</a> <a href="https://docs.wandb.com/integrations/jupyter.html" target="_blank">(Documentation)</a>.<br/>
-                Project page: <a href="https://wandb.ai/fastai_community/fasthugs" target="_blank">https://wandb.ai/fastai_community/fasthugs</a><br/>
-                Run page: <a href="https://wandb.ai/fastai_community/fasthugs/runs/18cwvdx0" target="_blank">https://wandb.ai/fastai_community/fasthugs/runs/18cwvdx0</a><br/>
-                Run data is saved locally in <code>/notebooks/fasthugs/nbs/wandb/run-20210429_183326-18cwvdx0</code><br/><br/>
-            
-</div>
-
-</div>
-
-</div>
-</div>
-
 </div>
     {% endraw %}
 
@@ -4881,24 +4484,6 @@ Wall time: 1.94 s
 </pre></div>
 
     </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>Some weights of the model checkpoint at distilroberta-base were not used when initializing RobertaForSequenceClassification: [&#39;lm_head.bias&#39;, &#39;lm_head.dense.weight&#39;, &#39;lm_head.dense.bias&#39;, &#39;lm_head.layer_norm.weight&#39;, &#39;lm_head.layer_norm.bias&#39;, &#39;lm_head.decoder.weight&#39;, &#39;roberta.pooler.dense.weight&#39;, &#39;roberta.pooler.dense.bias&#39;]
-- This IS expected if you are initializing RobertaForSequenceClassification from the checkpoint of a model trained on another task or with another architecture (e.g. initializing a BertForSequenceClassification model from a BertForPreTraining model).
-- This IS NOT expected if you are initializing RobertaForSequenceClassification from the checkpoint of a model that you expect to be exactly identical (initializing a BertForSequenceClassification model from a BertForSequenceClassification model).
-Some weights of RobertaForSequenceClassification were not initialized from the model checkpoint at distilroberta-base and are newly initialized: [&#39;classifier.dense.weight&#39;, &#39;classifier.dense.bias&#39;, &#39;classifier.out_proj.weight&#39;, &#39;classifier.out_proj.bias&#39;]
-You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
-</pre>
-</div>
-</div>
-
 </div>
 </div>
 
@@ -5420,38 +5005,6 @@ Wall time: 488 ms
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>Failed to query for notebook name, you can set it manually with the WANDB_NOTEBOOK_NAME environment variable
-<span class="ansi-blue-intense-fg ansi-bold">wandb</span>: Currently logged in as: <span class="ansi-yellow-fg">fastai_community</span> (use `wandb login --relogin` to force relogin)
-<span class="ansi-blue-intense-fg ansi-bold">wandb</span>: wandb version 0.10.28 is available!  To upgrade, please run:
-<span class="ansi-blue-intense-fg ansi-bold">wandb</span>:  $ pip install wandb --upgrade
-</pre>
-</div>
-</div>
-
-<div class="output_area">
-
-
-<div class="output_html rendered_html output_subarea ">
-
-                Tracking run with wandb version 0.10.18<br/>
-                Syncing run <strong style="color:#cdcd00">imdb-distilroberta-base</strong> to <a href="https://wandb.ai" target="_blank">Weights & Biases</a> <a href="https://docs.wandb.com/integrations/jupyter.html" target="_blank">(Documentation)</a>.<br/>
-                Project page: <a href="https://wandb.ai/fastai_community/fasthugs" target="_blank">https://wandb.ai/fastai_community/fasthugs</a><br/>
-                Run page: <a href="https://wandb.ai/fastai_community/fasthugs/runs/18cwvdx0" target="_blank">https://wandb.ai/fastai_community/fasthugs/runs/18cwvdx0</a><br/>
-                Run data is saved locally in <code>/notebooks/fasthugs/nbs/wandb/run-20210429_183326-18cwvdx0</code><br/><br/>
-            
-</div>
-
-</div>
-
-</div>
-</div>
-
 </div>
     {% endraw %}
 
@@ -5474,24 +5027,6 @@ Wall time: 488 ms
 </pre></div>
 
     </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>Some weights of the model checkpoint at distilroberta-base were not used when initializing RobertaForSequenceClassification: [&#39;lm_head.bias&#39;, &#39;lm_head.dense.weight&#39;, &#39;lm_head.dense.bias&#39;, &#39;lm_head.layer_norm.weight&#39;, &#39;lm_head.layer_norm.bias&#39;, &#39;lm_head.decoder.weight&#39;, &#39;roberta.pooler.dense.weight&#39;, &#39;roberta.pooler.dense.bias&#39;]
-- This IS expected if you are initializing RobertaForSequenceClassification from the checkpoint of a model trained on another task or with another architecture (e.g. initializing a BertForSequenceClassification model from a BertForPreTraining model).
-- This IS NOT expected if you are initializing RobertaForSequenceClassification from the checkpoint of a model that you expect to be exactly identical (initializing a BertForSequenceClassification model from a BertForSequenceClassification model).
-Some weights of RobertaForSequenceClassification were not initialized from the model checkpoint at distilroberta-base and are newly initialized: [&#39;classifier.dense.weight&#39;, &#39;classifier.dense.bias&#39;, &#39;classifier.out_proj.weight&#39;, &#39;classifier.out_proj.bias&#39;]
-You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
-</pre>
-</div>
-</div>
-
 </div>
 </div>
 
