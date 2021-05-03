@@ -8,10 +8,11 @@ from inspect import signature
 from .data import TransformersTextBlock
 
 from transformers import AutoTokenizer, AutoConfig, AutoModelForSequenceClassification, BatchEncoding
+from transformers.modeling_outputs import QuestionAnsweringModelOutput
 
 # Cell
 def default_splitter(model):
-    groups = L(model.base_model.children()) + L(model.children())[1:]
+    groups = L(model.base_model.children()) + L(m for m in list(model.children())[1:] if params(m))
     return groups.map(params)
 
 # Cell
@@ -34,9 +35,12 @@ class TransCallback(Callback):
         if 'loss' in self.pred:
             self.learn.loss_grad = self.pred.loss
             self.learn.loss = self.pred.loss.clone()
-            self.learn.yb = (self.xb[0]['labels'], )
+            if 'labels' in self.xb[0].keys():
+                self.learn.yb = (self.xb[0]['labels'], )
             self.learn.compute_loss = False
-        self.learn.pred = self.pred.logits
+        if isinstance(self.pred, QuestionAnsweringModelOutput):
+            self.learn.pred = (self.pred.start_logits, self.pred.end_logits)
+        else: self.learn.pred = self.pred.logits
 
 # Cell
 @delegates(Learner.__init__)
