@@ -63,7 +63,7 @@ nb_path: "nbs/01_learner.ipynb"
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>TODOs:</p>
 <ul>
-<li>[ ] exclude modules w/o params</li>
+<li>[x] exclude modules w/o params</li>
 <li>[ ] add layerwise splitter for Transfomers</li>
 </ul>
 
@@ -81,7 +81,7 @@ nb_path: "nbs/01_learner.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="default_splitter" class="doc_header"><code>default_splitter</code><a href="https://github.com/aikindergarten/fasthugs/tree/master/fasthugs/learner.py#L13" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>default_splitter</code>(<strong><code>model</code></strong>)</p>
+<h4 id="default_splitter" class="doc_header"><code>default_splitter</code><a href="https://github.com/aikindergarten/fasthugs/tree/master/fasthugs/learner.py#L14" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>default_splitter</code>(<strong><code>model</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -97,6 +97,24 @@ nb_path: "nbs/01_learner.ipynb"
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">layerwise_splitter</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
+    <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s1">&#39;use default_splitter for now&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
 
 </div>
     {% endraw %}
@@ -170,7 +188,7 @@ nb_path: "nbs/01_learner.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h3 id="TransCallback" class="doc_header"><code>class</code> <code>TransCallback</code><a href="https://github.com/aikindergarten/fasthugs/tree/master/fasthugs/learner.py#L31" class="source_link" style="float:right">[source]</a></h3><blockquote><p><code>TransCallback</code>(<strong><code>after_create</code></strong>=<em><code>None</code></em>, <strong><code>before_fit</code></strong>=<em><code>None</code></em>, <strong><code>before_epoch</code></strong>=<em><code>None</code></em>, <strong><code>before_train</code></strong>=<em><code>None</code></em>, <strong><code>before_batch</code></strong>=<em><code>None</code></em>, <strong><code>after_pred</code></strong>=<em><code>None</code></em>, <strong><code>after_loss</code></strong>=<em><code>None</code></em>, <strong><code>before_backward</code></strong>=<em><code>None</code></em>, <strong><code>before_step</code></strong>=<em><code>None</code></em>, <strong><code>after_cancel_step</code></strong>=<em><code>None</code></em>, <strong><code>after_step</code></strong>=<em><code>None</code></em>, <strong><code>after_cancel_batch</code></strong>=<em><code>None</code></em>, <strong><code>after_batch</code></strong>=<em><code>None</code></em>, <strong><code>after_cancel_train</code></strong>=<em><code>None</code></em>, <strong><code>after_train</code></strong>=<em><code>None</code></em>, <strong><code>before_validate</code></strong>=<em><code>None</code></em>, <strong><code>after_cancel_validate</code></strong>=<em><code>None</code></em>, <strong><code>after_validate</code></strong>=<em><code>None</code></em>, <strong><code>after_cancel_epoch</code></strong>=<em><code>None</code></em>, <strong><code>after_epoch</code></strong>=<em><code>None</code></em>, <strong><code>after_cancel_fit</code></strong>=<em><code>None</code></em>, <strong><code>after_fit</code></strong>=<em><code>None</code></em>) :: <code>Callback</code></p>
+<h3 id="TransCallback" class="doc_header"><code>class</code> <code>TransCallback</code><a href="https://github.com/aikindergarten/fasthugs/tree/master/fasthugs/learner.py#L32" class="source_link" style="float:right">[source]</a></h3><blockquote><p><code>TransCallback</code>(<strong><code>after_create</code></strong>=<em><code>None</code></em>, <strong><code>before_fit</code></strong>=<em><code>None</code></em>, <strong><code>before_epoch</code></strong>=<em><code>None</code></em>, <strong><code>before_train</code></strong>=<em><code>None</code></em>, <strong><code>before_batch</code></strong>=<em><code>None</code></em>, <strong><code>after_pred</code></strong>=<em><code>None</code></em>, <strong><code>after_loss</code></strong>=<em><code>None</code></em>, <strong><code>before_backward</code></strong>=<em><code>None</code></em>, <strong><code>before_step</code></strong>=<em><code>None</code></em>, <strong><code>after_cancel_step</code></strong>=<em><code>None</code></em>, <strong><code>after_step</code></strong>=<em><code>None</code></em>, <strong><code>after_cancel_batch</code></strong>=<em><code>None</code></em>, <strong><code>after_batch</code></strong>=<em><code>None</code></em>, <strong><code>after_cancel_train</code></strong>=<em><code>None</code></em>, <strong><code>after_train</code></strong>=<em><code>None</code></em>, <strong><code>before_validate</code></strong>=<em><code>None</code></em>, <strong><code>after_cancel_validate</code></strong>=<em><code>None</code></em>, <strong><code>after_validate</code></strong>=<em><code>None</code></em>, <strong><code>after_cancel_epoch</code></strong>=<em><code>None</code></em>, <strong><code>after_epoch</code></strong>=<em><code>None</code></em>, <strong><code>after_cancel_fit</code></strong>=<em><code>None</code></em>, <strong><code>after_fit</code></strong>=<em><code>None</code></em>) :: <code>Callback</code></p>
 </blockquote>
 <p>Handles usecase with loss returned by HuggingFace model</p>
 
@@ -202,7 +220,7 @@ nb_path: "nbs/01_learner.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h3 id="TransLearner" class="doc_header"><code>class</code> <code>TransLearner</code><a href="https://github.com/aikindergarten/fasthugs/tree/master/fasthugs/learner.py#L43" class="source_link" style="float:right">[source]</a></h3><blockquote><p><code>TransLearner</code>(<strong><code>dls</code></strong>, <strong><code>model</code></strong>, <strong><code>loss_func</code></strong>=<em><code>None</code></em>, <strong><code>opt_func</code></strong>=<em><code>Adam</code></em>, <strong><code>lr</code></strong>=<em><code>0.001</code></em>, <strong><code>splitter</code></strong>=<em><code>trainable_params</code></em>, <strong><code>cbs</code></strong>=<em><code>None</code></em>, <strong><code>metrics</code></strong>=<em><code>None</code></em>, <strong><code>path</code></strong>=<em><code>None</code></em>, <strong><code>model_dir</code></strong>=<em><code>'models'</code></em>, <strong><code>wd</code></strong>=<em><code>None</code></em>, <strong><code>wd_bn_bias</code></strong>=<em><code>False</code></em>, <strong><code>train_bn</code></strong>=<em><code>True</code></em>, <strong><code>moms</code></strong>=<em><code>(0.95, 0.85, 0.95)</code></em>) :: <code>Learner</code></p>
+<h3 id="TransLearner" class="doc_header"><code>class</code> <code>TransLearner</code><a href="https://github.com/aikindergarten/fasthugs/tree/master/fasthugs/learner.py#L47" class="source_link" style="float:right">[source]</a></h3><blockquote><p><code>TransLearner</code>(<strong><code>dls</code></strong>, <strong><code>model</code></strong>, <strong><code>loss_func</code></strong>=<em><code>None</code></em>, <strong><code>opt_func</code></strong>=<em><code>Adam</code></em>, <strong><code>lr</code></strong>=<em><code>0.001</code></em>, <strong><code>splitter</code></strong>=<em><code>trainable_params</code></em>, <strong><code>cbs</code></strong>=<em><code>None</code></em>, <strong><code>metrics</code></strong>=<em><code>None</code></em>, <strong><code>path</code></strong>=<em><code>None</code></em>, <strong><code>model_dir</code></strong>=<em><code>'models'</code></em>, <strong><code>wd</code></strong>=<em><code>None</code></em>, <strong><code>wd_bn_bias</code></strong>=<em><code>False</code></em>, <strong><code>train_bn</code></strong>=<em><code>True</code></em>, <strong><code>moms</code></strong>=<em><code>(0.95, 0.85, 0.95)</code></em>) :: <code>Learner</code></p>
 </blockquote>
 <p>Learner for training transformers from HuggingFace</p>
 
@@ -306,16 +324,16 @@ You should probably TRAIN this model on a down-stream task to be able to use it 
   <tbody>
     <tr>
       <td>0</td>
-      <td>0.473346</td>
-      <td>0.343880</td>
-      <td>0.865000</td>
-      <td>00:22</td>
+      <td>0.446150</td>
+      <td>0.542738</td>
+      <td>0.765000</td>
+      <td>00:21</td>
     </tr>
     <tr>
       <td>1</td>
-      <td>0.261769</td>
-      <td>0.364859</td>
-      <td>0.875000</td>
+      <td>0.288374</td>
+      <td>0.300514</td>
+      <td>0.895000</td>
       <td>00:21</td>
     </tr>
   </tbody>
