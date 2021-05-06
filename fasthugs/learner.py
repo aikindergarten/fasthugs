@@ -4,6 +4,7 @@ __all__ = ['default_splitter', 'to_device', 'TransCallback', 'TransLearner']
 
 # Cell
 from fastai.basics import *
+from fastai.text.all import TensorText
 from inspect import signature
 from .data import TransformersTextBlock
 
@@ -14,6 +15,18 @@ from transformers.modeling_outputs import QuestionAnsweringModelOutput
 def default_splitter(model):
     groups = L(model.base_model.children()) + L(m for m in list(model.children())[1:] if params(m))
     return groups.map(params)
+
+# Cell
+@typedispatch
+def show_results(x: TensorText, y, samples, outs, ctxs=None, max_n=10, trunc_at=150, **kwargs):
+    if ctxs is None: ctxs = get_empty_df(min(len(samples), max_n))
+    if isinstance(samples[0][0], tuple):
+        samples = L((*s[0], *s[1:]) for s in samples)
+        if trunc_at is not None: samples = L((s[0].truncate(trunc_at), s[1].truncate(trunc_at), *s[2:]) for s in samples)
+    elif trunc_at is not None: samples = L((s[0].truncate(trunc_at),*s[1:]) for s in samples)
+    ctxs = show_results[object](x, y, samples, outs, ctxs=ctxs, max_n=max_n, **kwargs)
+    display_df(pd.DataFrame(ctxs))
+    return ctxs
 
 # Cell
 def to_device(b, device=None):

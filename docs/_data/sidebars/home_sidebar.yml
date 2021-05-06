@@ -24,6 +24,9 @@ entries:
     - output: web,pdf
       title: GLUE Benchmark
       url: examples.glue-benchmark.html
+    - output: web,pdf
+      title: 'GLUE: hyperparameter search'
+      url: examples.glue-benchmark-sweeps.html
     output: web
     title: fasthugs
   output: web
