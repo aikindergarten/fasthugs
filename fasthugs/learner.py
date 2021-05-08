@@ -60,7 +60,7 @@ class TransCallback(Callback):
 class TransLearner(Learner):
     "Learner for training transformers from HuggingFace"
     def __init__(self, dls, model, **kwargs):
-        splitter = kwargs.pop('splitter', None)
+        splitter = kwargs.get('splitter', None)
         if splitter is None: kwargs['splitter'] = default_splitter
         super().__init__(dls, model, **kwargs)
         self.model_args = set(signature(model.forward).parameters.keys())
