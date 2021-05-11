@@ -1,4 +1,3 @@
-
 # FastHugs
 > Training HuggingFace models using fastai
 
@@ -9,18 +8,20 @@
 
 ## How to use
 
-wip...
+### Pre-training
 
-```
-4 + 2 == 42
-```
+[Masked Language modeling](https://aikindergarten.github.io/fasthugs/examples.mlm-imdb.html)
 
+### Fine-tuning
 
+1. [Sentiment classification: IMDB](https://aikindergarten.github.io/fasthugs/examples.classification-imdb.html)
+2. [GLUE benchmark](https://aikindergarten.github.io/fasthugs/examples.glue-benchmark.html)
 
+### Hyper-parameter search
 
-    False
+[W&B sweeps](https://aikindergarten.github.io/fasthugs/examples.glue-benchmark-sweeps.html)
 
-
+And more coming soon...
 
 ## Acknoledgements
 
