@@ -35,9 +35,8 @@ def to_device(b, device=None):
     elif device is None: device=default_device()
     def _inner(o):
         if isinstance(o,Tensor): return o.to(device, non_blocking=True)
-        elif isinstance(o, (dict, BatchEncoding)):
-            return {k:to_device(v) for k,v in o.items()}
-        elif hasattr(o, "to_device"): return o.to_device(device)
+        elif isinstance(o,BatchEncoding): return o.to(device)
+        # elif hasattr(o, "to_device"): return o.to_device(device)
         else: return o
     return apply(_inner, b)
 
@@ -75,3 +74,11 @@ class TransLearner(Learner):
         if splitter is None: kwargs['splitter'] = default_splitter
         super().__init__(dls, model, **kwargs)
         self.add_cb(TransCallback(model))
+
+# Cell
+@patch
+def _set_device(self:TransLearner, b):
+    model_device = torch.device(torch.cuda.current_device()) if next(self.model.parameters()).is_cuda else torch.device('cpu')
+    dls_device = getattr(self.dls, 'device', default_device())
+    if model_device == dls_device: return to_device(b, dls_device)
+    else: return to_device(b, model_device)
