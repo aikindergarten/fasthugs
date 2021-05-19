@@ -235,7 +235,9 @@ nb_path: "nbs/00_data.ipynb"
 <div class="output_markdown rendered_html output_subarea ">
 <h3 id="TokBatchTransform" class="doc_header"><code>class</code> <code>TokBatchTransform</code><a href="https://github.com/aikindergarten/fasthugs/tree/master/fasthugs/data.py#L81" class="source_link" style="float:right">[source]</a></h3><blockquote><p><code>TokBatchTransform</code>(<strong><code>pretrained_model_name</code></strong>=<em><code>None</code></em>, <strong><code>tokenizer_cls</code></strong>=<em><code>AutoTokenizer</code></em>, <strong><code>config</code></strong>=<em><code>None</code></em>, <strong><code>tokenizer</code></strong>=<em><code>None</code></em>, <strong><code>is_lm</code></strong>=<em><code>False</code></em>, <strong><code>with_labels</code></strong>=<em><code>False</code></em>, <strong><code>padding</code></strong>=<em><code>True</code></em>, <strong><code>truncation</code></strong>=<em><code>True</code></em>, <strong><code>max_length</code></strong>=<em><code>None</code></em>, <strong><code>do_targets</code></strong>=<em><code>False</code></em>, <strong>**<code>kwargs</code></strong>) :: <code>Transform</code></p>
 </blockquote>
-<p>Delegates (<code>__call__</code>,<code>decode</code>,<code>setup</code>) to (<code>encodes</code>,<code>decodes</code>,<code>setups</code>) if <code>split_idx</code> matches</p>
+<p>Tokenizes texts in batches using pretrained HuggingFace tokenizer.
+The first element in a batch can be single string or 2-tuple of strings.
+If <code>with_labels=True</code> the "labels" are added to the output dictionary.</p>
 
 </div>
 
@@ -265,7 +267,7 @@ nb_path: "nbs/00_data.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h3 id="PadBatchTransform" class="doc_header"><code>class</code> <code>PadBatchTransform</code><a href="https://github.com/aikindergarten/fasthugs/tree/master/fasthugs/data.py#L144" class="source_link" style="float:right">[source]</a></h3><blockquote><p><code>PadBatchTransform</code>(<strong><code>pretrained_model_name</code></strong>=<em><code>None</code></em>, <strong><code>tokenizer_cls</code></strong>=<em><code>AutoTokenizer</code></em>, <strong><code>config</code></strong>=<em><code>None</code></em>, <strong><code>tokenizer</code></strong>=<em><code>None</code></em>, <strong><code>is_lm</code></strong>=<em><code>False</code></em>, <strong><code>with_labels</code></strong>=<em><code>False</code></em>, <strong><code>padding</code></strong>=<em><code>True</code></em>, <strong><code>truncation</code></strong>=<em><code>True</code></em>, <strong><code>max_length</code></strong>=<em><code>None</code></em>, <strong><code>do_targets</code></strong>=<em><code>False</code></em>, <strong>**<code>kwargs</code></strong>) :: <code>Transform</code></p>
+<h3 id="PadBatchTransform" class="doc_header"><code>class</code> <code>PadBatchTransform</code><a href="https://github.com/aikindergarten/fasthugs/tree/master/fasthugs/data.py#L147" class="source_link" style="float:right">[source]</a></h3><blockquote><p><code>PadBatchTransform</code>(<strong><code>pretrained_model_name</code></strong>=<em><code>None</code></em>, <strong><code>tokenizer_cls</code></strong>=<em><code>AutoTokenizer</code></em>, <strong><code>config</code></strong>=<em><code>None</code></em>, <strong><code>tokenizer</code></strong>=<em><code>None</code></em>, <strong><code>is_lm</code></strong>=<em><code>False</code></em>, <strong><code>with_labels</code></strong>=<em><code>False</code></em>, <strong><code>padding</code></strong>=<em><code>True</code></em>, <strong><code>truncation</code></strong>=<em><code>True</code></em>, <strong><code>max_length</code></strong>=<em><code>None</code></em>, <strong><code>do_targets</code></strong>=<em><code>False</code></em>, <strong>**<code>kwargs</code></strong>) :: <code>Transform</code></p>
 </blockquote>
 <p>Delegates (<code>__call__</code>,<code>decode</code>,<code>setup</code>) to (<code>encodes</code>,<code>decodes</code>,<code>setups</code>) if <code>split_idx</code> matches</p>
 
@@ -297,7 +299,7 @@ nb_path: "nbs/00_data.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="untuple" class="doc_header"><code>untuple</code><a href="https://github.com/aikindergarten/fasthugs/tree/master/fasthugs/data.py#L178" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>untuple</code>(<strong><code>l</code></strong>)</p>
+<h4 id="untuple" class="doc_header"><code>untuple</code><a href="https://github.com/aikindergarten/fasthugs/tree/master/fasthugs/data.py#L181" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>untuple</code>(<strong><code>l</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -321,7 +323,7 @@ nb_path: "nbs/00_data.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="to_tuple" class="doc_header"><code>to_tuple</code><a href="https://github.com/aikindergarten/fasthugs/tree/master/fasthugs/data.py#L181" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>to_tuple</code>(<strong><code>x</code></strong>)</p>
+<h4 id="to_tuple" class="doc_header"><code>to_tuple</code><a href="https://github.com/aikindergarten/fasthugs/tree/master/fasthugs/data.py#L184" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>to_tuple</code>(<strong><code>x</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -363,7 +365,7 @@ nb_path: "nbs/00_data.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h3 id="LMBatchTfm" class="doc_header"><code>class</code> <code>LMBatchTfm</code><a href="https://github.com/aikindergarten/fasthugs/tree/master/fasthugs/data.py#L185" class="source_link" style="float:right">[source]</a></h3><blockquote><p><code>LMBatchTfm</code>(<strong><code>pretrained_model_name</code></strong>=<em><code>None</code></em>, <strong><code>tokenizer_cls</code></strong>=<em><code>AutoTokenizer</code></em>, <strong><code>config</code></strong>=<em><code>None</code></em>, <strong><code>tokenizer</code></strong>=<em><code>None</code></em>, <strong><code>mlm</code></strong>=<em><code>True</code></em>, <strong><code>masking_func</code></strong>=<em><code>None</code></em>, <strong><code>whole_word_masking</code></strong>=<em><code>False</code></em>, <strong><code>mlm_probability</code></strong>=<em><code>0.15</code></em>) :: <code>Transform</code></p>
+<h3 id="LMBatchTfm" class="doc_header"><code>class</code> <code>LMBatchTfm</code><a href="https://github.com/aikindergarten/fasthugs/tree/master/fasthugs/data.py#L188" class="source_link" style="float:right">[source]</a></h3><blockquote><p><code>LMBatchTfm</code>(<strong><code>pretrained_model_name</code></strong>=<em><code>None</code></em>, <strong><code>tokenizer_cls</code></strong>=<em><code>AutoTokenizer</code></em>, <strong><code>config</code></strong>=<em><code>None</code></em>, <strong><code>tokenizer</code></strong>=<em><code>None</code></em>, <strong><code>mlm</code></strong>=<em><code>True</code></em>, <strong><code>masking_func</code></strong>=<em><code>None</code></em>, <strong><code>whole_word_masking</code></strong>=<em><code>False</code></em>, <strong><code>mlm_probability</code></strong>=<em><code>0.15</code></em>) :: <code>Transform</code></p>
 </blockquote>
 <p>Collates batch of pretokenized and chunked inputs into a batch and creates labels as defined by <code>masking_func</code></p>
 
@@ -395,7 +397,7 @@ nb_path: "nbs/00_data.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h3 id="Undict" class="doc_header"><code>class</code> <code>Undict</code><a href="https://github.com/aikindergarten/fasthugs/tree/master/fasthugs/data.py#L207" class="source_link" style="float:right">[source]</a></h3><blockquote><p><code>Undict</code>(<strong><code>enc</code></strong>=<em><code>None</code></em>, <strong><code>dec</code></strong>=<em><code>None</code></em>, <strong><code>split_idx</code></strong>=<em><code>None</code></em>, <strong><code>order</code></strong>=<em><code>None</code></em>) :: <code>ItemTransform</code></p>
+<h3 id="Undict" class="doc_header"><code>class</code> <code>Undict</code><a href="https://github.com/aikindergarten/fasthugs/tree/master/fasthugs/data.py#L210" class="source_link" style="float:right">[source]</a></h3><blockquote><p><code>Undict</code>(<strong><code>enc</code></strong>=<em><code>None</code></em>, <strong><code>dec</code></strong>=<em><code>None</code></em>, <strong><code>split_idx</code></strong>=<em><code>None</code></em>, <strong><code>order</code></strong>=<em><code>None</code></em>) :: <code>ItemTransform</code></p>
 </blockquote>
 <p>A transform that always take tuples as items</p>
 
@@ -433,7 +435,7 @@ nb_path: "nbs/00_data.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h3 id="TransformersTextBlock" class="doc_header"><code>class</code> <code>TransformersTextBlock</code><a href="https://github.com/aikindergarten/fasthugs/tree/master/fasthugs/data.py#L218" class="source_link" style="float:right">[source]</a></h3><blockquote><p><code>TransformersTextBlock</code>(<strong><code>pretrained_model_name</code></strong>=<em><code>None</code></em>, <strong><code>tokenizer_cls</code></strong>=<em><code>AutoTokenizer</code></em>, <strong><code>config</code></strong>=<em><code>None</code></em>, <strong><code>tokenizer</code></strong>=<em><code>None</code></em>, <strong><code>preprocessed</code></strong>=<em><code>False</code></em>, <strong><code>is_lm</code></strong>=<em><code>False</code></em>, <strong><code>with_labels</code></strong>=<em><code>False</code></em>, <strong><code>padding</code></strong>=<em><code>True</code></em>, <strong><code>truncation</code></strong>=<em><code>True</code></em>, <strong><code>max_length</code></strong>=<em><code>None</code></em>, <strong><code>do_targets</code></strong>=<em><code>False</code></em>) :: <code>TransformBlock</code></p>
+<h3 id="TransformersTextBlock" class="doc_header"><code>class</code> <code>TransformersTextBlock</code><a href="https://github.com/aikindergarten/fasthugs/tree/master/fasthugs/data.py#L221" class="source_link" style="float:right">[source]</a></h3><blockquote><p><code>TransformersTextBlock</code>(<strong><code>pretrained_model_name</code></strong>=<em><code>None</code></em>, <strong><code>tokenizer_cls</code></strong>=<em><code>AutoTokenizer</code></em>, <strong><code>config</code></strong>=<em><code>None</code></em>, <strong><code>tokenizer</code></strong>=<em><code>None</code></em>, <strong><code>preprocessed</code></strong>=<em><code>False</code></em>, <strong><code>is_lm</code></strong>=<em><code>False</code></em>, <strong><code>with_labels</code></strong>=<em><code>False</code></em>, <strong><code>padding</code></strong>=<em><code>True</code></em>, <strong><code>truncation</code></strong>=<em><code>True</code></em>, <strong><code>max_length</code></strong>=<em><code>None</code></em>, <strong><code>do_targets</code></strong>=<em><code>False</code></em>) :: <code>TransformBlock</code></p>
 </blockquote>
 <p>A <code>TransformBlock</code> for texts using pretrained tokenizers from Huggingface</p>
 
@@ -527,17 +529,17 @@ nb_path: "nbs/00_data.ipynb"
     </tr>
     <tr>
       <th>1</th>
-      <td>the shop around the corner is one of the sweetest and most feel - good romantic comedies ever made. there's just no getting around that, and it's hard to actually put one's feeling for this film into words. it's not one of those films that tries too hard, nor does it come up with the oddest possible scenarios to get the two protagonists together in the end. in fact, all its charm is innate, contained within the characters and the setting and the plot... which is highly believable to boot. it's easy to think that such a love story, as beautiful as any other ever told, * could * happen to you... a feeling you don't often get from other romantic comedies, however sweet and heart - warming they may be. &lt; br / &gt; &lt; br / &gt; alfred kralik ( james stewart ) and clara novak ( margaret</td>
+      <td>many neglect that this isn't just a classic due to the fact that it's the first 3d game, or even the first shoot -'em - up. it's also one of the first stealth games, one of the only ( and definitely the first ) truly claustrophobic games, and just a pretty well - rounded gaming experience in general. with graphics that are terribly dated today, the game thrusts you into the role of b. j. ( don't even * think * i'm going to attempt spelling his last name! ), an american p. o. w. caught in an underground bunker. you fight and search your way through tunnels in order to achieve different objectives for the six episodes ( but, let's face it, most of them are just an excuse to hand you a weapon, surround you with nazis and send you out to waste one of the nazi leaders</td>
       <td>positive</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>now that che ( 2008 ) has finished its relatively short australian cinema run ( extremely limited release : 1 screen in sydney, after 6wks ), i can guiltlessly join both hosts of " at the movies " in taking steven soderbergh to task. &lt; br / &gt; &lt; br / &gt; it's usually satisfying to watch a film director change his style / subject, but soderbergh's most recent stinker, the girlfriend experience ( 2009 ), was also missing a story, so narrative ( and editing? ) seem to suddenly be soderbergh's main challenge. strange, after 20 - odd years in the business. he was probably never much good at narrative, just hid it well inside " edgy " projects. &lt; br / &gt; &lt; br / &gt; none of this excuses him this present, almost diabolical failure. as david stratton warns, " two parts of che don't ( even</td>
+      <td>i really wanted to love this show. i truly, honestly did. &lt; br / &gt; &lt; br / &gt; for the first time, gay viewers get their own version of the " the bachelor ". with the help of his obligatory " hag " andra, james, a good looking, well - to - do thirty - something has the chance of love with 15 suitors ( or " mates " as they are referred to in the show ). the only problem is half of them are straight and james doesn't know this. if james picks a gay one, they get a trip to new zealand, and if he picks a straight one, straight guy gets $ 25, 000. how can this not be fun?! take my hand, lets stroll : &lt; br / &gt; &lt; br / &gt; the most glaring problem with this show is the bachelor himself.</td>
       <td>negative</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>many neglect that this isn't just a classic due to the fact that it's the first 3d game, or even the first shoot -'em - up. it's also one of the first stealth games, one of the only ( and definitely the first ) truly claustrophobic games, and just a pretty well - rounded gaming experience in general. with graphics that are terribly dated today, the game thrusts you into the role of b. j. ( don't even * think * i'm going to attempt spelling his last name! ), an american p. o. w. caught in an underground bunker. you fight and search your way through tunnels in order to achieve different objectives for the six episodes ( but, let's face it, most of them are just an excuse to hand you a weapon, surround you with nazis and send you out to waste one of the nazi leaders</td>
+      <td>this film sat on my tivo for weeks before i watched it. i dreaded a self - indulgent yuppie flick about relationships gone bad. i was wrong ; this was an engrossing excursion into the screwed - up libidos of new yorkers. &lt; br / &gt; &lt; br / &gt; the format is the same as max ophuls'" la ronde, " based on a play by arthur schnitzler, who is given an " inspired by " credit. it starts from one person, a prostitute, standing on a street corner in brooklyn. she is picked up by a home contractor, who has sex with her on the hood of a car, but can't come. he refuses to pay her. when he's off peeing, she answers his cell phone and takes a message. she runs away with his keys. &lt; br / &gt; &lt; br / &gt; then the story switches to</td>
       <td>positive</td>
     </tr>
   </tbody>
@@ -606,13 +608,13 @@ nb_path: "nbs/00_data.ipynb"
     </tr>
     <tr>
       <th>2</th>
-      <td>now that che ( 2008 ) has finished its relatively short australian cinema run ( extremely limited release : 1 screen in sydney, after 6wks ), i can guiltlessly join both hosts of " at the movies " in taking steven soderbergh to task. &lt; br / &gt; &lt; br / &gt; it's usually satisfying to watch a film director change his style / subject, but soderbergh's most recent stinker, the girlfriend experience ( 2009 ), was also missing a story, so narrative ( and editing? ) seem to suddenly be soderbergh's main challenge. strange, after 20 - odd years in the business. he was probably never much good at narrative, just hid it well inside " edgy " projects. &lt; br / &gt; &lt; br / &gt; none of this excuses him this present, almost diabolical failure. as david stratton warns, " two parts of che don't ( even</td>
-      <td>negative</td>
+      <td>many neglect that this isn't just a classic due to the fact that it's the first 3d game, or even the first shoot -'em - up. it's also one of the first stealth games, one of the only ( and definitely the first ) truly claustrophobic games, and just a pretty well - rounded gaming experience in general. with graphics that are terribly dated today, the game thrusts you into the role of b. j. ( don't even * think * i'm going to attempt spelling his last name! ), an american p. o. w. caught in an underground bunker. you fight and search your way through tunnels in order to achieve different objectives for the six episodes ( but, let's face it, most of them are just an excuse to hand you a weapon, surround you with nazis and send you out to waste one of the nazi leaders</td>
+      <td>positive</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>many neglect that this isn't just a classic due to the fact that it's the first 3d game, or even the first shoot -'em - up. it's also one of the first stealth games, one of the only ( and definitely the first ) truly claustrophobic games, and just a pretty well - rounded gaming experience in general. with graphics that are terribly dated today, the game thrusts you into the role of b. j. ( don't even * think * i'm going to attempt spelling his last name! ), an american p. o. w. caught in an underground bunker. you fight and search your way through tunnels in order to achieve different objectives for the six episodes ( but, let's face it, most of them are just an excuse to hand you a weapon, surround you with nazis and send you out to waste one of the nazi leaders</td>
-      <td>positive</td>
+      <td>i really wanted to love this show. i truly, honestly did. &lt; br / &gt; &lt; br / &gt; for the first time, gay viewers get their own version of the " the bachelor ". with the help of his obligatory " hag " andra, james, a good looking, well - to - do thirty - something has the chance of love with 15 suitors ( or " mates " as they are referred to in the show ). the only problem is half of them are straight and james doesn't know this. if james picks a gay one, they get a trip to new zealand, and if he picks a straight one, straight guy gets $ 25, 000. how can this not be fun?! take my hand, lets stroll : &lt; br / &gt; &lt; br / &gt; the most glaring problem with this show is the bachelor himself.</td>
+      <td>negative</td>
     </tr>
   </tbody>
 </table>
@@ -643,7 +645,7 @@ nb_path: "nbs/00_data.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h3 id="TransformersLMBlock" class="doc_header"><code>class</code> <code>TransformersLMBlock</code><a href="https://github.com/aikindergarten/fasthugs/tree/master/fasthugs/data.py#L245" class="source_link" style="float:right">[source]</a></h3><blockquote><p><code>TransformersLMBlock</code>(<strong><code>pretrained_model_name</code></strong>=<em><code>None</code></em>, <strong><code>tokenizer_cls</code></strong>=<em><code>AutoTokenizer</code></em>, <strong><code>config</code></strong>=<em><code>None</code></em>, <strong><code>tokenizer</code></strong>=<em><code>None</code></em>, <strong><code>mlm</code></strong>=<em><code>True</code></em>, <strong><code>masking_func</code></strong>=<em><code>None</code></em>, <strong><code>whole_word_masking</code></strong>=<em><code>False</code></em>, <strong><code>mlm_probability</code></strong>=<em><code>0.15</code></em>, <strong>**<code>kwargs</code></strong>) :: <code>TransformBlock</code></p>
+<h3 id="TransformersLMBlock" class="doc_header"><code>class</code> <code>TransformersLMBlock</code><a href="https://github.com/aikindergarten/fasthugs/tree/master/fasthugs/data.py#L248" class="source_link" style="float:right">[source]</a></h3><blockquote><p><code>TransformersLMBlock</code>(<strong><code>pretrained_model_name</code></strong>=<em><code>None</code></em>, <strong><code>tokenizer_cls</code></strong>=<em><code>AutoTokenizer</code></em>, <strong><code>config</code></strong>=<em><code>None</code></em>, <strong><code>tokenizer</code></strong>=<em><code>None</code></em>, <strong><code>mlm</code></strong>=<em><code>True</code></em>, <strong><code>masking_func</code></strong>=<em><code>None</code></em>, <strong><code>whole_word_masking</code></strong>=<em><code>False</code></em>, <strong><code>mlm_probability</code></strong>=<em><code>0.15</code></em>, <strong>**<code>kwargs</code></strong>) :: <code>TransformBlock</code></p>
 </blockquote>
 <p>A <code>TransformBlock</code> for texts using pretrained tokenizers from Huggingface</p>
 
@@ -681,7 +683,7 @@ nb_path: "nbs/00_data.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="tokenize" class="doc_header"><code>tokenize</code><a href="https://github.com/aikindergarten/fasthugs/tree/master/fasthugs/data.py#L265" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>tokenize</code>(<strong><code>batch</code></strong>)</p>
+<h4 id="tokenize" class="doc_header"><code>tokenize</code><a href="https://github.com/aikindergarten/fasthugs/tree/master/fasthugs/data.py#L268" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>tokenize</code>(<strong><code>batch</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -705,7 +707,7 @@ nb_path: "nbs/00_data.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="group_texts" class="doc_header"><code>group_texts</code><a href="https://github.com/aikindergarten/fasthugs/tree/master/fasthugs/data.py#L268" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>group_texts</code>(<strong><code>examples</code></strong>)</p>
+<h4 id="group_texts" class="doc_header"><code>group_texts</code><a href="https://github.com/aikindergarten/fasthugs/tree/master/fasthugs/data.py#L271" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>group_texts</code>(<strong><code>examples</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -756,17 +758,9 @@ nb_path: "nbs/00_data.ipynb"
 
 <div class="output_subarea output_stream output_stderr output_text">
 <pre>Using custom data configuration default-baca2dc48733f0f6
-</pre>
-</div>
-</div>
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>Downloading and preparing dataset csv/default (download: Unknown size, generated: Unknown size, post-processed: Unknown size, total: Unknown size) to /root/.cache/huggingface/datasets/csv/default-baca2dc48733f0f6/0.0.0...
-Dataset csv downloaded and prepared to /root/.cache/huggingface/datasets/csv/default-baca2dc48733f0f6/0.0.0. Subsequent calls will reuse this data.
-
-
+Reusing dataset csv (/root/.cache/huggingface/datasets/csv/default-baca2dc48733f0f6/0.0.0)
+Loading cached processed dataset at /root/.cache/huggingface/datasets/csv/default-baca2dc48733f0f6/0.0.0/cache-032c7a403e6a8cc8.arrow
+Loading cached processed dataset at /root/.cache/huggingface/datasets/csv/default-baca2dc48733f0f6/0.0.0/cache-bd4c0fdd3d96b02e.arrow
 </pre>
 </div>
 </div>
@@ -827,19 +821,19 @@ Dataset csv downloaded and prepared to /root/.cache/huggingface/datasets/csv/def
   <tbody>
     <tr>
       <th>0</th>
-      <td>hair from her home by mary, driven to the brady home, and forced into an impromptu dance with the crippled [MASK]! the sheriff is hurled onto a [MASK] fence and we see how cats combat the sleepwalkers unlike humans. we see mary and charles'abilities to " dim " themselves and his car using a power of [MASK]visibility. writer stephen king [MASK] finds time to include [unused42] and horror director buddies of his in a [MASK] scene sequence with [MASK] barker and tobe hooper [MASK] forensics officers, joe dante [MASK] john [MASK]is as photograph experts [MASK] &lt; br [MASK] &gt; &lt; br / &gt; the film is [MASK] in a tongue shivering in [MASK]</td>
+      <td>actually kinda funny. after awhile the pool shot feels like a [MASK] channel [MASK] s station identification logo, reminding us that we are watching " grey matter ". &lt; br / &gt; &lt; br / &gt; i also enjoyed [MASK] boutshore name - calling. at one [MASK] an angry test subject taunts somebody in charge by [MASK] her a " scientific b * tch! ". it'ambrose just a [MASK] inadequate [MASK]. several scenes later a different subject lets off steam by muttering about that " scientific b * * tard! ". it just sounded very awkward to me. &lt; br / &gt; &lt; br / &gt; someday this movie [MASK] disappear forever</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>like to enjoy bad acting [MASK] [MASK] screenplay and bad [MASK] else. and by [MASK] turn of [MASK] - i am [MASK] of them ahmad [MASK] there are [MASK] when i have an urge of seeing a really bad movie and look [MASK] soaring some trash and here you go [MASK] [MASK] day is saved! but that's definitely an opinion of mine and doesn't haveouring with anyones'[MASK]. [MASK] [MASK] / &gt; &lt; br / &gt; [MASK] i wanted to say is that if you want [MASK] [MASK] [MASK] terrible movie - then fell [MASK]'s casanova is definitely the [MASK], but heed my advice and narration't rate it by important means</td>
+      <td>: the [MASK] men [MASK] all hotter than the [MASK] guys. &lt; br [MASK] &gt; &lt; br / [MASK] don [MASK] t get me wrong, im not saying all the gay guys were ugly and [MASK], [MASK] [MASK] [MASK] of fact i found some of them [MASK] cute. it's just that overall they were just blah compared to the men you [MASK] purse see on shows like avocation at love with [MASK]a tequila or [MASK] bachelor [MASK]. &lt; br / [MASK] [MASK] br / &gt; i don't know how many times i hit fast [MASK] during this show. i can accept a lead character as interesting as a cardboard [MASK], i can accept the mundane</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>! if [MASK] person stood in front of another's house [MASK] made noises with a wind chime they [MASK] be considered a lunatic, not gain entrance. shimmering br [MASK] &gt; &lt; br / &gt; japan emphasis on human relationships, group oriented [MASK] moag " i want a life that's mine " american individual [MASK]. &lt; br / [MASK] [MASK] br / &gt; [MASK] [MASK] dance refined elegance. [MASK] almost geometrical [MASK] mechanical precision. moag dance martha graham freaking out on lsd while wearing a not - very - auspicious white japanese funeral shroud. performed by a geisha down a ramp in a place that looks like [MASK] strip</td>
+      <td>i 1789 ever experienced. [MASK] possible line in the movie [MASK] unoriginal [MASK] cliche, or just [MASK] stupid. for [MASK] the name of the camp is " camp blood " ( lame ), the name of the clown is " the [MASK] clown " ( lame ). what is a clown doing in a forest anyway? was that [MASK] only mask they could find? 3. the last but certainly the least was the acting [MASK] [MASK] the worst [MASK] of actors and actresses ever assembled. a [MASK] cornucopia of shitty lines and poor acting. worst part by far was when [MASK] [MASK] flash back to this fat foreign girl getting naked for</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>&lt; br / &gt; this would seem to [MASK] the entire argument put forward in the film that the [MASK] whole earth " picture is actually a small part of the planet framed by the spacecraft window. &lt; [MASK] / &gt; &lt; [MASK] / &gt; i [MASK] waiting for bart sibre [MASK] [MASK] [MASK] claim that the historical weather data [MASK] been faked by nasa, though that would no [MASK] involve them [MASK] also replacing every archived newspaper copy with a weather map, and the ones [MASK] private hands would still [MASK] a problem. &lt; br / &gt; &lt; [MASK] / &gt; ah, a [MASK] : " trying to [MASK] 1928it this movie by referring to [MASK] weather data [MASK]</td>
+      <td>s daughter )! as in the later film, too, fanfan ( [MASK] ideally cast gerard philipe [MASK], ironically, is so full of life here that one [MASK] it [MASK] [MASK] believe that he would be stricken down by cancer within 7 years'time ) [MASK] flanked by two fun - [MASK] yet [MASK]ly men ( one of them is actually his superior [MASK] and [MASK] heroine's own father ) and opposed [MASK] an unscrupulous figure within [MASK] own ranks ( the [MASK] [MASK] ro [MASK]vert, with whom the hero [MASK] engages in a rooftop duel since [MASK] too has amorous designs [MASK] the gypsy girl )! ; for the record</td>
     </tr>
   </tbody>
 </table>

@@ -35,25 +35,35 @@ def to_device(b, device=None):
     elif device is None: device=default_device()
     def _inner(o):
         if isinstance(o,Tensor): return o.to(device, non_blocking=True)
-        elif isinstance(o, (dict, BatchEncoding)):
-            return {k:to_device(v) for k,v in o.items()}
-        elif hasattr(o, "to_device"): return o.to_device(device)
+        elif isinstance(o,BatchEncoding): return o.to(device)
+        # elif hasattr(o, "to_device"): return o.to_device(device)
         else: return o
     return apply(_inner, b)
 
 # Cell
 class TransCallback(Callback):
-    "Handles usecase with loss returned by HuggingFace model"
+    "Handles HuggingFace model inputs and outputs"
+    def __init__(self, model):
+        self.labels = tuple()
+        self.model_args = {k:v.default for k, v in signature(model.forward).parameters.items()}
+
+    def before_batch(self):
+        if 'labels' in self.xb[0].keys():
+            self.labels = (self.xb[0]['labels'], )
+        self.learn.xb = tuple([self.xb[0].get(k, self.model_args[k]) for k in self.model_args.keys()])
+
     def after_pred(self):
         if 'loss' in self.pred:
             self.learn.loss_grad = self.pred.loss
             self.learn.loss = self.pred.loss.clone()
-            if 'labels' in self.xb[0].keys():
-                self.learn.yb = (self.xb[0]['labels'], )
-            self.learn.compute_loss = False
         if isinstance(self.pred, QuestionAnsweringModelOutput):
             self.learn.pred = (self.pred.start_logits, self.pred.end_logits)
         else: self.learn.pred = self.pred.logits
+
+    def after_loss(self):
+        if len(self.labels):
+            self.learn.yb = self.labels
+            self.labels = tuple()
 
 # Cell
 @delegates(Learner.__init__)
@@ -63,28 +73,12 @@ class TransLearner(Learner):
         splitter = kwargs.get('splitter', None)
         if splitter is None: kwargs['splitter'] = default_splitter
         super().__init__(dls, model, **kwargs)
-        self.model_args = set(signature(model.forward).parameters.keys())
-        self.add_cb(TransCallback())
-        self.compute_loss = True
+        self.add_cb(TransCallback(model))
 
-    def one_batch(self, i, b):
-        self.iter = i
-        b_on_device = tuple(to_device(e) for e in b) if self.dls.device is not None else b
-        self._split(b_on_device)
-        self._with_events(self._do_one_batch, 'batch', CancelBatchException)
-
-    def _do_one_batch(self):
-        x = self.xb[0]
-        for k in x.keys():
-            if k not in self.model_args: del x[k]
-        self.pred = self.model(**self.x)
-        self('after_pred')
-        if len(self.yb) and self.compute_loss:
-            self.loss_grad = self.loss_func(self.pred, *self.yb)
-            self.loss = self.loss_grad.clone()
-        self('after_loss')
-        if not self.training or not len(self.yb): return
-        self('before_backward')
-        self.loss_grad.backward()
-        self._with_events(self.opt.step, 'step', CancelStepException)
-        self.opt.zero_grad()
+# Cell
+@patch
+def _set_device(self:TransLearner, b):
+    model_device = torch.device(torch.cuda.current_device()) if next(self.model.parameters()).is_cuda else torch.device('cpu')
+    dls_device = getattr(self.dls, 'device', default_device())
+    if model_device == dls_device: return to_device(b, dls_device)
+    else: return to_device(b, model_device)

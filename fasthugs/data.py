@@ -79,6 +79,11 @@ class TokTransform(Transform):
 
 # Cell
 class TokBatchTransform(Transform):
+    """
+    Tokenizes texts in batches using pretrained HuggingFace tokenizer.
+    The first element in a batch can be single string or 2-tuple of strings.
+    If `with_labels=True` the "labels" are added to the output dictionary.
+    """
     def __init__(self, pretrained_model_name=None, tokenizer_cls=AutoTokenizer,
                  config=None, tokenizer=None, is_lm=False, with_labels=False,
                  padding=True, truncation=True, max_length=None,
@@ -100,8 +105,6 @@ class TokBatchTransform(Transform):
         else: # batch is list of texts
             texts = (list(batch),)
             batch = [(s, ) for s in batch]
-        # return_tensors = None if self.is_lm else 'pt'
-        # padding = None if self.is_lm else self.padding
         inps = self.tokenizer(*texts,
                               add_special_tokens=True,
                               padding=self.padding,
