@@ -123,17 +123,16 @@ class TokBatchTransform(Transform):
                                   max_length=self.max_length,
                                   return_tensors='pt',
                                   **self.kwargs).input_ids
-            inps['labels'] = targets
-            res = (inps, )
+            targets = (targets, )
         else:
             # inps are batched, collate targets into batches too
-            labels = default_collate([s[1:] for s in batch])
-            if self.with_labels:
-                # TODO consider cases when there are multiple labels
-                inps['labels'] = labels[0]
-                res = (inps, )
-            else:
-                res = (inps, ) + tuple(labels)
+            targets = default_collate([s[1:] for s in batch])
+        if self.with_labels:
+            # TODO consider cases when there are multiple labels
+            inps['labels'] = targets[0]
+            res = (inps, )
+        else:
+            res = (inps, ) + tuple(labels)
         return res
 
     def decodes(self, x:TensorText):
