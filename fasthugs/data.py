@@ -132,7 +132,7 @@ class TokBatchTransform(Transform):
             inps['labels'] = targets[0]
             res = (inps, )
         else:
-            res = (inps, ) + tuple(labels)
+            res = (inps, ) + tuple(targets)
         return res
 
     def decodes(self, x:TensorText):
