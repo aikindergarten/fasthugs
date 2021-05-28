@@ -17,7 +17,7 @@ entries:
       url: learner.html
     - output: web,pdf
       title: 'Text classification: IMDB dataset'
-      url: examples.machine_translation.html
+      url: examples.classification-imdb.html
     - output: web,pdf
       title: Masked Language Modeling
       url: examples.mlm-imdb.html
@@ -27,6 +27,9 @@ entries:
     - output: web,pdf
       title: 'GLUE: hyperparameter search'
       url: examples.glue-benchmark-sweeps.html
+    - output: web,pdf
+      title: 'Machine Translation: fr-en'
+      url: examples.machine_translation.html
     output: web
     title: fasthugs
   output: web

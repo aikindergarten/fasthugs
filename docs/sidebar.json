@@ -3,9 +3,10 @@
     "Overview": "/",
     "Data": "data.html",
     "Learner for transformers": "learner.html",
-    "Text classification: IMDB dataset": "examples.machine_translation.html",
+    "Text classification: IMDB dataset": "examples.classification-imdb.html",
     "Masked Language Modeling": "examples.mlm-imdb.html",
     "GLUE Benchmark": "examples.glue-benchmark.html",
-    "GLUE: hyperparameter search": "examples.glue-benchmark-sweeps.html"
+    "GLUE: hyperparameter search": "examples.glue-benchmark-sweeps.html",
+    "Machine Translation: fr-en": "examples.machine_translation.html"
   }
 }

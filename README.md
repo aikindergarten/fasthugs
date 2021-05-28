@@ -16,6 +16,7 @@
 
 1. [Sentiment classification: IMDB](https://aikindergarten.github.io/fasthugs/examples.classification-imdb.html)
 2. [GLUE benchmark](https://aikindergarten.github.io/fasthugs/examples.glue-benchmark.html)
+3. [Machine Translation](https://aikindergarten.github.io/fasthugs/examples.machine-translation.html)
 
 ### Hyper-parameter search
 
