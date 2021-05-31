@@ -13,6 +13,8 @@ from transformers import (AutoTokenizer, AutoConfig, BatchEncoding,
                           DataCollatorForLanguageModeling,
                           DataCollatorForWholeWordMask)
 
+from typing import Iterable
+
 # Cell
 def get_splits(dataset, train='train', valid='validation'):
     nt, nv = len(dataset[train]), len(dataset[valid])
@@ -165,7 +167,7 @@ class PadBatchTransform(Transform):
     def __init__(self, pretrained_model_name=None, tokenizer_cls=AutoTokenizer,
                  config=None, tokenizer=None, is_lm=False, with_labels=False,
                  padding=True, truncation=True, max_length=None,
-                 do_targets=False, **kwargs):
+                 do_targets=False, target_pad_id=-100, **kwargs):
         if tokenizer is None:
             tokenizer = tokenizer_cls.from_pretrained(pretrained_model_name, config=config)
         self.tokenizer = tokenizer
@@ -175,6 +177,15 @@ class PadBatchTransform(Transform):
 
     def encodes(self, samples):
         toks = [s[0] for s in samples]
+        if self.do_targets and ('labels' in toks[0].keys()):
+            label_lens = [len(s['labels']) for s in toks]
+            max_label_length = max(label_lens)
+            padding_side = self.tokenizer.padding_side
+            for tok, label_len in zip(toks, label_lens):
+                remainder = [self.target_pad_id] * (max_label_length - label_len)
+                tok["labels"] = (tok["labels"] + remainder
+                                 if padding_side=="right" else
+                                 remainder + tok["labels"])
         inps = self.tokenizer.pad(toks,
                               padding=self.padding,
                               max_length=self.max_length,
@@ -183,7 +194,6 @@ class PadBatchTransform(Transform):
 
         # inps are batched, collate targets into batches too
         labels = default_collate([s[1:] for s in samples])
-
         res = (inps, ) + tuple(labels)
         return res
 
@@ -192,6 +202,8 @@ class PadBatchTransform(Transform):
             x1, x2 = split_by_sep(x, self.tokenizer.sep_token_id)
             return (TitledStr(self.tokenizer.decode(x1.cpu(), skip_special_tokens=True)),
                     TitledStr(self.tokenizer.decode(x2.cpu(), skip_special_tokens=True)))
+        if self.do_targets:
+            x = torch.where(x == -100, self.tokenizer.pad_token_id, x)
         return TitledStr(self.tokenizer.decode(x.cpu(), skip_special_tokens=True))
 
 # Cell
