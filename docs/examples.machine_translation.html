@@ -207,23 +207,6 @@ nb_path: "nbs/14_examples.machine_translation.ipynb"
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>
-
-
-
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
 </div>
     {% endraw %}
 
@@ -254,7 +237,7 @@ nb_path: "nbs/14_examples.machine_translation.ipynb"
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">dblock</span> <span class="o">=</span> <span class="n">DataBlock</span><span class="p">(</span>
-    <span class="n">blocks</span> <span class="o">=</span> <span class="p">[</span><span class="n">TransformersTextBlock</span><span class="p">(</span><span class="n">tokenizer</span><span class="o">=</span><span class="n">tokenizer</span><span class="p">,</span> <span class="n">do_targets</span><span class="o">=</span><span class="kc">True</span><span class="p">)],</span>
+    <span class="n">blocks</span> <span class="o">=</span> <span class="p">[</span><span class="n">TransformersTextBlock</span><span class="p">(</span><span class="n">tokenizer</span><span class="o">=</span><span class="n">tokenizer</span><span class="p">,</span> <span class="n">do_targets</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">with_labels</span><span class="o">=</span><span class="kc">True</span><span class="p">)],</span>
     <span class="n">get_x</span><span class="o">=</span><span class="n">TextGetter</span><span class="p">(</span><span class="s1">&#39;fr&#39;</span><span class="p">,</span> <span class="s1">&#39;en&#39;</span><span class="p">),</span>
     <span class="n">item_tfms</span><span class="o">=</span><span class="n">untuple1</span><span class="p">,</span>
     <span class="n">splitter</span><span class="o">=</span><span class="n">RandomSplitter</span><span class="p">())</span>
@@ -304,7 +287,10 @@ Wall time: 29.4 s
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
+<details class="description">
+      <summary data-open="Hide Code" data-close="Show Code"></summary>
+        <summary></summary>
+        <div class="input">
 
 <div class="inner_cell">
     <div class="input_area">
@@ -315,6 +301,7 @@ Wall time: 29.4 s
 </div>
 </div>
 
+    </details>
 <div class="output_wrapper">
 <div class="output">
 

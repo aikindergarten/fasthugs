@@ -4,6 +4,7 @@ __all__ = ["index", "modules", "custom_doc_links", "git_url"]
 
 index = {"get_splits": "00_data.ipynb",
          "TextGetter": "00_data.ipynb",
+         "KeyGetter": "00_data.ipynb",
          "find_first": "00_data.ipynb",
          "split_by_sep": "00_data.ipynb",
          "TokTransform": "00_data.ipynb",

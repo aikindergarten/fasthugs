@@ -30,6 +30,9 @@ entries:
     - output: web,pdf
       title: 'Machine Translation: fr-en'
       url: examples.machine_translation.html
+    - output: web,pdf
+      title: Abstractive summarization with T5
+      url: examples.summarization.html
     output: web
     title: fasthugs
   output: web
