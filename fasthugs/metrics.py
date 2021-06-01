@@ -7,7 +7,9 @@ from fastcore.all import *
 from fastai.basics import Transform, ItemTransform, Callback, ValueMetric
 from functools import partial
 from datasets import load_metric
-import nltk
+try:
+    import nltk
+except: pass
 from .learner import TransCallback
 
 # Cell
