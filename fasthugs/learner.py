@@ -8,7 +8,8 @@ from fastai.text.all import TensorText
 from inspect import signature
 from .data import TransformersTextBlock
 
-from transformers import AutoTokenizer, AutoConfig, AutoModelForSequenceClassification, BatchEncoding
+from transformers import (AutoTokenizer, AutoConfig, AutoModelForSequenceClassification, BatchEncoding,
+                          PreTrainedModel)
 from transformers.modeling_outputs import QuestionAnsweringModelOutput
 
 # Cell
@@ -69,11 +70,12 @@ class TransCallback(Callback):
 @delegates(Learner.__init__)
 class TransLearner(Learner):
     "Learner for training transformers from HuggingFace"
-    def __init__(self, dls, model, **kwargs):
+    def __init__(self, dls, model:PreTrainedModel, predict_with_generate:bool=False, **kwargs):
         splitter = kwargs.get('splitter', None)
         if splitter is None: kwargs['splitter'] = default_splitter
         super().__init__(dls, model, **kwargs)
         self.add_cb(TransCallback(model))
+        self.predict_with_generate = predict_with_generate
 
 # Cell
 @patch

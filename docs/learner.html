@@ -81,7 +81,7 @@ nb_path: "nbs/01_learner.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="default_splitter" class="doc_header"><code>default_splitter</code><a href="https://github.com/aikindergarten/fasthugs/tree/master/fasthugs/learner.py#L15" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>default_splitter</code>(<strong><code>model</code></strong>)</p>
+<h4 id="default_splitter" class="doc_header"><code>default_splitter</code><a href="https://github.com/aikindergarten/fasthugs/tree/master/fasthugs/learner.py#L16" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>default_splitter</code>(<strong><code>model</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -121,7 +121,7 @@ nb_path: "nbs/01_learner.ipynb"
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="TransLearner-and-utils">TransLearner and utils<a class="anchor-link" href="#TransLearner-and-utils"> </a></h2>
+<h2 id="Utils">Utils<a class="anchor-link" href="#Utils"> </a></h2>
 </div>
 </div>
 </div>
@@ -184,6 +184,12 @@ nb_path: "nbs/01_learner.ipynb"
 </div>
     {% endraw %}
 
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Callbacks">Callbacks<a class="anchor-link" href="#Callbacks"> </a></h2>
+</div>
+</div>
+</div>
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -195,7 +201,7 @@ nb_path: "nbs/01_learner.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h3 id="TransCallback" class="doc_header"><code>class</code> <code>TransCallback</code><a href="https://github.com/aikindergarten/fasthugs/tree/master/fasthugs/learner.py#L44" class="source_link" style="float:right">[source]</a></h3><blockquote><p><code>TransCallback</code>(<strong><code>model</code></strong>) :: <code>Callback</code></p>
+<h3 id="TransCallback" class="doc_header"><code>class</code> <code>TransCallback</code><a href="https://github.com/aikindergarten/fasthugs/tree/master/fasthugs/learner.py#L45" class="source_link" style="float:right">[source]</a></h3><blockquote><p><code>TransCallback</code>(<strong><code>model</code></strong>) :: <code>Callback</code></p>
 </blockquote>
 <p>Handles HuggingFace model inputs and outputs</p>
 
@@ -219,6 +225,40 @@ nb_path: "nbs/01_learner.ipynb"
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">GeneratePreds</span><span class="p">(</span><span class="n">Callback</span><span class="p">):</span>
+    <span class="s2">&quot;Produces `generated_tokens` which can be used for metrics computation&quot;</span>
+    <span class="n">oreder</span> <span class="o">=</span> <span class="n">TransCallback</span><span class="o">.</span><span class="n">order</span><span class="o">-</span><span class="mi">1</span>
+    <span class="n">run_train</span><span class="p">,</span> <span class="n">run_valid</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span>
+    <span class="nd">@delegates</span><span class="p">(</span><span class="n">PreTrainedModel</span><span class="o">.</span><span class="n">generate</span><span class="p">)</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gen_kewargs</span> <span class="o">=</span> <span class="n">kwargs</span>
+    <span class="k">def</span> <span class="nf">before_fit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">learn</span><span class="o">.</span><span class="n">predict_with_generate</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="k">def</span> <span class="nf">before_batch</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">input_ids</span><span class="p">,</span> <span class="n">attention_mask</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">xb</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;input_ids&#39;</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">xb</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;attention_mask&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">learn</span><span class="o">.</span><span class="n">generated_tokens</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="n">input_ids</span><span class="p">,</span> <span class="n">attention_mask</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">gen_kwargs</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Learner">Learner<a class="anchor-link" href="#Learner"> </a></h2>
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
 
 <div class="output_wrapper">
 <div class="output">
@@ -227,7 +267,7 @@ nb_path: "nbs/01_learner.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h3 id="TransLearner" class="doc_header"><code>class</code> <code>TransLearner</code><a href="https://github.com/aikindergarten/fasthugs/tree/master/fasthugs/learner.py#L70" class="source_link" style="float:right">[source]</a></h3><blockquote><p><code>TransLearner</code>(<strong><code>dls</code></strong>, <strong><code>model</code></strong>, <strong><code>loss_func</code></strong>=<em><code>None</code></em>, <strong><code>opt_func</code></strong>=<em><code>Adam</code></em>, <strong><code>lr</code></strong>=<em><code>0.001</code></em>, <strong><code>splitter</code></strong>=<em><code>trainable_params</code></em>, <strong><code>cbs</code></strong>=<em><code>None</code></em>, <strong><code>metrics</code></strong>=<em><code>None</code></em>, <strong><code>path</code></strong>=<em><code>None</code></em>, <strong><code>model_dir</code></strong>=<em><code>'models'</code></em>, <strong><code>wd</code></strong>=<em><code>None</code></em>, <strong><code>wd_bn_bias</code></strong>=<em><code>False</code></em>, <strong><code>train_bn</code></strong>=<em><code>True</code></em>, <strong><code>moms</code></strong>=<em><code>(0.95, 0.85, 0.95)</code></em>) :: <code>Learner</code></p>
+<h3 id="TransLearner" class="doc_header"><code>class</code> <code>TransLearner</code><a href="https://github.com/aikindergarten/fasthugs/tree/master/fasthugs/learner.py#L71" class="source_link" style="float:right">[source]</a></h3><blockquote><p><code>TransLearner</code>(<strong><code>dls</code></strong>, <strong><code>model</code></strong>:<code>PreTrainedModel</code>, <strong><code>predict_with_generate</code></strong>:<code>bool</code>=<em><code>False</code></em>, <strong><code>loss_func</code></strong>=<em><code>None</code></em>, <strong><code>opt_func</code></strong>=<em><code>Adam</code></em>, <strong><code>lr</code></strong>=<em><code>0.001</code></em>, <strong><code>splitter</code></strong>=<em><code>trainable_params</code></em>, <strong><code>cbs</code></strong>=<em><code>None</code></em>, <strong><code>metrics</code></strong>=<em><code>None</code></em>, <strong><code>path</code></strong>=<em><code>None</code></em>, <strong><code>model_dir</code></strong>=<em><code>'models'</code></em>, <strong><code>wd</code></strong>=<em><code>None</code></em>, <strong><code>wd_bn_bias</code></strong>=<em><code>False</code></em>, <strong><code>train_bn</code></strong>=<em><code>True</code></em>, <strong><code>moms</code></strong>=<em><code>(0.95, 0.85, 0.95)</code></em>) :: <code>Learner</code></p>
 </blockquote>
 <p>Learner for training transformers from HuggingFace</p>
 

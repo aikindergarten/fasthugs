@@ -23,7 +23,7 @@ index = {"get_splits": "00_data.ipynb",
          "to_device": "01_learner.ipynb",
          "TransCallback": "01_learner.ipynb",
          "TransLearner": "01_learner.ipynb",
-         "RougeMetric": "02_metrics.ipynb"}
+         "RougeScore": "02_metrics.ipynb"}
 
 modules = ["data.py",
            "learner.py",
