@@ -3,6 +3,7 @@
     "Overview": "/",
     "Data": "data.html",
     "Learner for transformers": "learner.html",
+    "Metrics": "metrics.html",
     "Text classification: IMDB dataset": "examples.classification-imdb.html",
     "Masked Language Modeling": "examples.mlm-imdb.html",
     "GLUE Benchmark": "examples.glue-benchmark.html",

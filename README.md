@@ -4,7 +4,9 @@
 
 ## Install
 
-`pip install git+git://github.com/aikindergarten/fasthugs.git`
+```
+pip install git+git://github.com/aikindergarten/fasthugs.git
+```
 
 ## How to use
 

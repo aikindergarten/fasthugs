@@ -16,6 +16,9 @@ entries:
       title: Learner for transformers
       url: learner.html
     - output: web,pdf
+      title: Metrics
+      url: metrics.html
+    - output: web,pdf
       title: 'Text classification: IMDB dataset'
       url: examples.classification-imdb.html
     - output: web,pdf
