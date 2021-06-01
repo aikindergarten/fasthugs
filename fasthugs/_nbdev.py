@@ -26,7 +26,8 @@ index = {"get_splits": "00_data.ipynb",
          "RougeMetric": "02_metrics.ipynb"}
 
 modules = ["data.py",
-           "learner.py"]
+           "learner.py",
+           "metrics.py"]
 
 doc_url = "https://aikindergarten.github.io/fasthugs/"
 
