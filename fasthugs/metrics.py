@@ -3,6 +3,7 @@
 __all__ = ['RougeScore']
 
 # Cell
+import torch
 from fastcore.all import *
 from fastai.basics import Transform, ItemTransform, Callback, ValueMetric
 from functools import partial
