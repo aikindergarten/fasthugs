@@ -9,6 +9,6 @@
     "GLUE Benchmark": "examples.glue-benchmark.html",
     "GLUE: hyperparameter search": "examples.glue-benchmark-sweeps.html",
     "Machine Translation: fr-en": "examples.machine_translation.html",
-    "Abstractive summarization with T5": "examples.summarization.html"
+    "Summarization": "examples.summarization.html"
   }
 }
