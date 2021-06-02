@@ -4,6 +4,7 @@ __all__ = ["index", "modules", "custom_doc_links", "git_url"]
 
 index = {"get_splits": "00_data.ipynb",
          "TextGetter": "00_data.ipynb",
+         "KeyGetter": "00_data.ipynb",
          "find_first": "00_data.ipynb",
          "split_by_sep": "00_data.ipynb",
          "TokTransform": "00_data.ipynb",
@@ -21,10 +22,13 @@ index = {"get_splits": "00_data.ipynb",
          "default_splitter": "01_learner.ipynb",
          "to_device": "01_learner.ipynb",
          "TransCallback": "01_learner.ipynb",
-         "TransLearner": "01_learner.ipynb"}
+         "GeneratePreds": "01_learner.ipynb",
+         "TransLearner": "01_learner.ipynb",
+         "RougeScore": "02_metrics.ipynb"}
 
 modules = ["data.py",
-           "learner.py"]
+           "learner.py",
+           "metrics.py"]
 
 doc_url = "https://aikindergarten.github.io/fasthugs/"
 

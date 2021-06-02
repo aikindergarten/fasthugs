@@ -81,7 +81,7 @@ nb_path: "nbs/01_learner.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="default_splitter" class="doc_header"><code>default_splitter</code><a href="https://github.com/aikindergarten/fasthugs/tree/master/fasthugs/learner.py#L15" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>default_splitter</code>(<strong><code>model</code></strong>)</p>
+<h4 id="default_splitter" class="doc_header"><code>default_splitter</code><a href="https://github.com/aikindergarten/fasthugs/tree/master/fasthugs/learner.py#L16" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>default_splitter</code>(<strong><code>model</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -121,7 +121,7 @@ nb_path: "nbs/01_learner.ipynb"
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="TransLearner-and-utils">TransLearner and utils<a class="anchor-link" href="#TransLearner-and-utils"> </a></h2>
+<h2 id="Utils">Utils<a class="anchor-link" href="#Utils"> </a></h2>
 </div>
 </div>
 </div>
@@ -184,6 +184,12 @@ nb_path: "nbs/01_learner.ipynb"
 </div>
     {% endraw %}
 
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Callbacks">Callbacks<a class="anchor-link" href="#Callbacks"> </a></h2>
+</div>
+</div>
+</div>
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -195,7 +201,7 @@ nb_path: "nbs/01_learner.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h3 id="TransCallback" class="doc_header"><code>class</code> <code>TransCallback</code><a href="https://github.com/aikindergarten/fasthugs/tree/master/fasthugs/learner.py#L44" class="source_link" style="float:right">[source]</a></h3><blockquote><p><code>TransCallback</code>(<strong><code>model</code></strong>) :: <code>Callback</code></p>
+<h3 id="TransCallback" class="doc_header"><code>class</code> <code>TransCallback</code><a href="https://github.com/aikindergarten/fasthugs/tree/master/fasthugs/learner.py#L45" class="source_link" style="float:right">[source]</a></h3><blockquote><p><code>TransCallback</code>(<strong><code>model</code></strong>) :: <code>Callback</code></p>
 </blockquote>
 <p>Handles HuggingFace model inputs and outputs</p>
 
@@ -227,7 +233,45 @@ nb_path: "nbs/01_learner.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h3 id="TransLearner" class="doc_header"><code>class</code> <code>TransLearner</code><a href="https://github.com/aikindergarten/fasthugs/tree/master/fasthugs/learner.py#L70" class="source_link" style="float:right">[source]</a></h3><blockquote><p><code>TransLearner</code>(<strong><code>dls</code></strong>, <strong><code>model</code></strong>, <strong><code>loss_func</code></strong>=<em><code>None</code></em>, <strong><code>opt_func</code></strong>=<em><code>Adam</code></em>, <strong><code>lr</code></strong>=<em><code>0.001</code></em>, <strong><code>splitter</code></strong>=<em><code>trainable_params</code></em>, <strong><code>cbs</code></strong>=<em><code>None</code></em>, <strong><code>metrics</code></strong>=<em><code>None</code></em>, <strong><code>path</code></strong>=<em><code>None</code></em>, <strong><code>model_dir</code></strong>=<em><code>'models'</code></em>, <strong><code>wd</code></strong>=<em><code>None</code></em>, <strong><code>wd_bn_bias</code></strong>=<em><code>False</code></em>, <strong><code>train_bn</code></strong>=<em><code>True</code></em>, <strong><code>moms</code></strong>=<em><code>(0.95, 0.85, 0.95)</code></em>) :: <code>Learner</code></p>
+<h3 id="GeneratePreds" class="doc_header"><code>class</code> <code>GeneratePreds</code><a href="https://github.com/aikindergarten/fasthugs/tree/master/fasthugs/learner.py#L70" class="source_link" style="float:right">[source]</a></h3><blockquote><p><code>GeneratePreds</code>(<strong><code>input_ids</code></strong>:<code>Optional</code>[<code>LongTensor</code>]=<em><code>None</code></em>, <strong><code>max_length</code></strong>:<code>Optional</code>[<code>int</code>]=<em><code>None</code></em>, <strong><code>min_length</code></strong>:<code>Optional</code>[<code>int</code>]=<em><code>None</code></em>, <strong><code>do_sample</code></strong>:<code>Optional</code>[<code>bool</code>]=<em><code>None</code></em>, <strong><code>early_stopping</code></strong>:<code>Optional</code>[<code>bool</code>]=<em><code>None</code></em>, <strong><code>num_beams</code></strong>:<code>Optional</code>[<code>int</code>]=<em><code>None</code></em>, <strong><code>temperature</code></strong>:<code>Optional</code>[<code>float</code>]=<em><code>None</code></em>, <strong><code>top_k</code></strong>:<code>Optional</code>[<code>int</code>]=<em><code>None</code></em>, <strong><code>top_p</code></strong>:<code>Optional</code>[<code>float</code>]=<em><code>None</code></em>, <strong><code>repetition_penalty</code></strong>:<code>Optional</code>[<code>float</code>]=<em><code>None</code></em>, <strong><code>bad_words_ids</code></strong>:<code>Optional</code>[<code>Iterable</code>[<code>int</code>]]=<em><code>None</code></em>, <strong><code>bos_token_id</code></strong>:<code>Optional</code>[<code>int</code>]=<em><code>None</code></em>, <strong><code>pad_token_id</code></strong>:<code>Optional</code>[<code>int</code>]=<em><code>None</code></em>, <strong><code>eos_token_id</code></strong>:<code>Optional</code>[<code>int</code>]=<em><code>None</code></em>, <strong><code>length_penalty</code></strong>:<code>Optional</code>[<code>float</code>]=<em><code>None</code></em>, <strong><code>no_repeat_ngram_size</code></strong>:<code>Optional</code>[<code>int</code>]=<em><code>None</code></em>, <strong><code>encoder_no_repeat_ngram_size</code></strong>:<code>Optional</code>[<code>int</code>]=<em><code>None</code></em>, <strong><code>num_return_sequences</code></strong>:<code>Optional</code>[<code>int</code>]=<em><code>None</code></em>, <strong><code>max_time</code></strong>:<code>Optional</code>[<code>float</code>]=<em><code>None</code></em>, <strong><code>decoder_start_token_id</code></strong>:<code>Optional</code>[<code>int</code>]=<em><code>None</code></em>, <strong><code>use_cache</code></strong>:<code>Optional</code>[<code>bool</code>]=<em><code>None</code></em>, <strong><code>num_beam_groups</code></strong>:<code>Optional</code>[<code>int</code>]=<em><code>None</code></em>, <strong><code>diversity_penalty</code></strong>:<code>Optional</code>[<code>float</code>]=<em><code>None</code></em>, <strong><code>prefix_allowed_tokens_fn</code></strong>:<code>Optional</code>[<code>Callable</code>[<code>int</code>, <code>Tensor</code>, <code>List</code>[<code>int</code>]]]=<em><code>None</code></em>, <strong><code>output_attentions</code></strong>:<code>Optional</code>[<code>bool</code>]=<em><code>None</code></em>, <strong><code>output_hidden_states</code></strong>:<code>Optional</code>[<code>bool</code>]=<em><code>None</code></em>, <strong><code>output_scores</code></strong>:<code>Optional</code>[<code>bool</code>]=<em><code>None</code></em>, <strong><code>return_dict_in_generate</code></strong>:<code>Optional</code>[<code>bool</code>]=<em><code>None</code></em>, <strong><code>forced_bos_token_id</code></strong>:<code>Optional</code>[<code>int</code>]=<em><code>None</code></em>, <strong><code>forced_eos_token_id</code></strong>:<code>Optional</code>[<code>int</code>]=<em><code>None</code></em>, <strong><code>remove_invalid_values</code></strong>:<code>Optional</code>[<code>bool</code>]=<em><code>None</code></em>, <strong><code>synced_gpus</code></strong>:<code>Optional</code>[<code>bool</code>]=<em><code>None</code></em>) :: <code>Callback</code></p>
+</blockquote>
+<p>Produces <code>generated_tokens</code> which can be used for metrics computation</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Learner">Learner<a class="anchor-link" href="#Learner"> </a></h2>
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h3 id="TransLearner" class="doc_header"><code>class</code> <code>TransLearner</code><a href="https://github.com/aikindergarten/fasthugs/tree/master/fasthugs/learner.py#L85" class="source_link" style="float:right">[source]</a></h3><blockquote><p><code>TransLearner</code>(<strong><code>dls</code></strong>, <strong><code>model</code></strong>:<code>PreTrainedModel</code>, <strong><code>predict_with_generate</code></strong>:<code>bool</code>=<em><code>False</code></em>, <strong><code>loss_func</code></strong>=<em><code>None</code></em>, <strong><code>opt_func</code></strong>=<em><code>Adam</code></em>, <strong><code>lr</code></strong>=<em><code>0.001</code></em>, <strong><code>splitter</code></strong>=<em><code>trainable_params</code></em>, <strong><code>cbs</code></strong>=<em><code>None</code></em>, <strong><code>metrics</code></strong>=<em><code>None</code></em>, <strong><code>path</code></strong>=<em><code>None</code></em>, <strong><code>model_dir</code></strong>=<em><code>'models'</code></em>, <strong><code>wd</code></strong>=<em><code>None</code></em>, <strong><code>wd_bn_bias</code></strong>=<em><code>False</code></em>, <strong><code>train_bn</code></strong>=<em><code>True</code></em>, <strong><code>moms</code></strong>=<em><code>(0.95, 0.85, 0.95)</code></em>) :: <code>Learner</code></p>
 </blockquote>
 <p>Learner for training transformers from HuggingFace</p>
 

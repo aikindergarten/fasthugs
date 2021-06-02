@@ -4,7 +4,9 @@
 
 ## Install
 
-`pip install git+git://github.com/aikindergarten/fasthugs.git`
+```
+pip install git+git://github.com/aikindergarten/fasthugs.git
+```
 
 ## How to use
 
@@ -17,6 +19,7 @@
 1. [Sentiment classification: IMDB](https://aikindergarten.github.io/fasthugs/examples.classification-imdb.html)
 2. [GLUE benchmark](https://aikindergarten.github.io/fasthugs/examples.glue-benchmark.html)
 3. [Machine Translation](https://aikindergarten.github.io/fasthugs/examples.machine-translation.html)
+4. [Summarization](https://aikindergarten.github.io/fasthugs/examples.summarization.html)
 
 ### Hyper-parameter search
 
