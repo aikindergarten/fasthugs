@@ -6,6 +6,7 @@ __all__ = ['default_splitter', 'to_device', 'TransCallback', 'GeneratePreds', 'T
 from fastai.basics import *
 from fastai.text.all import TensorText
 from inspect import signature
+from collections import namedtuple
 from .data import TransformersTextBlock
 
 from transformers import (AutoTokenizer, AutoConfig, AutoModelForSequenceClassification, BatchEncoding,
@@ -45,13 +46,12 @@ def to_device(b, device=None):
 class TransCallback(Callback):
     "Handles HuggingFace model inputs and outputs"
     def __init__(self, model):
-        self.labels = tuple()
-        self.model_args = {k:v.default for k, v in signature(model.forward).parameters.items()}
+        sig = signature(model.forward)
+        ModelInputs = namedtuple('ModelInputs', sig.parameters.keys(), defaults=[v.default for v in sig.parameters.values()])
+        self._model_inputs = ModelInputs
 
     def before_batch(self):
-        if 'labels' in self.xb[0].keys():
-            self.labels = (self.xb[0]['labels'], )
-        self.learn.xb = tuple([self.xb[0].get(k, self.model_args[k]) for k in self.model_args.keys()])
+        self.learn.xb = self._model_inputs(**{k:v for k,v in self.xb[0].items() if k in self._model_inputs._fields})
 
     def after_pred(self):
         if 'loss' in self.pred:
@@ -62,9 +62,8 @@ class TransCallback(Callback):
         else: self.learn.pred = self.pred.logits
 
     def after_loss(self):
-        if len(self.labels):
-            self.learn.yb = self.labels
-            self.labels = tuple()
+        if not (getattr(self.xb, 'labels', None) is None):
+            self.learn.yb = (self.xb.labels, )
 
 # Cell
 class GeneratePreds(Callback):
