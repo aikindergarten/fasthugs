@@ -70,7 +70,7 @@ nb_path: "nbs/00_data.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="get_splits" class="doc_header"><code>get_splits</code><a href="https://github.com/aikindergarten/fasthugs/tree/master/fasthugs/data.py#L19" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_splits</code>(<strong><code>dataset</code></strong>, <strong><code>train</code></strong>=<em><code>'train'</code></em>, <strong><code>valid</code></strong>=<em><code>'validation'</code></em>)</p>
+<h4 id="get_splits" class="doc_header"><code>get_splits</code><a href="https://github.com/aikindergarten/fasthugs/tree/master/fasthugs/data.py#L21" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_splits</code>(<strong><code>dataset</code></strong>, <strong><code>train</code></strong>=<em><code>'train'</code></em>, <strong><code>valid</code></strong>=<em><code>'validation'</code></em>)</p>
 </blockquote>
 
 </div>
@@ -101,7 +101,39 @@ nb_path: "nbs/00_data.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h3 id="TextGetter" class="doc_header"><code>class</code> <code>TextGetter</code><a href="https://github.com/aikindergarten/fasthugs/tree/master/fasthugs/data.py#L27" class="source_link" style="float:right">[source]</a></h3><blockquote><p><code>TextGetter</code>(<strong><code>s1</code></strong>:<code>str</code>=<em><code>'text'</code></em>, <strong><code>s2</code></strong>:<code>str</code>=<em><code>None</code></em>, <strong><code>prefix1</code></strong>:<code>str</code>=<em><code>''</code></em>, <strong><code>prefix2</code></strong>:<code>str</code>=<em><code>''</code></em>) :: <code>ItemTransform</code></p>
+<h3 id="TitledStrEx" class="doc_header"><code>class</code> <code>TitledStrEx</code><a href="https://github.com/aikindergarten/fasthugs/tree/master/fasthugs/data.py#L29" class="source_link" style="float:right">[source]</a></h3><blockquote><p><code>TitledStrEx</code>(<strong>*<code>args</code></strong>, <strong>**<code>kwargs</code></strong>) :: <code>UserString</code></p>
+</blockquote>
+<p>TitledStr with option to set label</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h3 id="TextGetter" class="doc_header"><code>class</code> <code>TextGetter</code><a href="https://github.com/aikindergarten/fasthugs/tree/master/fasthugs/data.py#L49" class="source_link" style="float:right">[source]</a></h3><blockquote><p><code>TextGetter</code>(<strong><code>s1</code></strong>:<code>str</code>=<em><code>'text'</code></em>, <strong><code>s2</code></strong>:<code>str</code>=<em><code>None</code></em>, <strong><code>prefix1</code></strong>:<code>str</code>=<em><code>''</code></em>, <strong><code>prefix2</code></strong>:<code>str</code>=<em><code>''</code></em>) :: <code>ItemTransform</code></p>
 </blockquote>
 <p>Retrieves text fields <code>s1</code> and [optionally] <code>s2</code>. Adds corresponding prefixes</p>
 
@@ -133,7 +165,7 @@ nb_path: "nbs/00_data.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h3 id="KeyGetter" class="doc_header"><code>class</code> <code>KeyGetter</code><a href="https://github.com/aikindergarten/fasthugs/tree/master/fasthugs/data.py#L37" class="source_link" style="float:right">[source]</a></h3><blockquote><p><code>KeyGetter</code>(<strong><code>keys</code></strong>:<code>Iterable</code>[<code>T_co</code>]) :: <code>ItemTransform</code></p>
+<h3 id="KeyGetter" class="doc_header"><code>class</code> <code>KeyGetter</code><a href="https://github.com/aikindergarten/fasthugs/tree/master/fasthugs/data.py#L59" class="source_link" style="float:right">[source]</a></h3><blockquote><p><code>KeyGetter</code>(<strong><code>keys</code></strong>:<code>Iterable</code>[<code>T_co</code>]) :: <code>ItemTransform</code></p>
 </blockquote>
 <p>Returns a dict with <code>keys</code> retrieved from input sample</p>
 
@@ -158,6 +190,38 @@ nb_path: "nbs/00_data.ipynb"
     
 <div class="cell border-box-sizing code_cell rendered">
 
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h3 id="TransTensorText" class="doc_header"><code>class</code> <code>TransTensorText</code><a href="https://github.com/aikindergarten/fasthugs/tree/master/fasthugs/data.py#L69" class="source_link" style="float:right">[source]</a></h3><blockquote><p><code>TransTensorText</code>(<strong><code>x</code></strong>, <strong>**<code>kwargs</code></strong>) :: <code>TensorText</code></p>
+</blockquote>
+<p>Semantic type for a tensor representing text</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
 </div>
     {% endraw %}
 
@@ -172,7 +236,7 @@ nb_path: "nbs/00_data.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="find_first" class="doc_header"><code>find_first</code><a href="https://github.com/aikindergarten/fasthugs/tree/master/fasthugs/data.py#L58" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>find_first</code>(<strong><code>t</code></strong>, <strong><code>e</code></strong>)</p>
+<h4 id="find_first" class="doc_header"><code>find_first</code><a href="https://github.com/aikindergarten/fasthugs/tree/master/fasthugs/data.py#L83" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>find_first</code>(<strong><code>t</code></strong>, <strong><code>e</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -196,7 +260,7 @@ nb_path: "nbs/00_data.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="split_by_sep" class="doc_header"><code>split_by_sep</code><a href="https://github.com/aikindergarten/fasthugs/tree/master/fasthugs/data.py#L62" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>split_by_sep</code>(<strong><code>t</code></strong>, <strong><code>sep_tok_id</code></strong>)</p>
+<h4 id="split_by_sep" class="doc_header"><code>split_by_sep</code><a href="https://github.com/aikindergarten/fasthugs/tree/master/fasthugs/data.py#L87" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>split_by_sep</code>(<strong><code>t</code></strong>, <strong><code>sep_tok_id</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -233,7 +297,7 @@ nb_path: "nbs/00_data.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h3 id="TokTransform" class="doc_header"><code>class</code> <code>TokTransform</code><a href="https://github.com/aikindergarten/fasthugs/tree/master/fasthugs/data.py#L67" class="source_link" style="float:right">[source]</a></h3><blockquote><p><code>TokTransform</code>(<strong><code>pretrained_model_name</code></strong>=<em><code>None</code></em>, <strong><code>tokenizer_cls</code></strong>=<em><code>AutoTokenizer</code></em>, <strong><code>config</code></strong>=<em><code>None</code></em>, <strong><code>tokenizer</code></strong>=<em><code>None</code></em>, <strong><code>is_lm</code></strong>=<em><code>False</code></em>, <strong><code>padding</code></strong>=<em><code>False</code></em>, <strong><code>truncation</code></strong>=<em><code>False</code></em>, <strong><code>max_length</code></strong>=<em><code>None</code></em>, <strong><code>pre_tokenized</code></strong>=<em><code>False</code></em>, <strong>**<code>kwargs</code></strong>) :: <code>Transform</code></p>
+<h3 id="TokTransform" class="doc_header"><code>class</code> <code>TokTransform</code><a href="https://github.com/aikindergarten/fasthugs/tree/master/fasthugs/data.py#L92" class="source_link" style="float:right">[source]</a></h3><blockquote><p><code>TokTransform</code>(<strong><code>pretrained_model_name</code></strong>=<em><code>None</code></em>, <strong><code>tokenizer_cls</code></strong>=<em><code>AutoTokenizer</code></em>, <strong><code>config</code></strong>=<em><code>None</code></em>, <strong><code>tokenizer</code></strong>=<em><code>None</code></em>, <strong><code>is_lm</code></strong>=<em><code>False</code></em>, <strong><code>padding</code></strong>=<em><code>False</code></em>, <strong><code>truncation</code></strong>=<em><code>False</code></em>, <strong><code>max_length</code></strong>=<em><code>None</code></em>, <strong><code>preprocessed</code></strong>=<em><code>False</code></em>, <strong>**<code>kwargs</code></strong>) :: <code>Transform</code></p>
 </blockquote>
 <p>Tokenizes single piece of text using pretrained tokenizer</p>
 
@@ -265,7 +329,7 @@ nb_path: "nbs/00_data.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h3 id="TokBatchTransform" class="doc_header"><code>class</code> <code>TokBatchTransform</code><a href="https://github.com/aikindergarten/fasthugs/tree/master/fasthugs/data.py#L96" class="source_link" style="float:right">[source]</a></h3><blockquote><p><code>TokBatchTransform</code>(<strong><code>pretrained_model_name</code></strong>=<em><code>None</code></em>, <strong><code>tokenizer_cls</code></strong>=<em><code>AutoTokenizer</code></em>, <strong><code>config</code></strong>=<em><code>None</code></em>, <strong><code>tokenizer</code></strong>=<em><code>None</code></em>, <strong><code>is_lm</code></strong>=<em><code>False</code></em>, <strong><code>with_labels</code></strong>=<em><code>False</code></em>, <strong><code>padding</code></strong>=<em><code>True</code></em>, <strong><code>truncation</code></strong>=<em><code>True</code></em>, <strong><code>max_length</code></strong>=<em><code>None</code></em>, <strong><code>do_targets</code></strong>=<em><code>False</code></em>, <strong><code>target_pad_id</code></strong>=<em><code>-100</code></em>, <strong>**<code>kwargs</code></strong>) :: <code>Transform</code></p>
+<h3 id="TokBatchTransform" class="doc_header"><code>class</code> <code>TokBatchTransform</code><a href="https://github.com/aikindergarten/fasthugs/tree/master/fasthugs/data.py#L121" class="source_link" style="float:right">[source]</a></h3><blockquote><p><code>TokBatchTransform</code>(<strong><code>pretrained_model_name</code></strong>=<em><code>None</code></em>, <strong><code>tokenizer_cls</code></strong>=<em><code>AutoTokenizer</code></em>, <strong><code>config</code></strong>=<em><code>None</code></em>, <strong><code>tokenizer</code></strong>=<em><code>None</code></em>, <strong><code>is_lm</code></strong>=<em><code>False</code></em>, <strong><code>with_labels</code></strong>=<em><code>False</code></em>, <strong><code>padding</code></strong>=<em><code>True</code></em>, <strong><code>truncation</code></strong>=<em><code>True</code></em>, <strong><code>max_length</code></strong>=<em><code>None</code></em>, <strong><code>do_targets</code></strong>=<em><code>False</code></em>, <strong><code>target_pad_id</code></strong>=<em><code>-100</code></em>, <strong>**<code>kwargs</code></strong>) :: <code>Transform</code></p>
 </blockquote>
 <p>Tokenizes texts in batches using pretrained HuggingFace tokenizer.
 The first element in a batch can be single string or 2-tuple of strings.
@@ -299,7 +363,7 @@ If <code>with_labels=True</code> the "labels" are added to the output dictionary
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h3 id="PadBatchTransform" class="doc_header"><code>class</code> <code>PadBatchTransform</code><a href="https://github.com/aikindergarten/fasthugs/tree/master/fasthugs/data.py#L166" class="source_link" style="float:right">[source]</a></h3><blockquote><p><code>PadBatchTransform</code>(<strong><code>pretrained_model_name</code></strong>=<em><code>None</code></em>, <strong><code>tokenizer_cls</code></strong>=<em><code>AutoTokenizer</code></em>, <strong><code>config</code></strong>=<em><code>None</code></em>, <strong><code>tokenizer</code></strong>=<em><code>None</code></em>, <strong><code>is_lm</code></strong>=<em><code>False</code></em>, <strong><code>with_labels</code></strong>=<em><code>False</code></em>, <strong><code>padding</code></strong>=<em><code>True</code></em>, <strong><code>truncation</code></strong>=<em><code>True</code></em>, <strong><code>max_length</code></strong>=<em><code>None</code></em>, <strong><code>do_targets</code></strong>=<em><code>False</code></em>, <strong><code>target_pad_id</code></strong>=<em><code>-100</code></em>, <strong>**<code>kwargs</code></strong>) :: <code>Transform</code></p>
+<h3 id="PadBatchTransform" class="doc_header"><code>class</code> <code>PadBatchTransform</code><a href="https://github.com/aikindergarten/fasthugs/tree/master/fasthugs/data.py#L191" class="source_link" style="float:right">[source]</a></h3><blockquote><p><code>PadBatchTransform</code>(<strong><code>pretrained_model_name</code></strong>=<em><code>None</code></em>, <strong><code>tokenizer_cls</code></strong>=<em><code>AutoTokenizer</code></em>, <strong><code>config</code></strong>=<em><code>None</code></em>, <strong><code>tokenizer</code></strong>=<em><code>None</code></em>, <strong><code>is_lm</code></strong>=<em><code>False</code></em>, <strong><code>with_labels</code></strong>=<em><code>False</code></em>, <strong><code>padding</code></strong>=<em><code>True</code></em>, <strong><code>truncation</code></strong>=<em><code>True</code></em>, <strong><code>max_length</code></strong>=<em><code>None</code></em>, <strong><code>do_targets</code></strong>=<em><code>False</code></em>, <strong><code>target_pad_id</code></strong>=<em><code>-100</code></em>, <strong>**<code>kwargs</code></strong>) :: <code>Transform</code></p>
 </blockquote>
 <p>Delegates (<code>__call__</code>,<code>decode</code>,<code>setup</code>) to (<code>encodes</code>,<code>decodes</code>,<code>setups</code>) if <code>split_idx</code> matches</p>
 
@@ -331,7 +395,7 @@ If <code>with_labels=True</code> the "labels" are added to the output dictionary
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="untuple" class="doc_header"><code>untuple</code><a href="https://github.com/aikindergarten/fasthugs/tree/master/fasthugs/data.py#L210" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>untuple</code>(<strong><code>l</code></strong>)</p>
+<h4 id="untuple" class="doc_header"><code>untuple</code><a href="https://github.com/aikindergarten/fasthugs/tree/master/fasthugs/data.py#L235" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>untuple</code>(<strong><code>l</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -355,7 +419,7 @@ If <code>with_labels=True</code> the "labels" are added to the output dictionary
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="to_tuple" class="doc_header"><code>to_tuple</code><a href="https://github.com/aikindergarten/fasthugs/tree/master/fasthugs/data.py#L213" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>to_tuple</code>(<strong><code>x</code></strong>)</p>
+<h4 id="to_tuple" class="doc_header"><code>to_tuple</code><a href="https://github.com/aikindergarten/fasthugs/tree/master/fasthugs/data.py#L238" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>to_tuple</code>(<strong><code>x</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -397,7 +461,7 @@ If <code>with_labels=True</code> the "labels" are added to the output dictionary
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h3 id="LMBatchTfm" class="doc_header"><code>class</code> <code>LMBatchTfm</code><a href="https://github.com/aikindergarten/fasthugs/tree/master/fasthugs/data.py#L217" class="source_link" style="float:right">[source]</a></h3><blockquote><p><code>LMBatchTfm</code>(<strong><code>pretrained_model_name</code></strong>=<em><code>None</code></em>, <strong><code>tokenizer_cls</code></strong>=<em><code>AutoTokenizer</code></em>, <strong><code>config</code></strong>=<em><code>None</code></em>, <strong><code>tokenizer</code></strong>=<em><code>None</code></em>, <strong><code>mlm</code></strong>=<em><code>True</code></em>, <strong><code>masking_func</code></strong>=<em><code>None</code></em>, <strong><code>whole_word_masking</code></strong>=<em><code>False</code></em>, <strong><code>mlm_probability</code></strong>=<em><code>0.15</code></em>) :: <code>Transform</code></p>
+<h3 id="LMBatchTfm" class="doc_header"><code>class</code> <code>LMBatchTfm</code><a href="https://github.com/aikindergarten/fasthugs/tree/master/fasthugs/data.py#L242" class="source_link" style="float:right">[source]</a></h3><blockquote><p><code>LMBatchTfm</code>(<strong><code>pretrained_model_name</code></strong>=<em><code>None</code></em>, <strong><code>tokenizer_cls</code></strong>=<em><code>AutoTokenizer</code></em>, <strong><code>config</code></strong>=<em><code>None</code></em>, <strong><code>tokenizer</code></strong>=<em><code>None</code></em>, <strong><code>mlm</code></strong>=<em><code>True</code></em>, <strong><code>masking_func</code></strong>=<em><code>None</code></em>, <strong><code>whole_word_masking</code></strong>=<em><code>False</code></em>, <strong><code>mlm_probability</code></strong>=<em><code>0.15</code></em>) :: <code>Transform</code></p>
 </blockquote>
 <p>Collates batch of pretokenized and chunked inputs into a batch and creates labels as defined by <code>masking_func</code></p>
 
@@ -429,7 +493,7 @@ If <code>with_labels=True</code> the "labels" are added to the output dictionary
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h3 id="Undict" class="doc_header"><code>class</code> <code>Undict</code><a href="https://github.com/aikindergarten/fasthugs/tree/master/fasthugs/data.py#L239" class="source_link" style="float:right">[source]</a></h3><blockquote><p><code>Undict</code>(<strong><code>enc</code></strong>=<em><code>None</code></em>, <strong><code>dec</code></strong>=<em><code>None</code></em>, <strong><code>split_idx</code></strong>=<em><code>None</code></em>, <strong><code>order</code></strong>=<em><code>None</code></em>) :: <code>ItemTransform</code></p>
+<h3 id="Undict" class="doc_header"><code>class</code> <code>Undict</code><a href="https://github.com/aikindergarten/fasthugs/tree/master/fasthugs/data.py#L265" class="source_link" style="float:right">[source]</a></h3><blockquote><p><code>Undict</code>(<strong><code>enc</code></strong>=<em><code>None</code></em>, <strong><code>dec</code></strong>=<em><code>None</code></em>, <strong><code>split_idx</code></strong>=<em><code>None</code></em>, <strong><code>order</code></strong>=<em><code>None</code></em>) :: <code>ItemTransform</code></p>
 </blockquote>
 <p>A transform that always take tuples as items</p>
 
@@ -461,7 +525,7 @@ If <code>with_labels=True</code> the "labels" are added to the output dictionary
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h3 id="UndictS2S" class="doc_header"><code>class</code> <code>UndictS2S</code><a href="https://github.com/aikindergarten/fasthugs/tree/master/fasthugs/data.py#L250" class="source_link" style="float:right">[source]</a></h3><blockquote><p><code>UndictS2S</code>(<strong><code>enc</code></strong>=<em><code>None</code></em>, <strong><code>dec</code></strong>=<em><code>None</code></em>, <strong><code>split_idx</code></strong>=<em><code>None</code></em>, <strong><code>order</code></strong>=<em><code>None</code></em>) :: <code>ItemTransform</code></p>
+<h3 id="UndictS2S" class="doc_header"><code>class</code> <code>UndictS2S</code><a href="https://github.com/aikindergarten/fasthugs/tree/master/fasthugs/data.py#L276" class="source_link" style="float:right">[source]</a></h3><blockquote><p><code>UndictS2S</code>(<strong><code>enc</code></strong>=<em><code>None</code></em>, <strong><code>dec</code></strong>=<em><code>None</code></em>, <strong><code>split_idx</code></strong>=<em><code>None</code></em>, <strong><code>order</code></strong>=<em><code>None</code></em>) :: <code>ItemTransform</code></p>
 </blockquote>
 <p>A transform that always take tuples as items</p>
 
@@ -499,7 +563,7 @@ If <code>with_labels=True</code> the "labels" are added to the output dictionary
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h3 id="TransformersTextBlock" class="doc_header"><code>class</code> <code>TransformersTextBlock</code><a href="https://github.com/aikindergarten/fasthugs/tree/master/fasthugs/data.py#L259" class="source_link" style="float:right">[source]</a></h3><blockquote><p><code>TransformersTextBlock</code>(<strong><code>pretrained_model_name</code></strong>=<em><code>None</code></em>, <strong><code>tokenizer_cls</code></strong>=<em><code>AutoTokenizer</code></em>, <strong><code>config</code></strong>=<em><code>None</code></em>, <strong><code>tokenizer</code></strong>=<em><code>None</code></em>, <strong><code>preprocessed</code></strong>=<em><code>False</code></em>, <strong><code>do_targets</code></strong>=<em><code>False</code></em>, <strong><code>is_lm</code></strong>=<em><code>False</code></em>, <strong><code>with_labels</code></strong>=<em><code>False</code></em>, <strong><code>padding</code></strong>=<em><code>True</code></em>, <strong><code>truncation</code></strong>=<em><code>True</code></em>, <strong><code>max_length</code></strong>=<em><code>None</code></em>, <strong><code>target_pad_id</code></strong>=<em><code>-100</code></em>) :: <code>TransformBlock</code></p>
+<h3 id="TransformersTextBlock" class="doc_header"><code>class</code> <code>TransformersTextBlock</code><a href="https://github.com/aikindergarten/fasthugs/tree/master/fasthugs/data.py#L285" class="source_link" style="float:right">[source]</a></h3><blockquote><p><code>TransformersTextBlock</code>(<strong><code>pretrained_model_name</code></strong>=<em><code>None</code></em>, <strong><code>tokenizer_cls</code></strong>=<em><code>AutoTokenizer</code></em>, <strong><code>config</code></strong>=<em><code>None</code></em>, <strong><code>tokenizer</code></strong>=<em><code>None</code></em>, <strong><code>preprocessed</code></strong>=<em><code>False</code></em>, <strong><code>do_targets</code></strong>=<em><code>False</code></em>, <strong><code>group_by_len</code></strong>=<em><code>True</code></em>, <strong><code>is_lm</code></strong>=<em><code>False</code></em>, <strong><code>with_labels</code></strong>=<em><code>False</code></em>, <strong><code>padding</code></strong>=<em><code>True</code></em>, <strong><code>truncation</code></strong>=<em><code>True</code></em>, <strong><code>max_length</code></strong>=<em><code>None</code></em>, <strong><code>target_pad_id</code></strong>=<em><code>-100</code></em>) :: <code>TransformBlock</code></p>
 </blockquote>
 <p>A <code>TransformBlock</code> for texts using pretrained tokenizers from Huggingface</p>
 
@@ -593,18 +657,18 @@ If <code>with_labels=True</code> the "labels" are added to the output dictionary
     </tr>
     <tr>
       <th>1</th>
+      <td>now that che ( 2008 ) has finished its relatively short australian cinema run ( extremely limited release : 1 screen in sydney, after 6wks ), i can guiltlessly join both hosts of " at the movies " in taking steven soderbergh to task. &lt; br / &gt; &lt; br / &gt; it's usually satisfying to watch a film director change his style / subject, but soderbergh's most recent stinker, the girlfriend experience ( 2009 ), was also missing a story, so narrative ( and editing? ) seem to suddenly be soderbergh's main challenge. strange, after 20 - odd years in the business. he was probably never much good at narrative, just hid it well inside " edgy " projects. &lt; br / &gt; &lt; br / &gt; none of this excuses him this present, almost diabolical failure. as david stratton warns, " two parts of che don't ( even</td>
+      <td>negative</td>
+    </tr>
+    <tr>
+      <th>2</th>
       <td>many neglect that this isn't just a classic due to the fact that it's the first 3d game, or even the first shoot -'em - up. it's also one of the first stealth games, one of the only ( and definitely the first ) truly claustrophobic games, and just a pretty well - rounded gaming experience in general. with graphics that are terribly dated today, the game thrusts you into the role of b. j. ( don't even * think * i'm going to attempt spelling his last name! ), an american p. o. w. caught in an underground bunker. you fight and search your way through tunnels in order to achieve different objectives for the six episodes ( but, let's face it, most of them are just an excuse to hand you a weapon, surround you with nazis and send you out to waste one of the nazi leaders</td>
       <td>positive</td>
     </tr>
     <tr>
-      <th>2</th>
+      <th>3</th>
       <td>i really wanted to love this show. i truly, honestly did. &lt; br / &gt; &lt; br / &gt; for the first time, gay viewers get their own version of the " the bachelor ". with the help of his obligatory " hag " andra, james, a good looking, well - to - do thirty - something has the chance of love with 15 suitors ( or " mates " as they are referred to in the show ). the only problem is half of them are straight and james doesn't know this. if james picks a gay one, they get a trip to new zealand, and if he picks a straight one, straight guy gets $ 25, 000. how can this not be fun?! take my hand, lets stroll : &lt; br / &gt; &lt; br / &gt; the most glaring problem with this show is the bachelor himself.</td>
       <td>negative</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>this film sat on my tivo for weeks before i watched it. i dreaded a self - indulgent yuppie flick about relationships gone bad. i was wrong ; this was an engrossing excursion into the screwed - up libidos of new yorkers. &lt; br / &gt; &lt; br / &gt; the format is the same as max ophuls'" la ronde, " based on a play by arthur schnitzler, who is given an " inspired by " credit. it starts from one person, a prostitute, standing on a street corner in brooklyn. she is picked up by a home contractor, who has sex with her on the hood of a car, but can't come. he refuses to pay her. when he's off peeing, she answers his cell phone and takes a message. she runs away with his keys. &lt; br / &gt; &lt; br / &gt; then the story switches to</td>
-      <td>positive</td>
     </tr>
   </tbody>
 </table>
@@ -667,17 +731,17 @@ If <code>with_labels=True</code> the "labels" are added to the output dictionary
     </tr>
     <tr>
       <th>1</th>
-      <td>the shop around the corner is one of the sweetest and most feel - good romantic comedies ever made. there's just no getting around that, and it's hard to actually put one's feeling for this film into words. it's not one of those films that tries too hard, nor does it come up with the oddest possible scenarios to get the two protagonists together in the end. in fact, all its charm is innate, contained within the characters and the setting and the plot... which is highly believable to boot. it's easy to think that such a love story, as beautiful as any other ever told, * could * happen to you... a feeling you don't often get from other romantic comedies, however sweet and heart - warming they may be. &lt; br / &gt; &lt; br / &gt; alfred kralik ( james stewart ) and clara novak ( margaret</td>
-      <td>positive</td>
-    </tr>
-    <tr>
-      <th>2</th>
       <td>many neglect that this isn't just a classic due to the fact that it's the first 3d game, or even the first shoot -'em - up. it's also one of the first stealth games, one of the only ( and definitely the first ) truly claustrophobic games, and just a pretty well - rounded gaming experience in general. with graphics that are terribly dated today, the game thrusts you into the role of b. j. ( don't even * think * i'm going to attempt spelling his last name! ), an american p. o. w. caught in an underground bunker. you fight and search your way through tunnels in order to achieve different objectives for the six episodes ( but, let's face it, most of them are just an excuse to hand you a weapon, surround you with nazis and send you out to waste one of the nazi leaders</td>
       <td>positive</td>
     </tr>
     <tr>
+      <th>2</th>
+      <td>the blob starts with one of the most bizarre theme songs ever, sung by an uncredited burt bacharach of all people! you really have to hear it to believe it, the blob may be worth watching just for this song alone &amp; my user comment summary is just a little taste of the classy lyrics... after this unnerving opening credits sequence the blob introduces us, the viewer that is, to steve andrews ( steve mcqueen as steven mcqueen ) &amp; his girlfriend jane martin ( aneta corsaut ) who are parked on their own somewhere &amp; witness what looks like a meteorite falling to earth in nearby woods. an old man ( olin howland as olin howlin ) who lives in a cabin also sees it &amp; goes to investigate, he finds a crater &amp; a strange football sized rock which splits open when he unwisely pokes it with a</td>
+      <td>negative</td>
+    </tr>
+    <tr>
       <th>3</th>
-      <td>i really wanted to love this show. i truly, honestly did. &lt; br / &gt; &lt; br / &gt; for the first time, gay viewers get their own version of the " the bachelor ". with the help of his obligatory " hag " andra, james, a good looking, well - to - do thirty - something has the chance of love with 15 suitors ( or " mates " as they are referred to in the show ). the only problem is half of them are straight and james doesn't know this. if james picks a gay one, they get a trip to new zealand, and if he picks a straight one, straight guy gets $ 25, 000. how can this not be fun?! take my hand, lets stroll : &lt; br / &gt; &lt; br / &gt; the most glaring problem with this show is the bachelor himself.</td>
+      <td>i rented the dubbed - english version of lensman, hoping that since it came from well - known novels it would have some substance. while there were hints of substance in the movie, it mostly didn't rise above the level of kiddie cartoon. maybe the movie was a bad adaptation of the book, or it lost a lot in the dubbed version. or maybe even the source novels were lightweight. but for whatever reason, there wasn't much there. &lt; br / &gt; &lt; br / &gt; i noticed lots of details that were derivative, sloppy, poorly dramatized, or otherwise deficient. some examples : the opening scenes looked borrowed from the 2001 " star gate " scene and the star wars image of hyperspace. the robot on the harvester looked like an anthropomorphized " r2 - d2 ". &lt; br / &gt; &lt; br / &gt; it starts out trying to</td>
       <td>negative</td>
     </tr>
   </tbody>
@@ -709,7 +773,7 @@ If <code>with_labels=True</code> the "labels" are added to the output dictionary
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h3 id="TransformersLMBlock" class="doc_header"><code>class</code> <code>TransformersLMBlock</code><a href="https://github.com/aikindergarten/fasthugs/tree/master/fasthugs/data.py#L287" class="source_link" style="float:right">[source]</a></h3><blockquote><p><code>TransformersLMBlock</code>(<strong><code>pretrained_model_name</code></strong>=<em><code>None</code></em>, <strong><code>tokenizer_cls</code></strong>=<em><code>AutoTokenizer</code></em>, <strong><code>config</code></strong>=<em><code>None</code></em>, <strong><code>tokenizer</code></strong>=<em><code>None</code></em>, <strong><code>mlm</code></strong>=<em><code>True</code></em>, <strong><code>masking_func</code></strong>=<em><code>None</code></em>, <strong><code>whole_word_masking</code></strong>=<em><code>False</code></em>, <strong><code>mlm_probability</code></strong>=<em><code>0.15</code></em>, <strong>**<code>kwargs</code></strong>) :: <code>TransformBlock</code></p>
+<h3 id="TransformersLMBlock" class="doc_header"><code>class</code> <code>TransformersLMBlock</code><a href="https://github.com/aikindergarten/fasthugs/tree/master/fasthugs/data.py#L313" class="source_link" style="float:right">[source]</a></h3><blockquote><p><code>TransformersLMBlock</code>(<strong><code>pretrained_model_name</code></strong>=<em><code>None</code></em>, <strong><code>tokenizer_cls</code></strong>=<em><code>AutoTokenizer</code></em>, <strong><code>config</code></strong>=<em><code>None</code></em>, <strong><code>tokenizer</code></strong>=<em><code>None</code></em>, <strong><code>mlm</code></strong>=<em><code>True</code></em>, <strong><code>masking_func</code></strong>=<em><code>None</code></em>, <strong><code>whole_word_masking</code></strong>=<em><code>False</code></em>, <strong><code>mlm_probability</code></strong>=<em><code>0.15</code></em>, <strong><code>preprocessed</code></strong>=<em><code>True</code></em>, <strong>**<code>kwargs</code></strong>) :: <code>TransformBlock</code></p>
 </blockquote>
 <p>A <code>TransformBlock</code> for texts using pretrained tokenizers from Huggingface</p>
 
@@ -747,7 +811,7 @@ If <code>with_labels=True</code> the "labels" are added to the output dictionary
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="tokenize" class="doc_header"><code>tokenize</code><a href="https://github.com/aikindergarten/fasthugs/tree/master/fasthugs/data.py#L307" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>tokenize</code>(<strong><code>batch</code></strong>)</p>
+<h4 id="tokenize" class="doc_header"><code>tokenize</code><a href="https://github.com/aikindergarten/fasthugs/tree/master/fasthugs/data.py#L334" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>tokenize</code>(<strong><code>batch</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -771,7 +835,7 @@ If <code>with_labels=True</code> the "labels" are added to the output dictionary
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="group_texts" class="doc_header"><code>group_texts</code><a href="https://github.com/aikindergarten/fasthugs/tree/master/fasthugs/data.py#L310" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>group_texts</code>(<strong><code>examples</code></strong>)</p>
+<h4 id="group_texts" class="doc_header"><code>group_texts</code><a href="https://github.com/aikindergarten/fasthugs/tree/master/fasthugs/data.py#L337" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>group_texts</code>(<strong><code>examples</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -821,10 +885,10 @@ If <code>with_labels=True</code> the "labels" are added to the output dictionary
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>Using custom data configuration default-baca2dc48733f0f6
-Reusing dataset csv (/root/.cache/huggingface/datasets/csv/default-baca2dc48733f0f6/0.0.0)
-Loading cached processed dataset at /root/.cache/huggingface/datasets/csv/default-baca2dc48733f0f6/0.0.0/cache-032c7a403e6a8cc8.arrow
-Loading cached processed dataset at /root/.cache/huggingface/datasets/csv/default-baca2dc48733f0f6/0.0.0/cache-bd4c0fdd3d96b02e.arrow
+<pre>Using custom data configuration default-fcd59879e8ec0cc2
+Reusing dataset csv (/home/arto/.cache/huggingface/datasets/csv/default-fcd59879e8ec0cc2/0.0.0)
+Loading cached processed dataset at /home/arto/.cache/huggingface/datasets/csv/default-fcd59879e8ec0cc2/0.0.0/cache-e48d62f22574817d.arrow
+Loading cached processed dataset at /home/arto/.cache/huggingface/datasets/csv/default-fcd59879e8ec0cc2/0.0.0/cache-f4a996ce554fd629.arrow
 </pre>
 </div>
 </div>
@@ -885,19 +949,19 @@ Loading cached processed dataset at /root/.cache/huggingface/datasets/csv/defaul
   <tbody>
     <tr>
       <th>0</th>
-      <td>actually kinda funny. after awhile the pool shot feels like a [MASK] channel [MASK] s station identification logo, reminding us that we are watching " grey matter ". &lt; br / &gt; &lt; br / &gt; i also enjoyed [MASK] boutshore name - calling. at one [MASK] an angry test subject taunts somebody in charge by [MASK] her a " scientific b * tch! ". it'ambrose just a [MASK] inadequate [MASK]. several scenes later a different subject lets off steam by muttering about that " scientific b * * tard! ". it just sounded very awkward to me. &lt; br / &gt; &lt; br / &gt; someday this movie [MASK] disappear forever</td>
+      <td>as diego garcia is a british colony, much like mauritius, the nearby island [MASK] where [MASK] natives were exiled, used [MASK] be chronicle but the british [MASK] has ignored their pleas to return to their homeland, [MASK] the island is [MASK] [MASK] military base for the [MASK] states army, who have used it as a basis for the bombing of iraq and afghanistan. &lt; br / [MASK] &lt; br / &gt; as usual, pilger [MASK] s coverage is shocking, especially as he documents the treatment [MASK] the current impoverished [MASK] conditions of the surviving islanders [MASK] his interviews [MASK] round are excellent, and his cornering of [MASK] parliament representative where he uses the government's</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>: the [MASK] men [MASK] all hotter than the [MASK] guys. &lt; br [MASK] &gt; &lt; br / [MASK] don [MASK] t get me wrong, im not saying all the gay guys were ugly and [MASK], [MASK] [MASK] [MASK] of fact i found some of them [MASK] cute. it's just that overall they were just blah compared to the men you [MASK] purse see on shows like avocation at love with [MASK]a tequila or [MASK] bachelor [MASK]. &lt; br / [MASK] [MASK] br / &gt; i don't know how many times i hit fast [MASK] during this show. i can accept a lead character as interesting as a cardboard [MASK], i can accept the mundane</td>
+      <td>re a vonnegut fan or [MASK] completely insane, don't see it. please. [SEP] [CLS] three stooges - have [MASK], will travel - [MASK] this was the first feature length film [MASK] [MASK] the st [MASK]ges and it is pretty och. it makes the three stooges go around the world in a daze ( from 1963 ) [MASK] [MASK] a masterpiece. &lt; br / [MASK] &lt; br / &gt; the [MASK] [MASK] [MASK] [MASK] janitors at a [MASK] place. they climb into a rocket and [MASK] goes to venus. they [MASK] some stuff there including a talking unicorn they call " [MASK] [MASK] " which they bring back to earth with</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>i 1789 ever experienced. [MASK] possible line in the movie [MASK] unoriginal [MASK] cliche, or just [MASK] stupid. for [MASK] the name of the camp is " camp blood " ( lame ), the name of the clown is " the [MASK] clown " ( lame ). what is a clown doing in a forest anyway? was that [MASK] only mask they could find? 3. the last but certainly the least was the acting [MASK] [MASK] the worst [MASK] of actors and actresses ever assembled. a [MASK] cornucopia of shitty lines and poor acting. worst part by far was when [MASK] [MASK] flash back to this fat foreign girl getting naked for</td>
+      <td>they [MASK] d have to see this lame attempt at movie - [MASK] on their account [MASK] the [MASK] overall is bad enough to be funny, and that'[MASK] about the best [MASK] i can [MASK] for it. [SEP] [CLS] as horror [MASK] we all know that blind rentals are a crap - shoot. sometimes we [MASK] a real gem, [MASK] many times we find that [MASK] film we'[MASK] just spent our hard earned money on [MASK] [MASK] more than [MASK] putrid steamer made worse by [MASK] completely und [MASK]rved rave reviews [MASK] film fest awards listed on the box. such [MASK] the case with [MASK] across the eyes ( a title i'm sure</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>s daughter )! as in the later film, too, fanfan ( [MASK] ideally cast gerard philipe [MASK], ironically, is so full of life here that one [MASK] it [MASK] [MASK] believe that he would be stricken down by cancer within 7 years'time ) [MASK] flanked by two fun - [MASK] yet [MASK]ly men ( one of them is actually his superior [MASK] and [MASK] heroine's own father ) and opposed [MASK] an unscrupulous figure within [MASK] own ranks ( the [MASK] [MASK] ro [MASK]vert, with whom the hero [MASK] engages in a rooftop duel since [MASK] too has amorous designs [MASK] the gypsy girl )! ; for the record</td>
+      <td>montages. those were easily the zee songs and best performances in the film. [MASK] the " rise to [MASK] top " portion of the film was the only [MASK] of [MASK] film that had a consistent point of [MASK] or any momentum. [MASK] remaining hour and 45 minutes was a formless, rambling mess that was [MASK] realistic nor fantastic enough [MASK] [MASK] interesting. [MASK] was also visually dull and included too many sound - alike [MASK]. [MASK] br / [MASK] &lt; [MASK] / &gt; condon didn [MASK] t try to turn any of the tunes into big show pieces as i'd expected they would. each number in the 2nd half was just one closeup</td>
     </tr>
   </tbody>
 </table>
@@ -907,6 +971,76 @@ Loading cached processed dataset at /root/.cache/huggingface/datasets/csv/defaul
 
 </div>
 </div>
+
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Multiple-Choice">Multiple Choice<a class="anchor-link" href="#Multiple-Choice"> </a></h2>
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h3 id="MultiChoiceTransform" class="doc_header"><code>class</code> <code>MultiChoiceTransform</code><a href="https://github.com/aikindergarten/fasthugs/tree/master/fasthugs/data.py#L352" class="source_link" style="float:right">[source]</a></h3><blockquote><p><code>MultiChoiceTransform</code>(<strong><code>sentence_keys</code></strong>, <strong><code>ending_keys</code></strong>, <strong><code>pretrained_model_name</code></strong>=<em><code>None</code></em>, <strong><code>tokenizer_cls</code></strong>=<em><code>AutoTokenizer</code></em>, <strong><code>config</code></strong>=<em><code>None</code></em>, <strong><code>tokenizer</code></strong>=<em><code>None</code></em>, <strong><code>with_labels</code></strong>=<em><code>False</code></em>, <strong><code>padding</code></strong>=<em><code>True</code></em>, <strong><code>truncation</code></strong>=<em><code>True</code></em>, <strong><code>max_length</code></strong>=<em><code>None</code></em>, <strong>**<code>kwargs</code></strong>) :: <code>Transform</code></p>
+</blockquote>
+<p>Processes inputs for multiple choice</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h3 id="MultiChoiceBlock" class="doc_header"><code>class</code> <code>MultiChoiceBlock</code><a href="https://github.com/aikindergarten/fasthugs/tree/master/fasthugs/data.py#L400" class="source_link" style="float:right">[source]</a></h3><blockquote><p><code>MultiChoiceBlock</code>(<strong><code>sentence_keys</code></strong>, <strong><code>ending_keys</code></strong>, <strong><code>pretrained_model_name</code></strong>=<em><code>None</code></em>, <strong><code>tokenizer_cls</code></strong>=<em><code>AutoTokenizer</code></em>, <strong><code>config</code></strong>=<em><code>None</code></em>, <strong><code>tokenizer</code></strong>=<em><code>None</code></em>, <strong><code>preprocessed</code></strong>=<em><code>False</code></em>, <strong><code>group_by_len</code></strong>=<em><code>True</code></em>, <strong><code>with_labels</code></strong>=<em><code>False</code></em>, <strong><code>padding</code></strong>=<em><code>True</code></em>, <strong><code>truncation</code></strong>=<em><code>True</code></em>, <strong><code>max_length</code></strong>=<em><code>None</code></em>) :: <code>TransformBlock</code></p>
+</blockquote>
+<p>A <code>TransformBlock</code> for texts using pretrained tokenizers from Huggingface</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
 
 </div>
     {% endraw %}

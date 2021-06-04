@@ -20,6 +20,7 @@ pip install git+git://github.com/aikindergarten/fasthugs.git
 2. [GLUE benchmark](https://aikindergarten.github.io/fasthugs/examples.glue-benchmark.html)
 3. [Machine Translation](https://aikindergarten.github.io/fasthugs/examples.machine-translation.html)
 4. [Summarization](https://aikindergarten.github.io/fasthugs/examples.summarization.html)
+5. [Multiple Chice](https://aikindergarten.github.io/fasthugs/examples.multiple_choice.html)
 
 ### Hyper-parameter search
 
