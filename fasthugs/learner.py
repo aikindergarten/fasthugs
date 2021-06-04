@@ -7,7 +7,7 @@ from fastai.basics import *
 from fastai.text.all import TensorText
 from inspect import signature
 from collections import namedtuple
-from .data import TransformersTextBlock
+from .data import TransformersTextBlock, TransTensorText
 
 from transformers import (AutoTokenizer, AutoConfig, AutoModelForSequenceClassification, BatchEncoding,
                           PreTrainedModel)
@@ -20,7 +20,7 @@ def default_splitter(model):
 
 # Cell
 @typedispatch
-def show_results(x: TensorText, y, samples, outs, ctxs=None, max_n=10, trunc_at=150, **kwargs):
+def show_results(x:TransTensorText, y, samples, outs, ctxs=None, max_n=10, trunc_at=150, **kwargs):
     if ctxs is None: ctxs = get_empty_df(min(len(samples), max_n))
     if isinstance(samples[0][0], tuple):
         samples = L((*s[0], *s[1:]) for s in samples)
