@@ -2,7 +2,8 @@
 
 __all__ = ['get_splits', 'TitledStrEx', 'TextGetter', 'KeyGetter', 'TransTensorText', 'find_first', 'split_by_sep',
            'TokTransform', 'TokBatchTransform', 'PadBatchTransform', 'untuple', 'to_tuple', 'LMBatchTfm', 'Undict',
-           'UndictS2S', 'TransformersTextBlock', 'TransformersLMBlock', 'tokenize', 'group_texts']
+           'UndictS2S', 'TransformersTextBlock', 'TransformersLMBlock', 'tokenize', 'group_texts',
+           'MultiChoiceTransform', 'MultiChoiceBlock']
 
 # Cell
 from fastcore.all import *
@@ -346,3 +347,66 @@ def group_texts(examples):
         for k, t in concatenated_examples.items()
     }
     return result
+
+# Cell
+class MultiChoiceTransform(Transform):
+    """
+    Processes inputs for multiple choice
+    """
+    def __init__(self, sentence_keys, ending_keys,
+                 pretrained_model_name=None, tokenizer_cls=AutoTokenizer,
+                 config=None, tokenizer=None, with_labels=False, padding=True,
+                 truncation=True, max_length=None, **kwargs):
+        if tokenizer is None:
+            tokenizer = tokenizer_cls.from_pretrained(pretrained_model_name, config=config)
+        self.tokenizer = tokenizer
+        self.kwargs = kwargs
+        store_attr()
+
+    def encodes(self, batch):
+        # inputs are list of tuple(dict, label)
+        inps = [b[0] for b in batch]
+        sk1, sk2 = self.sentece_keys
+        num_endings = len(self.ending_keys)
+        texts1, texts2 = [], []
+        for s in inps:
+            texts1.extend([s[sk1]]*num_endings)
+            texts2.extend([f"{s[sk2]} {s[e]}" for e in self.ending_keys])
+        inps = self.tokenizer(texts1, texts2,
+                              add_special_tokens=True,
+                              padding=self.padding,
+                              truncation=self.truncation,
+                              max_length=self.max_length,
+                              return_tensors='pt',
+                              **self.kwargs)
+        inps = {k:v.reshape(-1, num_endings, v.size(1)) for k,v in inps.items()}
+
+        targets = default_collate([s[1:] for s in batch])
+        if self.with_labels:
+            inps['labels'] = targets[0]
+            res = (inps, )
+        else:
+            res = (inps, ) + tuple(targets)
+        return res
+
+    def decodes(self, x:TensorText):
+        endings = ()
+        for i, l in enumerate(self.ending_keys):
+            x1, x2 = split_by_sep(x[i, :], self.tokenizer.sep_token_id)
+            endings += (TitledStrEx(self.tokenizer.decode(x2.cpu(), skip_special_tokens=True), label=l),)
+        return (TitledStrEx(self.tokenizer.decode(x1.cpu(), skip_special_tokens=True), label=self.sentence_keys[0]), ) + endings
+
+# Cell
+class MultiChoiceBlock(TransformBlock):
+    "A `TransformBlock` for texts using pretrained tokenizers from Huggingface"
+    @delegates(MultiChoiceTransform)
+    def __init__(self, sentence_keys, ending_keys, pretrained_model_name=None, tokenizer_cls=AutoTokenizer,
+                 config=None, tokenizer=None, preprocessed=False,
+                 **kwargs):
+        batch_tfm_cls = MultiChoiceTransform
+        before_batch_tfm = batch_tfm_cls(sentence_keys, ending_keys, pretrained_model_name=pretrained_model_name,
+                tokenizer_cls=tokenizer_cls, config=config, tokenizer=tokenizer, **kwargs)
+        return super().__init__(dl_type=SortedDL,
+                                dls_kwargs={'before_batch': before_batch_tfm,
+                                            'create_batch': fa_convert},
+                                batch_tfms=Undict())
