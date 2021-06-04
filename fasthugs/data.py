@@ -166,7 +166,7 @@ class TokBatchTransform(Transform):
             if self.target_pad_id != self.tokenizer.pad_token_id:
                 tgt_attn_mask = target_enc.attention_mask.to(torch.bool)
                 targets = torch.where(tgt_attn_mask, targets, -100)
-            targets = (targets, )
+            targets = (TransTensorText(targets), )
         else:
             # inps are batched, collate targets into batches too
             targets = default_collate([s[1:] for s in batch])
@@ -216,7 +216,7 @@ class PadBatchTransform(Transform):
                               max_length=self.max_length,
                               return_tensors='pt',
                               **self.kwargs)
-
+        inps = {k:TransTensorText(v) for k, v in inps.items() if (isinstance(v, torch.Tensor) and v.dim()>1)}
         # inps are batched, collate targets into batches too
         labels = default_collate([s[1:] for s in samples])
         res = (inps, ) + tuple(labels)
@@ -287,11 +287,11 @@ class TransformersTextBlock(TransformBlock):
     @delegates(TokBatchTransform)
     def __init__(self, pretrained_model_name=None, tokenizer_cls=AutoTokenizer,
                  config=None, tokenizer=None, preprocessed=False, do_targets=False,
-                 **kwargs):
+                 group_by_len=True, **kwargs):
         batch_tfm_cls = PadBatchTransform if preprocessed else TokBatchTransform
         before_batch_tfm = batch_tfm_cls(pretrained_model_name=pretrained_model_name, tokenizer_cls=tokenizer_cls,
                  config=config, tokenizer=tokenizer, do_targets=do_targets, **kwargs)
-        return super().__init__(dl_type=SortedDL,
+        return super().__init__(dl_type=SortedDL if group_by_len else TfmdDL,
                                 dls_kwargs={'before_batch': before_batch_tfm,
                                             'create_batch': fa_convert},
                                 batch_tfms=UndictS2S() if do_targets else Undict()
@@ -366,7 +366,7 @@ class MultiChoiceTransform(Transform):
     def encodes(self, batch):
         # inputs are list of tuple(dict, label)
         inps = [b[0] for b in batch]
-        sk1, sk2 = self.sentece_keys
+        sk1, sk2 = self.sentence_keys
         num_endings = len(self.ending_keys)
         texts1, texts2 = [], []
         for s in inps:
@@ -389,7 +389,7 @@ class MultiChoiceTransform(Transform):
             res = (inps, ) + tuple(targets)
         return res
 
-    def decodes(self, x:TensorText):
+    def decodes(self, x:TransTensorText):
         endings = ()
         for i, l in enumerate(self.ending_keys):
             x1, x2 = split_by_sep(x[i, :], self.tokenizer.sep_token_id)
@@ -401,12 +401,12 @@ class MultiChoiceBlock(TransformBlock):
     "A `TransformBlock` for texts using pretrained tokenizers from Huggingface"
     @delegates(MultiChoiceTransform)
     def __init__(self, sentence_keys, ending_keys, pretrained_model_name=None, tokenizer_cls=AutoTokenizer,
-                 config=None, tokenizer=None, preprocessed=False,
+                 config=None, tokenizer=None, preprocessed=False, group_by_len=True,
                  **kwargs):
         batch_tfm_cls = MultiChoiceTransform
         before_batch_tfm = batch_tfm_cls(sentence_keys, ending_keys, pretrained_model_name=pretrained_model_name,
                 tokenizer_cls=tokenizer_cls, config=config, tokenizer=tokenizer, **kwargs)
-        return super().__init__(dl_type=SortedDL,
+        return super().__init__(dl_type=SortedDL if group_by_len else TfmdDL,
                                 dls_kwargs={'before_batch': before_batch_tfm,
                                             'create_batch': fa_convert},
                                 batch_tfms=Undict())

@@ -9,6 +9,7 @@
     "GLUE Benchmark": "examples.glue-benchmark.html",
     "GLUE: hyperparameter search": "examples.glue-benchmark-sweeps.html",
     "Machine Translation: fr-en": "examples.machine_translation.html",
-    "Summarization": "examples.summarization.html"
+    "Summarization": "examples.summarization.html",
+    "Multiple Choice": "examples.multiple_choice.html"
   }
 }

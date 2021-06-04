@@ -36,6 +36,9 @@ entries:
     - output: web,pdf
       title: Summarization
       url: examples.summarization.html
+    - output: web,pdf
+      title: Multiple Choice
+      url: examples.multiple_choice.html
     output: web
     title: fasthugs
   output: web

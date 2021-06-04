@@ -342,7 +342,7 @@ nb_path: "nbs/01_learner.ipynb"
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">AutoModelForSequenceClassification</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">model_name</span><span class="p">)</span>
-<span class="n">learn</span> <span class="o">=</span> <span class="n">TransLearner</span><span class="p">(</span><span class="n">dls</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="n">accuracy</span><span class="p">)</span>
+<span class="n">learn</span> <span class="o">=</span> <span class="n">TransLearner</span><span class="p">(</span><span class="n">dls</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="n">accuracy</span><span class="p">)</span><span class="o">.</span><span class="n">to_fp16</span><span class="p">()</span>
 <span class="n">learn</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mf">5e-5</span><span class="p">)</span>
 </pre></div>
 
@@ -356,10 +356,10 @@ nb_path: "nbs/01_learner.ipynb"
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>Some weights of the model checkpoint at google/electra-small-discriminator were not used when initializing ElectraForSequenceClassification: [&#39;discriminator_predictions.dense.bias&#39;, &#39;discriminator_predictions.dense_prediction.bias&#39;, &#39;discriminator_predictions.dense_prediction.weight&#39;, &#39;discriminator_predictions.dense.weight&#39;]
+<pre>Some weights of the model checkpoint at google/electra-small-discriminator were not used when initializing ElectraForSequenceClassification: [&#39;discriminator_predictions.dense.bias&#39;, &#39;discriminator_predictions.dense.weight&#39;, &#39;discriminator_predictions.dense_prediction.bias&#39;, &#39;discriminator_predictions.dense_prediction.weight&#39;]
 - This IS expected if you are initializing ElectraForSequenceClassification from the checkpoint of a model trained on another task or with another architecture (e.g. initializing a BertForSequenceClassification model from a BertForPreTraining model).
 - This IS NOT expected if you are initializing ElectraForSequenceClassification from the checkpoint of a model that you expect to be exactly identical (initializing a BertForSequenceClassification model from a BertForSequenceClassification model).
-Some weights of ElectraForSequenceClassification were not initialized from the model checkpoint at google/electra-small-discriminator and are newly initialized: [&#39;classifier.dense.bias&#39;, &#39;classifier.dense.weight&#39;, &#39;classifier.out_proj.bias&#39;, &#39;classifier.out_proj.weight&#39;]
+Some weights of ElectraForSequenceClassification were not initialized from the model checkpoint at google/electra-small-discriminator and are newly initialized: [&#39;classifier.out_proj.bias&#39;, &#39;classifier.out_proj.weight&#39;, &#39;classifier.dense.bias&#39;, &#39;classifier.dense.weight&#39;]
 You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
 </pre>
 </div>
@@ -382,17 +382,123 @@ You should probably TRAIN this model on a down-stream task to be able to use it 
   <tbody>
     <tr>
       <td>0</td>
-      <td>0.671439</td>
-      <td>0.640339</td>
-      <td>0.705000</td>
+      <td>0.597513</td>
+      <td>0.440168</td>
+      <td>0.840000</td>
       <td>00:39</td>
     </tr>
     <tr>
       <td>1</td>
-      <td>0.527139</td>
-      <td>0.466721</td>
-      <td>0.805000</td>
-      <td>00:37</td>
+      <td>0.423275</td>
+      <td>0.334340</td>
+      <td>0.890000</td>
+      <td>00:39</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">learn</span><span class="o">.</span><span class="n">show_results</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+
+</div>
+
+</div>
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>text</th>
+      <th>category</th>
+      <th>category_</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>the trouble with the book, " memoirs of a geisha " is that it had japanese surfaces but underneath the surfaces it was all an american man's way of thinking. reading the book is like watching a magnificent ballet with great music, sets, and costumes yet performed by barnyard animals dressed in those costumesso far from japanese ways of thinking were the characters. &lt; br / &gt; &lt; br / &gt; the movie isn't about japan or real geisha. it is a story about a few american men's mistaken ideas about japan and geisha filtered through their own ignorance and misconceptions. so what is this movie if it isn't about japan or geisha? is it pure fantasy as so many people have said? yes, but then why make it into an american fantasy? &lt; br / &gt; &lt; br / &gt; there were so many missed opportunities. imagine a culture</td>
+      <td>negative</td>
+      <td>negative</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>&lt; br / &gt; &lt; br / &gt; i'm sure things didn't exactly go the same way in the real life of homer hickam as they did in the film adaptation of his book, rocket boys, but the movie " october sky " ( an anagram of the book's title ) is good enough to stand alone. i have not read hickam's memoirs, but i am still able to enjoy and understand their film adaptation. the film, directed by joe johnston and written by lewis colick, records the story of teenager homer hickam ( jake gyllenhaal ), beginning in october of 1957. it opens with the sound of a radio broadcast, bringing news of the russian satellite sputnik, the first artificial satellite in orbit. we see a images of a blue - gray town and its people : mostly miners working for the olga coal company. one of the miners</td>
+      <td>positive</td>
+      <td>positive</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>how viewers react to this new " adaption " of shirley jackson's book, which was promoted as not being a remake of the original 1963 movie ( true enough ), will be based, i suspect, on the following : those who were big fans of either the book or original movie are not going to think much of this one... and those who have never been exposed to either, and who are big fans of hollywood's current trend towards " special effects " being the first and last word in how " good " a film is, are going to love it. &lt; br / &gt; &lt; br / &gt; things i did not like about this adaption : &lt; br / &gt; &lt; br / &gt; 1. it was not a true adaption of the book. from the articles i had read, this movie was supposed to cover other</td>
+      <td>negative</td>
+      <td>negative</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>to review this movie, i without any doubt would have to quote that memorable scene in tarantino's " pulp fiction " ( 1994 ) when jules and vincent are talking about mia wallace and what she does for a living. jules tells vincent that the " only thing she did worthwhile was pilot ". vincent asks " what the hell is a pilot? " and jules goes into a very well description of what a tv pilot is : " well, the way they make shows is, they make one show. that show's called a'pilot '. then they show that show to the people who make shows, and on the strength of that one show they decide if they're going to make more shows. some pilots get picked and become television programs. some don't, become nothing. she starred in one of the ones that became nothing. " now to stretch</td>
+      <td>negative</td>
+      <td>negative</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>bonanza had a great cast of wonderful actors. lorne greene, pernell whitaker, michael landon, dan blocker, and even guy williams ( as the cousin who was brought in for several episodes during 1964 to replace adam when he was leaving the series ). the cast had chemistry, and they seemed to genuinely like each other. that made many of their weakest stories work a lot better than they should have. it also made many of their best stories into great western drama. &lt; br / &gt; &lt; br / &gt; like any show that was shooting over thirty episodes every season, there are bound to be some weak ones. however, most of the time each episode had an interesting story, some kind of conflict, and a resolution that usually did not include violence. while bonanza was a western, the gunfighting was never featured as the main attraction. while i am</td>
+      <td>positive</td>
+      <td>positive</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>we saw the silent version of this film, and it is quite simply shimmeringly beautiful. it's quite hard to see how a sound version could have been created, since it is shot with pure silent technique, long wordless sweeps of narrative without a single intertitle - - save for a few disconcerting sequences where louise brooks, playing a french typist, is quite visibly speaking in english... the only section that obviously cries out for sound is the final scene, where brooks is watching the rushes for her test'for a sound film': footage which plays constantly in the background as the action unfolds, with her mouth moving in ceaseless soundless song. i was unsurprised to learn afterwards that this passage alone in the talkie version had been hailed as an exemplar of new technique! &lt; br / &gt; &lt; br / &gt; in the sunny beauty of its opening scenes and</td>
+      <td>positive</td>
+      <td>positive</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>i couldn't believe that this movie dates from 2007, it had all the looks of a below - average seventies horror - flick. didn't they have any knowledge of modern special effects or cgi?!? didn't they know that in the post - millennium the violence in a supposed horror - and / or scifi - movie should at least be a little bit graphic? or did i get the purpose wrong, was it supposed to be a deep and meaningful story of man and animal, bound together in the big cycle of life, or a warning to mankind not to mess with nature, or something like that?? it doesn't really matter, either way it turned out wrong and to me this movie failed on all accounts. &lt; br / &gt; &lt; br / &gt; first of all : the premise is very improbable. if at a given time you're capable</td>
+      <td>negative</td>
+      <td>negative</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>for me the only reason for having a look at this remake was to see how bad and funny it could be. there was no doubt about it being funny and bad, because i had seen " voyna i mir " ( 1968 ). shall we begin? here we go... &lt; br / &gt; &lt; br / &gt; robert dornhelm &amp; brendan donnison's pierre bezukhov - a lean fellow that lacks the depth of the original ; robert dornhelm &amp; brendan donnison's natasha rostova - a scarecrow, her image can cause insomnia ; robert dornhelm &amp; brendan donnison's andrej bolkonsky - an ok incarnation which, like the lean fellow ( cf. above ), lacks depth of a russian soul and " struggle within " ; robert dornhelm &amp; brendan donnison's napoleon - a rather unimpressive leader ; robert dornhelm &amp; brendan donnison's prince bolkonsky - a turd with an english</td>
+      <td>negative</td>
+      <td>negative</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>i don't usually write a comment when there are so many others but this time i feel i have to. i have spoken of taste in another review, saying it's all in the eye of the beholder but when it comes to this film, if you like it, it simply means you have bad taste. &lt; br / &gt; &lt; br / &gt; i love films. i loved " isle of the dead " which is pretty much an unknown b &amp; w film. i even liked " scream " and " scary movie " i liked these films because they have, if not a lot, at least something good about them. i appreciate 99. 9 % of the films i've seen because they tell a story which i haven't heard before, and most directors only make films with a good storyline. throughout this film i was thinking " where</td>
+      <td>negative</td>
+      <td>negative</td>
     </tr>
   </tbody>
 </table>
