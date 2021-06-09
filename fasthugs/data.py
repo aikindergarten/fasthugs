@@ -3,7 +3,7 @@
 __all__ = ['get_splits', 'TitledStrEx', 'TextGetter', 'KeyGetter', 'TransTensorText', 'find_first', 'split_by_sep',
            'TokTransform', 'TokBatchTransform', 'PadBatchTransform', 'untuple', 'to_tuple', 'LMBatchTfm', 'Undict',
            'UndictS2S', 'TransformersTextBlock', 'TransformersLMBlock', 'tokenize', 'group_texts',
-           'MultiChoiceTransform', 'MultiChoiceBlock']
+           'MultiChoiceTransform', 'MultiChoiceBlock', 'PadTokBatchTransform', 'TokenClassificationBlock']
 
 # Cell
 from fastcore.all import *
@@ -311,14 +311,14 @@ class TransformersTextBlock(TransformBlock):
 
 # Cell
 class TransformersLMBlock(TransformBlock):
-    "A `TransformBlock` for texts using pretrained tokenizers from Huggingface"
+    "A `TransformBlock` for language modelling using pretrained tokenizers from Huggingface"
     # @delegates
     def __init__(self, pretrained_model_name=None, tokenizer_cls=AutoTokenizer,
                  config=None, tokenizer=None, mlm=True, masking_func=None, whole_word_masking=False,
                  mlm_probability=0.15, preprocessed=True, **kwargs):
         tok_tfm = TokTransform(pretrained_model_name=pretrained_model_name, tokenizer_cls=tokenizer_cls,
-                     config=config, tokenizer=tokenizer, return_special_tokens_mask=True, is_lm=True,
-                     preprocessed=preprocessed, **kwargs)
+                               config=config, tokenizer=tokenizer, return_special_tokens_mask=True, is_lm=True,
+                               preprocessed=preprocessed, **kwargs)
 
         batch_tfms = LMBatchTfm(pretrained_model_name, tokenizer_cls, config, tokenizer,
                                 mlm=mlm, masking_func=masking_func, whole_word_masking=whole_word_masking,
@@ -398,7 +398,7 @@ class MultiChoiceTransform(Transform):
 
 # Cell
 class MultiChoiceBlock(TransformBlock):
-    "A `TransformBlock` for texts using pretrained tokenizers from Huggingface"
+    "A `TransformBlock` for multiple choice using pretrained tokenizers from Huggingface"
     @delegates(MultiChoiceTransform)
     def __init__(self, sentence_keys, ending_keys, pretrained_model_name=None, tokenizer_cls=AutoTokenizer,
                  config=None, tokenizer=None, preprocessed=False, group_by_len=True,
@@ -406,6 +406,76 @@ class MultiChoiceBlock(TransformBlock):
         batch_tfm_cls = MultiChoiceTransform
         before_batch_tfm = batch_tfm_cls(sentence_keys, ending_keys, pretrained_model_name=pretrained_model_name,
                 tokenizer_cls=tokenizer_cls, config=config, tokenizer=tokenizer, **kwargs)
+        return super().__init__(dl_type=SortedDL if group_by_len else TfmdDL,
+                                dls_kwargs={'before_batch': before_batch_tfm,
+                                            'create_batch': fa_convert},
+                                batch_tfms=Undict())
+
+# Cell
+class PadTokBatchTransform(Transform):
+    def __init__(self, pretrained_model_name=None, tokenizer_cls=AutoTokenizer,
+                 config=None, tokenizer=None, with_labels=False, padding=True,
+                 truncation=True, max_length=None, label_vocab=None,
+                 target_pad_id=-100, **kwargs):
+        if tokenizer is None:
+            tokenizer = tokenizer_cls.from_pretrained(pretrained_model_name, config=config)
+        self.tokenizer = tokenizer
+        self.kwargs = kwargs
+        self._two_texts = False
+        store_attr()
+
+    def encodes(self, samples):
+        toks = [s[0] for s in samples]
+        # the labels are expected to be found either in dictionary with tokens
+        # or as element 1 of each sample
+        labels = ([s['labels'] for s in toks]
+                    if ('labels' in toks[0].keys()) else
+                    [s[1] for s in samples])
+
+        label_lens = [len(l) for l in labels]
+        max_label_length = max(label_lens)
+        padding_side = self.tokenizer.padding_side
+        for tok, label, label_len in zip(toks, labels, label_lens):
+            remainder = [self.target_pad_id] * (max_label_length - label_len)
+            tok["labels"] = (label + remainder
+                             if padding_side=="right" else
+                             remainder + label)
+        inps = self.tokenizer.pad(toks,
+                              padding=self.padding,
+                              max_length=self.max_length,
+                              return_tensors='pt',
+                              **self.kwargs)
+        labels = inps.pop('labels')
+        inps = {k:TransTensorText(v) for k, v in inps.items() if (isinstance(v, torch.Tensor) and v.dim()>1)}
+        if self.with_labels:
+            inps['labels'] = labels
+            res = (inps, )
+        else:
+            res = (inps, ) + (labels, )
+        return res
+
+    def decodes(self, x:TransTensorText):
+        if self._two_texts:
+            x1, x2 = split_by_sep(x, self.tokenizer.sep_token_id)
+            return (TitledStrEx(self.tokenizer.decode(x1.cpu(), skip_special_tokens=True)),
+                    TitledStrEx(self.tokenizer.decode(x2.cpu(), skip_special_tokens=True)))
+        return TitledStrEx(self.tokenizer.decode(x.cpu(), skip_special_tokens=True))
+    def decodes(self, x):
+        if self.label_vocab is not None:
+            res = [self.label_vocab[e] for e in x if e != -100]
+        else:
+            res = [e for e in x if e != -100]
+        return TitledStrEx(''.join(f'{x}, ' for x in res), label='tags')
+
+# Cell
+class TokenClassificationBlock(TransformBlock):
+    "A `TransformBlock` for token classification using pretrained tokenizers from Huggingface"
+    @delegates(PadTokBatchTransform)
+    def __init__(self, pretrained_model_name=None, tokenizer_cls=AutoTokenizer,
+                 config=None, tokenizer=None, with_labels=True, label_vocab=None,
+                 group_by_len=True, **kwargs):
+        before_batch_tfm = PadTokBatchTransform(pretrained_model_name=pretrained_model_name, tokenizer_cls=tokenizer_cls,
+                 config=config, tokenizer=tokenizer, label_vocab=label_vocab, with_labels=True, **kwargs)
         return super().__init__(dl_type=SortedDL if group_by_len else TfmdDL,
                                 dls_kwargs={'before_batch': before_batch_tfm,
                                             'create_batch': fa_convert},
