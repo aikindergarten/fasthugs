@@ -7,7 +7,7 @@ import torch
 from fastcore.all import *
 from fastai.basics import Transform, ItemTransform, Callback, ValueMetric
 from functools import partial
-from typing import List
+from typing import List, Tuple
 from datasets import load_metric
 try:
     import nltk
