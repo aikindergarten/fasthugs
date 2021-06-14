@@ -10,6 +10,7 @@
     "GLUE: hyperparameter search": "examples.glue-benchmark-sweeps.html",
     "Machine Translation: fr-en": "examples.machine_translation.html",
     "Summarization": "examples.summarization.html",
-    "Multiple Choice": "examples.multiple_choice.html"
+    "Multiple Choice": "examples.multiple_choice.html",
+    "Token Classification": "examples.token_classification.html"
   }
 }
