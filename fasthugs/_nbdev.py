@@ -30,7 +30,9 @@ index = {"get_splits": "00_data.ipynb",
          "TransCallback": "01_learner.ipynb",
          "GeneratePreds": "01_learner.ipynb",
          "TransLearner": "01_learner.ipynb",
-         "RougeScore": "02_metrics.ipynb"}
+         "MetricCallback": "02_metrics.ipynb",
+         "RougeScore": "02_metrics.ipynb",
+         "Seqeval": "02_metrics.ipynb"}
 
 modules = ["data.py",
            "learner.py",
