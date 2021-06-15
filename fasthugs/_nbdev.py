@@ -23,12 +23,16 @@ index = {"get_splits": "00_data.ipynb",
          "group_texts": "00_data.ipynb",
          "MultiChoiceTransform": "00_data.ipynb",
          "MultiChoiceBlock": "00_data.ipynb",
+         "PadTokBatchTransform": "00_data.ipynb",
+         "TokenClassificationBlock": "00_data.ipynb",
          "default_splitter": "01_learner.ipynb",
          "to_device": "01_learner.ipynb",
          "TransCallback": "01_learner.ipynb",
          "GeneratePreds": "01_learner.ipynb",
          "TransLearner": "01_learner.ipynb",
-         "RougeScore": "02_metrics.ipynb"}
+         "MetricCallback": "02_metrics.ipynb",
+         "RougeScore": "02_metrics.ipynb",
+         "Seqeval": "02_metrics.ipynb"}
 
 modules = ["data.py",
            "learner.py",

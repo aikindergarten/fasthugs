@@ -775,7 +775,7 @@ If <code>with_labels=True</code> the "labels" are added to the output dictionary
 <div class="output_markdown rendered_html output_subarea ">
 <h3 id="TransformersLMBlock" class="doc_header"><code>class</code> <code>TransformersLMBlock</code><a href="https://github.com/aikindergarten/fasthugs/tree/master/fasthugs/data.py#L313" class="source_link" style="float:right">[source]</a></h3><blockquote><p><code>TransformersLMBlock</code>(<strong><code>pretrained_model_name</code></strong>=<em><code>None</code></em>, <strong><code>tokenizer_cls</code></strong>=<em><code>AutoTokenizer</code></em>, <strong><code>config</code></strong>=<em><code>None</code></em>, <strong><code>tokenizer</code></strong>=<em><code>None</code></em>, <strong><code>mlm</code></strong>=<em><code>True</code></em>, <strong><code>masking_func</code></strong>=<em><code>None</code></em>, <strong><code>whole_word_masking</code></strong>=<em><code>False</code></em>, <strong><code>mlm_probability</code></strong>=<em><code>0.15</code></em>, <strong><code>preprocessed</code></strong>=<em><code>True</code></em>, <strong>**<code>kwargs</code></strong>) :: <code>TransformBlock</code></p>
 </blockquote>
-<p>A <code>TransformBlock</code> for texts using pretrained tokenizers from Huggingface</p>
+<p>A <code>TransformBlock</code> for language modelling using pretrained tokenizers from Huggingface</p>
 
 </div>
 
@@ -1026,7 +1026,77 @@ Loading cached processed dataset at /home/arto/.cache/huggingface/datasets/csv/d
 <div class="output_markdown rendered_html output_subarea ">
 <h3 id="MultiChoiceBlock" class="doc_header"><code>class</code> <code>MultiChoiceBlock</code><a href="https://github.com/aikindergarten/fasthugs/tree/master/fasthugs/data.py#L400" class="source_link" style="float:right">[source]</a></h3><blockquote><p><code>MultiChoiceBlock</code>(<strong><code>sentence_keys</code></strong>, <strong><code>ending_keys</code></strong>, <strong><code>pretrained_model_name</code></strong>=<em><code>None</code></em>, <strong><code>tokenizer_cls</code></strong>=<em><code>AutoTokenizer</code></em>, <strong><code>config</code></strong>=<em><code>None</code></em>, <strong><code>tokenizer</code></strong>=<em><code>None</code></em>, <strong><code>preprocessed</code></strong>=<em><code>False</code></em>, <strong><code>group_by_len</code></strong>=<em><code>True</code></em>, <strong><code>with_labels</code></strong>=<em><code>False</code></em>, <strong><code>padding</code></strong>=<em><code>True</code></em>, <strong><code>truncation</code></strong>=<em><code>True</code></em>, <strong><code>max_length</code></strong>=<em><code>None</code></em>) :: <code>TransformBlock</code></p>
 </blockquote>
-<p>A <code>TransformBlock</code> for texts using pretrained tokenizers from Huggingface</p>
+<p>A <code>TransformBlock</code> for multiple choice using pretrained tokenizers from Huggingface</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Token-Classification">Token Classification<a class="anchor-link" href="#Token-Classification"> </a></h2>
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h3 id="PadTokBatchTransform" class="doc_header"><code>class</code> <code>PadTokBatchTransform</code><a href="https://github.com/aikindergarten/fasthugs/tree/master/fasthugs/data.py#L415" class="source_link" style="float:right">[source]</a></h3><blockquote><p><code>PadTokBatchTransform</code>(<strong><code>pretrained_model_name</code></strong>=<em><code>None</code></em>, <strong><code>tokenizer_cls</code></strong>=<em><code>AutoTokenizer</code></em>, <strong><code>config</code></strong>=<em><code>None</code></em>, <strong><code>tokenizer</code></strong>=<em><code>None</code></em>, <strong><code>with_labels</code></strong>=<em><code>False</code></em>, <strong><code>padding</code></strong>=<em><code>True</code></em>, <strong><code>truncation</code></strong>=<em><code>True</code></em>, <strong><code>max_length</code></strong>=<em><code>None</code></em>, <strong><code>label_vocab</code></strong>=<em><code>None</code></em>, <strong><code>target_pad_id</code></strong>=<em><code>-100</code></em>, <strong>**<code>kwargs</code></strong>) :: <code>Transform</code></p>
+</blockquote>
+<p>Delegates (<code>__call__</code>,<code>decode</code>,<code>setup</code>) to (<code>encodes</code>,<code>decodes</code>,<code>setups</code>) if <code>split_idx</code> matches</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h3 id="TokenClassificationBlock" class="doc_header"><code>class</code> <code>TokenClassificationBlock</code><a href="https://github.com/aikindergarten/fasthugs/tree/master/fasthugs/data.py#L471" class="source_link" style="float:right">[source]</a></h3><blockquote><p><code>TokenClassificationBlock</code>(<strong><code>pretrained_model_name</code></strong>=<em><code>None</code></em>, <strong><code>tokenizer_cls</code></strong>=<em><code>AutoTokenizer</code></em>, <strong><code>config</code></strong>=<em><code>None</code></em>, <strong><code>tokenizer</code></strong>=<em><code>None</code></em>, <strong><code>with_labels</code></strong>=<em><code>True</code></em>, <strong><code>label_vocab</code></strong>=<em><code>None</code></em>, <strong><code>group_by_len</code></strong>=<em><code>True</code></em>, <strong><code>padding</code></strong>=<em><code>True</code></em>, <strong><code>truncation</code></strong>=<em><code>True</code></em>, <strong><code>max_length</code></strong>=<em><code>None</code></em>, <strong><code>target_pad_id</code></strong>=<em><code>-100</code></em>) :: <code>TransformBlock</code></p>
+</blockquote>
+<p>A <code>TransformBlock</code> for token classification using pretrained tokenizers from Huggingface</p>
 
 </div>
 
