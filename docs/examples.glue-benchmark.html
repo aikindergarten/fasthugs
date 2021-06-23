@@ -58,7 +58,7 @@ nb_path: "nbs/12_examples.glue-benchmark.ipynb"
 <span class="kn">from</span> <span class="nn">fastai.callback.wandb</span> <span class="kn">import</span> <span class="o">*</span>
 
 <span class="kn">from</span> <span class="nn">fasthugs.learner</span> <span class="kn">import</span> <span class="n">TransLearner</span>
-<span class="kn">from</span> <span class="nn">fasthugs.data</span> <span class="kn">import</span> <span class="n">TransformersTextBlock</span><span class="p">,</span> <span class="n">TextGetter</span><span class="p">,</span> <span class="n">get_splits</span>
+<span class="kn">from</span> <span class="nn">fasthugs.data</span> <span class="kn">import</span> <span class="n">TransformersTextBlock</span><span class="p">,</span> <span class="n">TextGetter</span><span class="p">,</span> <span class="n">get_splits</span><span class="p">,</span> <span class="n">PreprocCategoryBlock</span>
 
 <span class="kn">from</span> <span class="nn">datasets</span> <span class="kn">import</span> <span class="n">load_dataset</span><span class="p">,</span> <span class="n">concatenate_datasets</span>
 </pre></div>
@@ -205,20 +205,6 @@ nb_path: "nbs/12_examples.glue-benchmark.ipynb"
 </pre></div>
 
     </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>Reusing dataset glue (/root/.cache/huggingface/datasets/glue/cola/1.0.0/dacbe3125aa31d7f70367a07a8a9e72a5a0bfeb5fc42e75c9db75b96da6053ad)
-</pre>
-</div>
-</div>
-
 </div>
 </div>
 
@@ -384,7 +370,8 @@ nb_path: "nbs/12_examples.glue-benchmark.ipynb"
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dblock</span> <span class="o">=</span> <span class="n">DataBlock</span><span class="p">(</span><span class="n">blocks</span> <span class="o">=</span> <span class="p">[</span><span class="n">TransformersTextBlock</span><span class="p">(</span><span class="n">pretrained_model_name</span><span class="o">=</span><span class="n">model_name</span><span class="p">),</span> <span class="n">CategoryBlock</span><span class="p">()],</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">vocab</span> <span class="o">=</span> <span class="n">train_ds</span><span class="o">.</span><span class="n">features</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">names</span>
+<span class="n">dblock</span> <span class="o">=</span> <span class="n">DataBlock</span><span class="p">(</span><span class="n">blocks</span> <span class="o">=</span> <span class="p">[</span><span class="n">TransformersTextBlock</span><span class="p">(</span><span class="n">pretrained_model_name</span><span class="o">=</span><span class="n">model_name</span><span class="p">),</span> <span class="n">PreprocCategoryBlock</span><span class="p">(</span><span class="n">vocab</span><span class="p">)],</span>
                    <span class="n">get_x</span><span class="o">=</span><span class="n">ItemGetter</span><span class="p">(</span><span class="s1">&#39;sentence&#39;</span><span class="p">),</span>
                    <span class="n">get_y</span><span class="o">=</span><span class="n">ItemGetter</span><span class="p">(</span><span class="s1">&#39;label&#39;</span><span class="p">),</span>
                    <span class="n">splitter</span><span class="o">=</span><span class="n">IndexSplitter</span><span class="p">(</span><span class="n">valid_idx</span><span class="p">))</span>
@@ -418,8 +405,8 @@ nb_path: "nbs/12_examples.glue-benchmark.ipynb"
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>CPU times: user 7.2 s, sys: 920 ms, total: 8.12 s
-Wall time: 8.1 s
+<pre>CPU times: user 6.27 s, sys: 1.95 s, total: 8.22 s
+Wall time: 8.24 s
 </pre>
 </div>
 </div>
@@ -463,22 +450,22 @@ Wall time: 8.1 s
     <tr>
       <th>0</th>
       <td>Everybody who has ever, worked in any office which contained any typewriter which had ever been used to type any letters which had to be signed by any administrator who ever worked in any department like mine will know what I mean.</td>
-      <td>1</td>
+      <td>acceptable</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>Today there is little or no official harassment of lesbians and gays by the national government, although autonomous governments might.</td>
-      <td>1</td>
+      <td>In January 2002, a dull star in an obscure constellation suddenly became 600,000 times more luminous than our Sun, temporarily making it the brightest star in our galaxy.</td>
+      <td>acceptable</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>The dumplings which Sasha is gobbling down faster than I can reheat the meatballs are extremely tasty, if I do say so.</td>
-      <td>1</td>
+      <td>Playing with matches is; lots of fun, but doing, so and emptying gasoline from one can to another at the same time is a sport best reserved for arsons.</td>
+      <td>acceptable</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>We talked about the issues we had worked on as students and that our perspectives had changed over the years.</td>
-      <td>1</td>
+      <td>All native speakers have a grammatical competence which can generate an infinite set of grammatical sentences from a finite set of resources.</td>
+      <td>acceptable</td>
     </tr>
   </tbody>
 </table>
@@ -492,12 +479,6 @@ Wall time: 8.1 s
 </div>
     {% endraw %}
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Tracking-with-W&amp;B">Tracking with W&amp;B<a class="anchor-link" href="#Tracking-with-W&amp;B"> </a></h3>
-</div>
-</div>
-</div>
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -539,12 +520,6 @@ Wall time: 8.1 s
 </div>
     {% endraw %}
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Training">Training<a class="anchor-link" href="#Training"> </a></h3>
-</div>
-</div>
-</div>
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -571,7 +546,7 @@ Wall time: 8.1 s
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cbs</span> <span class="o">=</span> <span class="p">[]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cbs</span> <span class="o">=</span> <span class="p">[</span><span class="n">WandbCallback</span><span class="p">(</span><span class="n">log_preds</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">log_model</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span> <span class="n">SaveModelCallback</span><span class="p">(</span><span class="n">monitor</span><span class="o">=</span><span class="n">metrics</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">name</span><span class="p">)]</span>
 <span class="n">learn</span><span class="o">.</span><span class="n">fit_one_cycle</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">lr</span><span class="p">,</span> <span class="n">cbs</span><span class="o">=</span><span class="n">cbs</span><span class="p">)</span>
 </pre></div>
 
@@ -581,6 +556,14 @@ Wall time: 8.1 s
 
 <div class="output_wrapper">
 <div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Could not gather input dimensions
+</pre>
+</div>
+</div>
 
 <div class="output_area">
 
@@ -599,36 +582,46 @@ Wall time: 8.1 s
   <tbody>
     <tr>
       <td>0</td>
-      <td>0.478845</td>
-      <td>0.453530</td>
-      <td>0.445966</td>
-      <td>00:34</td>
+      <td>0.524564</td>
+      <td>0.520301</td>
+      <td>0.401543</td>
+      <td>00:29</td>
     </tr>
     <tr>
       <td>1</td>
-      <td>0.408826</td>
-      <td>0.414397</td>
-      <td>0.556995</td>
-      <td>00:34</td>
+      <td>0.393098</td>
+      <td>0.426386</td>
+      <td>0.570214</td>
+      <td>00:29</td>
     </tr>
     <tr>
       <td>2</td>
-      <td>0.284743</td>
-      <td>0.474140</td>
-      <td>0.559588</td>
-      <td>00:34</td>
+      <td>0.264803</td>
+      <td>0.507379</td>
+      <td>0.541898</td>
+      <td>00:30</td>
     </tr>
     <tr>
       <td>3</td>
-      <td>0.172778</td>
-      <td>0.534898</td>
-      <td>0.561658</td>
-      <td>00:36</td>
+      <td>0.166178</td>
+      <td>0.571510</td>
+      <td>0.581578</td>
+      <td>00:30</td>
     </tr>
   </tbody>
 </table>
 </div>
 
+</div>
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Better model found at epoch 0 with matthews_corrcoef value: 0.40154309805886357.
+Better model found at epoch 1 with matthews_corrcoef value: 0.570213836374093.
+Better model found at epoch 3 with matthews_corrcoef value: 0.5815775806078913.
+</pre>
+</div>
 </div>
 
 </div>
@@ -680,56 +673,56 @@ Wall time: 8.1 s
     <tr>
       <th>0</th>
       <td>Scientists at the South Hanoi Institute of Technology have succeeded in raising one dog with five legs, another with a cow's liver, and a third with no head.</td>
-      <td>1</td>
-      <td>1</td>
+      <td>acceptable</td>
+      <td>acceptable</td>
     </tr>
     <tr>
       <th>1</th>
       <td>The newspaper has reported that they are about to appoint someone, but I can't remember who the newspaper has reported that they are about to appoint.</td>
-      <td>1</td>
-      <td>1</td>
+      <td>acceptable</td>
+      <td>acceptable</td>
     </tr>
     <tr>
       <th>2</th>
       <td>Sandy is very anxious to see if the students will be able to solve the homework problem in a particular way, but she won't tell us in which way.</td>
-      <td>1</td>
-      <td>1</td>
+      <td>acceptable</td>
+      <td>acceptable</td>
     </tr>
     <tr>
       <th>3</th>
       <td>Sandy is very anxious to see if the students will be able to solve the homework problem in a particular way, but she won't tell us which.</td>
-      <td>1</td>
-      <td>1</td>
+      <td>acceptable</td>
+      <td>acceptable</td>
     </tr>
     <tr>
       <th>4</th>
       <td>As a teacher, you have to deal simultaneously with the administration's pressure on you to succeed, and the children's to be a nice guy.</td>
-      <td>0</td>
-      <td>0</td>
+      <td>unacceptable</td>
+      <td>unacceptable</td>
     </tr>
     <tr>
       <th>5</th>
       <td>Put a picture of Bill on your desk before tomorrow, this girl in the red coat will put a picture of Bill on your desk before tomorrow.</td>
-      <td>0</td>
-      <td>0</td>
+      <td>unacceptable</td>
+      <td>acceptable</td>
     </tr>
     <tr>
       <th>6</th>
       <td>Clinton is anxious to find out which budget dilemmas Panetta would be willing to tackle in a certain way, but he won't say in which.</td>
-      <td>1</td>
-      <td>1</td>
+      <td>acceptable</td>
+      <td>acceptable</td>
     </tr>
     <tr>
       <th>7</th>
       <td>I live at the place where Route 150 crosses the River and my dad lives at the place where Route 150 crosses the Hudson River too.</td>
-      <td>1</td>
-      <td>1</td>
+      <td>acceptable</td>
+      <td>acceptable</td>
     </tr>
     <tr>
       <th>8</th>
       <td>Harry told Sue that Albania is a lovely place for a vacation, and Tom told Sally that Albania is a lovely place for a vacation.</td>
-      <td>1</td>
-      <td>1</td>
+      <td>acceptable</td>
+      <td>acceptable</td>
     </tr>
   </tbody>
 </table>
@@ -788,7 +781,6 @@ Wall time: 8.1 s
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Downloading and preparing dataset glue/sst2 (download: 7.09 MiB, generated: 4.81 MiB, post-processed: Unknown size, total: 11.90 MiB) to /root/.cache/huggingface/datasets/glue/sst2/1.0.0/dacbe3125aa31d7f70367a07a8a9e72a5a0bfeb5fc42e75c9db75b96da6053ad...
-
 Dataset glue downloaded and prepared to /root/.cache/huggingface/datasets/glue/sst2/1.0.0/dacbe3125aa31d7f70367a07a8a9e72a5a0bfeb5fc42e75c9db75b96da6053ad. Subsequent calls will reuse this data.
 </pre>
 </div>
@@ -959,7 +951,8 @@ Dataset glue downloaded and prepared to /root/.cache/huggingface/datasets/glue/s
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dblock</span> <span class="o">=</span> <span class="n">DataBlock</span><span class="p">(</span><span class="n">blocks</span> <span class="o">=</span> <span class="p">[</span><span class="n">TransformersTextBlock</span><span class="p">(</span><span class="n">pretrained_model_name</span><span class="o">=</span><span class="n">model_name</span><span class="p">),</span> <span class="n">CategoryBlock</span><span class="p">()],</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">vocab</span> <span class="o">=</span> <span class="n">train_ds</span><span class="o">.</span><span class="n">features</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">names</span>
+<span class="n">dblock</span> <span class="o">=</span> <span class="n">DataBlock</span><span class="p">(</span><span class="n">blocks</span> <span class="o">=</span> <span class="p">[</span><span class="n">TransformersTextBlock</span><span class="p">(</span><span class="n">pretrained_model_name</span><span class="o">=</span><span class="n">model_name</span><span class="p">),</span> <span class="n">PreprocCategoryBlock</span><span class="p">(</span><span class="n">vocab</span><span class="p">)],</span>
                    <span class="n">get_x</span><span class="o">=</span><span class="n">ItemGetter</span><span class="p">(</span><span class="s1">&#39;sentence&#39;</span><span class="p">),</span>
                    <span class="n">get_y</span><span class="o">=</span><span class="n">ItemGetter</span><span class="p">(</span><span class="s1">&#39;label&#39;</span><span class="p">),</span>
                    <span class="n">splitter</span><span class="o">=</span><span class="n">IndexSplitter</span><span class="p">(</span><span class="n">valid_idx</span><span class="p">))</span>
@@ -993,8 +986,8 @@ Dataset glue downloaded and prepared to /root/.cache/huggingface/datasets/glue/s
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>CPU times: user 41.9 s, sys: 126 ms, total: 42.1 s
-Wall time: 42 s
+<pre>CPU times: user 32.3 s, sys: 268 ms, total: 32.6 s
+Wall time: 32.4 s
 </pre>
 </div>
 </div>
@@ -1038,22 +1031,22 @@ Wall time: 42 s
     <tr>
       <th>0</th>
       <td>... spiced with humor ('i speak fluent flatula,'advises denlopp after a rather, er, bubbly exchange with an alien deckhand ) and witty updatings ( silver's parrot has been replaced with morph, a cute alien creature who mimics everyone and everything around )</td>
-      <td>1</td>
+      <td>positive</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>as with so many merchandised-to-the-max movies of this type, more time appears to have gone into recruiting the right bands for the playlist and the costuming of the stars than into the script, which has a handful of smart jokes and not much else.</td>
-      <td>0</td>
+      <td>chronicle not only of one man's quest to be president, but of how that man single-handedly turned a plane full of hard-bitten, cynical journalists into what was essentially, by campaign's end, an extended publicity department.</td>
+      <td>positive</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>about how good it all was, and started doing nothing but reacting to it - feeling a part of its grand locations, thinking urgently as the protagonists struggled, feeling at the mercy of its inventiveness, gasping at its visual delights</td>
-      <td>1</td>
+      <td>the fascination comes in the power of the huston performance, which seems so larger than life and yet so fragile, and in the way the ivan character accepts the news of his illness so quickly but still finds himself unable to react</td>
+      <td>positive</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>will be adequately served by the movie's sophomoric blend of shenanigans and slapstick, although the more lascivious-minded might be disappointed in the relative modesty of a movie that sports a ` topless tutorial service.'</td>
-      <td>0</td>
+      <td>the bourne identity shouldn't be half as entertaining as it is, but director doug liman and his colleagues have managed to pack it with enough action to satisfy the boom-bam crowd without a huge sacrifice of character and mood.</td>
+      <td>positive</td>
     </tr>
   </tbody>
 </table>
@@ -1067,12 +1060,6 @@ Wall time: 42 s
 </div>
     {% endraw %}
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Tracking-with-W&amp;B">Tracking with W&amp;B<a class="anchor-link" href="#Tracking-with-W&amp;B"> </a></h3>
-</div>
-</div>
-</div>
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -1143,7 +1130,7 @@ Wall time: 42 s
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cbs</span> <span class="o">=</span> <span class="p">[]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cbs</span> <span class="o">=</span> <span class="p">[</span><span class="n">WandbCallback</span><span class="p">(</span><span class="n">log_preds</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">log_model</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span> <span class="n">SaveModelCallback</span><span class="p">(</span><span class="n">monitor</span><span class="o">=</span><span class="n">metrics</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)]</span>
 <span class="n">learn</span><span class="o">.</span><span class="n">fit_one_cycle</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">lr</span><span class="p">,</span> <span class="n">cbs</span><span class="o">=</span><span class="n">cbs</span><span class="p">)</span>
 </pre></div>
 
@@ -1153,6 +1140,14 @@ Wall time: 42 s
 
 <div class="output_wrapper">
 <div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Could not gather input dimensions
+</pre>
+</div>
+</div>
 
 <div class="output_area">
 
@@ -1171,36 +1166,47 @@ Wall time: 42 s
   <tbody>
     <tr>
       <td>0</td>
-      <td>0.230566</td>
-      <td>0.263503</td>
-      <td>0.901376</td>
-      <td>04:37</td>
+      <td>0.233458</td>
+      <td>0.233393</td>
+      <td>0.912844</td>
+      <td>04:10</td>
     </tr>
     <tr>
       <td>1</td>
-      <td>0.157267</td>
-      <td>0.272654</td>
-      <td>0.915138</td>
-      <td>04:38</td>
+      <td>0.154877</td>
+      <td>0.256017</td>
+      <td>0.918578</td>
+      <td>04:10</td>
     </tr>
     <tr>
       <td>2</td>
-      <td>0.122266</td>
-      <td>0.240725</td>
-      <td>0.918578</td>
-      <td>04:38</td>
+      <td>0.115099</td>
+      <td>0.250559</td>
+      <td>0.922018</td>
+      <td>04:10</td>
     </tr>
     <tr>
       <td>3</td>
-      <td>0.078736</td>
-      <td>0.281302</td>
-      <td>0.919725</td>
-      <td>04:38</td>
+      <td>0.064575</td>
+      <td>0.286238</td>
+      <td>0.924312</td>
+      <td>04:11</td>
     </tr>
   </tbody>
 </table>
 </div>
 
+</div>
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Better model found at epoch 0 with accuracy value: 0.9128440618515015.
+Better model found at epoch 1 with accuracy value: 0.9185779690742493.
+Better model found at epoch 2 with accuracy value: 0.9220183491706848.
+Better model found at epoch 3 with accuracy value: 0.9243119359016418.
+</pre>
+</div>
 </div>
 
 </div>
@@ -1252,56 +1258,56 @@ Wall time: 42 s
     <tr>
       <th>0</th>
       <td>the movie has an infectious exuberance that will engage anyone with a passing interest in the skate/surf culture, the l.a. beach scene and the imaginative ( and sometimes illegal ) ways kids can make a playground out of the refuse of adults.</td>
-      <td>1</td>
-      <td>1</td>
+      <td>positive</td>
+      <td>positive</td>
     </tr>
     <tr>
       <th>1</th>
       <td>what really makes it special is that it pulls us into its world, gives us a hero whose suffering and triumphs we can share, surrounds him with interesting characters and sends us out of the theater feeling we've shared a great adventure.</td>
-      <td>1</td>
-      <td>1</td>
+      <td>positive</td>
+      <td>positive</td>
     </tr>
     <tr>
       <th>2</th>
       <td>this is a train wreck of an action film -- a stupefying attempt by the filmmakers to force-feed james bond into the mindless xxx mold and throw 40 years of cinematic history down the toilet in favor of bright flashes and loud bangs.</td>
-      <td>0</td>
-      <td>0</td>
+      <td>negative</td>
+      <td>negative</td>
     </tr>
     <tr>
       <th>3</th>
       <td>it's one of those baseball pictures where the hero is stoic, the wife is patient, the kids are as cute as all get-out and the odds against success are long enough to intimidate, but short enough to make a dream seem possible.</td>
-      <td>1</td>
-      <td>1</td>
+      <td>positive</td>
+      <td>positive</td>
     </tr>
     <tr>
       <th>4</th>
       <td>though perry and hurley make inspiring efforts to breathe life into the disjointed, haphazard script by jay scherick and david ronn, neither the actors nor director reginald hudlin can make it more than fitfully entertaining.</td>
-      <td>0</td>
-      <td>1</td>
+      <td>negative</td>
+      <td>positive</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>may be far from the best of the series, but it's assured, wonderfully respectful of its past and thrilling enough to make it abundantly clear that this movie phenomenon has once again reinvented itself for a new generation.</td>
-      <td>1</td>
-      <td>1</td>
+      <td>despite all evidence to the contrary, this clunker has somehow managed to pose as an actual feature movie, the kind that charges full admission and gets hyped on tv and purports to amuse small children and ostensible adults.</td>
+      <td>negative</td>
+      <td>negative</td>
     </tr>
     <tr>
       <th>6</th>
-      <td>despite all evidence to the contrary, this clunker has somehow managed to pose as an actual feature movie, the kind that charges full admission and gets hyped on tv and purports to amuse small children and ostensible adults.</td>
-      <td>0</td>
-      <td>0</td>
+      <td>may be far from the best of the series, but it's assured, wonderfully respectful of its past and thrilling enough to make it abundantly clear that this movie phenomenon has once again reinvented itself for a new generation.</td>
+      <td>positive</td>
+      <td>positive</td>
     </tr>
     <tr>
       <th>7</th>
       <td>it's inoffensive, cheerful, built to inspire the young people, set to an unending soundtrack of beach party pop numbers and aside from its remarkable camerawork and awesome scenery, it's about as exciting as a sunburn.</td>
-      <td>0</td>
-      <td>1</td>
+      <td>negative</td>
+      <td>positive</td>
     </tr>
     <tr>
       <th>8</th>
       <td>but the power of these ( subjects ) is obscured by the majority of the film that shows a stationary camera on a subject that could be mistaken for giving a public oration, rather than contributing to a film's narrative.</td>
-      <td>0</td>
-      <td>0</td>
+      <td>negative</td>
+      <td>negative</td>
     </tr>
   </tbody>
 </table>
@@ -1497,7 +1503,8 @@ Wall time: 42 s
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dblock</span> <span class="o">=</span> <span class="n">DataBlock</span><span class="p">(</span><span class="n">blocks</span> <span class="o">=</span> <span class="p">[</span><span class="n">TransformersTextBlock</span><span class="p">(</span><span class="n">pretrained_model_name</span><span class="o">=</span><span class="n">model_name</span><span class="p">),</span> <span class="n">CategoryBlock</span><span class="p">()],</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">vocab</span> <span class="o">=</span> <span class="n">train_ds</span><span class="o">.</span><span class="n">features</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">names</span>
+<span class="n">dblock</span> <span class="o">=</span> <span class="n">DataBlock</span><span class="p">(</span><span class="n">blocks</span> <span class="o">=</span> <span class="p">[</span><span class="n">TransformersTextBlock</span><span class="p">(</span><span class="n">pretrained_model_name</span><span class="o">=</span><span class="n">model_name</span><span class="p">),</span> <span class="n">PreprocCategoryBlock</span><span class="p">(</span><span class="n">vocab</span><span class="p">)],</span>
                    <span class="n">get_x</span><span class="o">=</span><span class="n">TextGetter</span><span class="p">(</span><span class="s1">&#39;sentence1&#39;</span><span class="p">,</span> <span class="s1">&#39;sentence2&#39;</span><span class="p">),</span>
                    <span class="n">get_y</span><span class="o">=</span><span class="n">ItemGetter</span><span class="p">(</span><span class="s1">&#39;label&#39;</span><span class="p">),</span>
                    <span class="n">splitter</span><span class="o">=</span><span class="n">IndexSplitter</span><span class="p">(</span><span class="n">valid_idx</span><span class="p">))</span>
@@ -1531,8 +1538,8 @@ Wall time: 42 s
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>CPU times: user 4.38 s, sys: 813 ms, total: 5.2 s
-Wall time: 5.18 s
+<pre>CPU times: user 2.19 s, sys: 35.2 ms, total: 2.23 s
+Wall time: 2.2 s
 </pre>
 </div>
 </div>
@@ -1578,25 +1585,25 @@ Wall time: 5.18 s
       <th>0</th>
       <td>Amrozi accused his brother, whom he called " the witness ", of deliberately distorting his evidence.</td>
       <td>Referring to him as only " the witness ", Amrozi accused his brother of deliberately distorting his evidence.</td>
-      <td>1</td>
+      <td>equivalent</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>Vaccine makers have been thrust into the limelight as government programs to encourage wider vaccination and fears of biological attacks on civilian and military targets.</td>
-      <td>Vaccine makers have been thrust into the limelight as government programs encourage wider vaccination amid fears of biological attacks.</td>
-      <td>1</td>
+      <td>He said the situation undermines efforts to win international co-operation in the war on terror.</td>
+      <td>He said the way the situation was being handled was undermining efforts to win international cooperation in the war on terror.</td>
+      <td>equivalent</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>Minister Saud al-Faisal's visit was disclosed Monday by two administration officials who discussed it on condition of not being identified by name.</td>
-      <td>Minister Saud al-Faisal's visit was disclosed by two administration officials, who spoke on condition of anonymity.</td>
-      <td>1</td>
+      <td>A day earlier, a committee appointed by reformist President Mohammad Khatami called for an independent judicial inquiry into Kazemi's death.</td>
+      <td>A day earlier, a committee appointed by President Mohammad Khatami had called for an independent inquiry into the 54-year-old photojournalist's death.</td>
+      <td>equivalent</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>The total for the Johnny Depp swashbuckler rose to $ 232.8 million.</td>
-      <td>Its cumulative total is $ 232.8 million, heading for $ 275 million.</td>
-      <td>0</td>
+      <td>The U.S. Centers for Disease Control and Prevention has been gathering information on suspect cases.</td>
+      <td>Nationally, the federal Centers for Disease Control and Prevention recorded 4,156 cases of West Nile, including 284 deaths.</td>
+      <td>not_equivalent</td>
     </tr>
   </tbody>
 </table>
@@ -1610,12 +1617,6 @@ Wall time: 5.18 s
 </div>
     {% endraw %}
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Tracking-with-W&amp;B">Tracking with W&amp;B<a class="anchor-link" href="#Tracking-with-W&amp;B"> </a></h3>
-</div>
-</div>
-</div>
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -1686,7 +1687,7 @@ Wall time: 5.18 s
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cbs</span> <span class="o">=</span> <span class="p">[]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cbs</span> <span class="o">=</span> <span class="p">[</span><span class="n">WandbCallback</span><span class="p">(</span><span class="n">log_preds</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">log_model</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span> <span class="n">SaveModelCallback</span><span class="p">(</span><span class="n">monitor</span><span class="o">=</span><span class="n">metrics</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">name</span><span class="p">)]</span>
 <span class="n">learn</span><span class="o">.</span><span class="n">fit_one_cycle</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">lr</span><span class="p">,</span> <span class="n">cbs</span><span class="o">=</span><span class="n">cbs</span><span class="p">)</span>
 </pre></div>
 
@@ -1696,6 +1697,14 @@ Wall time: 5.18 s
 
 <div class="output_wrapper">
 <div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Could not gather input dimensions
+</pre>
+</div>
+</div>
 
 <div class="output_area">
 
@@ -1715,40 +1724,50 @@ Wall time: 5.18 s
   <tbody>
     <tr>
       <td>0</td>
-      <td>0.567161</td>
-      <td>0.483855</td>
-      <td>0.846875</td>
-      <td>0.759804</td>
-      <td>00:28</td>
+      <td>0.625647</td>
+      <td>0.574429</td>
+      <td>0.800000</td>
+      <td>0.688725</td>
+      <td>00:34</td>
     </tr>
     <tr>
       <td>1</td>
-      <td>0.402110</td>
-      <td>0.392407</td>
-      <td>0.889251</td>
-      <td>0.833333</td>
-      <td>00:28</td>
+      <td>0.457276</td>
+      <td>0.377830</td>
+      <td>0.848126</td>
+      <td>0.811275</td>
+      <td>00:34</td>
     </tr>
     <tr>
       <td>2</td>
-      <td>0.264066</td>
-      <td>0.372491</td>
-      <td>0.886633</td>
-      <td>0.835784</td>
-      <td>00:28</td>
+      <td>0.282977</td>
+      <td>0.327592</td>
+      <td>0.895944</td>
+      <td>0.855392</td>
+      <td>00:35</td>
     </tr>
     <tr>
       <td>3</td>
-      <td>0.172578</td>
-      <td>0.371461</td>
-      <td>0.891192</td>
-      <td>0.845588</td>
-      <td>00:28</td>
+      <td>0.190531</td>
+      <td>0.392248</td>
+      <td>0.886598</td>
+      <td>0.838235</td>
+      <td>00:35</td>
     </tr>
   </tbody>
 </table>
 </div>
 
+</div>
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Better model found at epoch 0 with f1_score value: 0.8.
+Better model found at epoch 1 with f1_score value: 0.8481262327416172.
+Better model found at epoch 2 with f1_score value: 0.8959435626102292.
+</pre>
+</div>
 </div>
 
 </div>
@@ -1792,6 +1811,7 @@ Wall time: 5.18 s
     <tr style="text-align: right;">
       <th></th>
       <th>text</th>
+      <th>text_</th>
       <th>category</th>
       <th>category_</th>
     </tr>
@@ -1799,57 +1819,66 @@ Wall time: 5.18 s
   <tbody>
     <tr>
       <th>0</th>
-      <td>He said the foodservice pie business doesn 't fit the company's long-term growth strategy." The foodservice pie business does not fit our long-term growth strategy.</td>
-      <td>1</td>
-      <td>1</td>
+      <td>He said the foodservice pie business doesn 't fit the company's long-term growth strategy.</td>
+      <td>" The foodservice pie business does not fit our long-term growth strategy.</td>
+      <td>equivalent</td>
+      <td>equivalent</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>Blair's Foreign Secretary Jack Straw was to take his place on Monday to give a statement to parliament on the European Union.Blair's office said his Foreign Secretary Jack Straw would take his place on Monday to give a statement to parliament on the EU meeting the prime minister attended last week.</td>
-      <td>1</td>
-      <td>1</td>
+      <td>Sales for the quarter beat expectations, rising 37 percent year-on-year to 1.76 billion euros.</td>
+      <td>Sales rose 37 per cent year-on-year to 1.76bn, beating expectations.</td>
+      <td>equivalent</td>
+      <td>equivalent</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>Sun Microsystems Inc. on Thursday said it had added 100 new third-party systems and 100 new components to its Hardware Compatibility List for the Solaris x86 operating system Platform Edition.The vendor has added 100 new third-party systems and 100 new components to the operating system's Hardware Compatibility List ( HCL ).</td>
-      <td>0</td>
-      <td>1</td>
+      <td>Q : Can I buy coverage for prescription drugs right away?</td>
+      <td>Congress has added a new benefit - an option to buy insurance coverage for prescription drugs.</td>
+      <td>not_equivalent</td>
+      <td>not_equivalent</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>The market remains pinned in a narrow range after a powerful rally drove the broad Standard &amp; Poor's 500 index.SPX up more than 20 percent since mid-March.The market remains pinned in a narrow range after a powerful rally pushed the broad S &amp; P 500 index up more than 20 percent since mid-March.</td>
-      <td>1</td>
-      <td>1</td>
+      <td>Saddam loyalists have been blamed for sabotaging the nation's infrastructure, as well as frequent attacks on U.S. soldiers.</td>
+      <td>Hussein loyalists have been blamed for sabotaging the nation's infrastructure and attacking US soldiers.</td>
+      <td>equivalent</td>
+      <td>equivalent</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>Garner said the group would probably be expanded to include, for example, a Christian and perhaps another Sunni leader.The group has already met several times and Gen. Garner said it probably will be expanded to include a Christian and perhaps another Sunni Muslim leader.</td>
-      <td>0</td>
-      <td>0</td>
+      <td>The delegates said raising and distributing funds has been complicated by the U.S. crackdown on jihadi charitable foundations, bank accounts of terror-related organizations and money transfers.</td>
+      <td>Bin Laden ’ s men pointed out that raising and distributing funds has been complicated by the U.S. crackdown on jihadi charitable foundations, bank accounts of terror-related organizations and money transfers.</td>
+      <td>equivalent</td>
+      <td>equivalent</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>The chain operates more than 3,400 stores, and has annual revenue of about $ 15.8 billion.The chain, which has been under new management since late 1999, has more than 3,400 stores and $ 15.8 billion in annual revenue.</td>
-      <td>0</td>
-      <td>0</td>
+      <td>" The government elements who have been causing trouble are still in place.</td>
+      <td>The government elements who have been causing trouble are still in place, they are attacking us. "</td>
+      <td>not_equivalent</td>
+      <td>not_equivalent</td>
     </tr>
     <tr>
       <th>6</th>
-      <td>" APEC leaders are painfully aware that security and prosperity are inseparable, " Thai Prime Minister Thaksin Shinawatra told business leaders." APEC leaders are painfully aware that security and prosperity are inseparable, " Thaksin said.</td>
-      <td>1</td>
-      <td>1</td>
+      <td>" More than 70,000 men and women from bases in Southern California were deployed in Iraq.</td>
+      <td>In all, more than 70,000 troops based in Southern California were deployed to Iraq.</td>
+      <td>equivalent</td>
+      <td>equivalent</td>
     </tr>
     <tr>
       <th>7</th>
-      <td>Ms Stewart, the chief executive, was not expected to attend.Ms Stewart, 61, its chief executive officer and chairwoman, did not attend.</td>
-      <td>1</td>
-      <td>1</td>
+      <td>Available July 7, the software supports the Solaris, IBM AIX, Red Hat Linux and Windows operating systems.</td>
+      <td>The OpForce product currently works with Solaris, AIX, Red Hat Linux and Windows servers.</td>
+      <td>not_equivalent</td>
+      <td>not_equivalent</td>
     </tr>
     <tr>
       <th>8</th>
-      <td>A nationally board certified teacher with a master's degree, Kelley makes a salary of $ 65,000 in his 30th year.A nationally board certified teacher with a master's degree, Kelley, in his 30th year teaching, makes $ 65,000.</td>
-      <td>1</td>
-      <td>1</td>
+      <td>By skirting the FDA's oversight, Eagan said, the quality of the imported drugs is " less predictable " than for those obtained in the United States.</td>
+      <td>By skirting the FDA's oversight, Eagan said the quality of the imported drugs is " less predictable " than U.S. drugs.</td>
+      <td>equivalent</td>
+      <td>equivalent</td>
     </tr>
   </tbody>
 </table>
@@ -2158,12 +2187,6 @@ Wall time: 4.33 s
 </div>
     {% endraw %}
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Tracking-with-W&amp;B">Tracking with W&amp;B<a class="anchor-link" href="#Tracking-with-W&amp;B"> </a></h3>
-</div>
-</div>
-</div>
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -2202,12 +2225,6 @@ Wall time: 4.33 s
 </div>
     {% endraw %}
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Training">Training<a class="anchor-link" href="#Training"> </a></h3>
-</div>
-</div>
-</div>
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -2593,7 +2610,7 @@ Wall time: 4.33 s
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dblock</span> <span class="o">=</span> <span class="n">DataBlock</span><span class="p">(</span><span class="n">blocks</span> <span class="o">=</span> <span class="p">[</span><span class="n">TransformersTextBlock</span><span class="p">(</span><span class="n">pretrained_model_name</span><span class="o">=</span><span class="n">model_name</span><span class="p">),</span> <span class="n">CategoryBlock</span><span class="p">()],</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dblock</span> <span class="o">=</span> <span class="n">DataBlock</span><span class="p">(</span><span class="n">blocks</span> <span class="o">=</span> <span class="p">[</span><span class="n">TransformersTextBlock</span><span class="p">(</span><span class="n">pretrained_model_name</span><span class="o">=</span><span class="n">model_name</span><span class="p">),</span> <span class="n">PreprocCategoryBlock</span><span class="p">(</span><span class="n">vocab</span><span class="p">)],</span>
                    <span class="n">get_x</span><span class="o">=</span><span class="n">TextGetter</span><span class="p">(</span><span class="s1">&#39;question1&#39;</span><span class="p">,</span> <span class="s1">&#39;question2&#39;</span><span class="p">),</span>
                    <span class="n">get_y</span><span class="o">=</span><span class="n">ItemGetter</span><span class="p">(</span><span class="s1">&#39;label&#39;</span><span class="p">),</span>
                    <span class="n">splitter</span><span class="o">=</span><span class="n">IndexSplitter</span><span class="p">(</span><span class="n">valid_idx</span><span class="p">))</span>
@@ -2706,12 +2723,6 @@ Wall time: 4min 41s
 </div>
     {% endraw %}
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Tracking-with-W&amp;B">Tracking with W&amp;B<a class="anchor-link" href="#Tracking-with-W&amp;B"> </a></h3>
-</div>
-</div>
-</div>
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -2750,12 +2761,6 @@ Wall time: 4min 41s
 </div>
     {% endraw %}
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Training">Training<a class="anchor-link" href="#Training"> </a></h3>
-</div>
-</div>
-</div>
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -3292,12 +3297,6 @@ Wall time: 56.4 s
 </div>
     {% endraw %}
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Tracking-with-W&amp;B">Tracking with W&amp;B<a class="anchor-link" href="#Tracking-with-W&amp;B"> </a></h3>
-</div>
-</div>
-</div>
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -3336,12 +3335,6 @@ Wall time: 56.4 s
 </div>
     {% endraw %}
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Training">Training<a class="anchor-link" href="#Training"> </a></h3>
-</div>
-</div>
-</div>
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -3765,7 +3758,7 @@ Wall time: 56.4 s
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dblock</span> <span class="o">=</span> <span class="n">DataBlock</span><span class="p">(</span><span class="n">blocks</span> <span class="o">=</span> <span class="p">[</span><span class="n">TransformersTextBlock</span><span class="p">(</span><span class="n">pretrained_model_name</span><span class="o">=</span><span class="n">model_name</span><span class="p">),</span> <span class="n">CategoryBlock</span><span class="p">()],</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dblock</span> <span class="o">=</span> <span class="n">DataBlock</span><span class="p">(</span><span class="n">blocks</span> <span class="o">=</span> <span class="p">[</span><span class="n">TransformersTextBlock</span><span class="p">(</span><span class="n">pretrained_model_name</span><span class="o">=</span><span class="n">model_name</span><span class="p">),</span> <span class="n">PreprocCategoryBlock</span><span class="p">(</span><span class="n">vocab</span><span class="p">)],</span>
                    <span class="n">get_x</span><span class="o">=</span><span class="n">TextGetter</span><span class="p">(</span><span class="s1">&#39;question&#39;</span><span class="p">,</span> <span class="s1">&#39;sentence&#39;</span><span class="p">),</span>
                    <span class="n">get_y</span><span class="o">=</span><span class="n">ItemGetter</span><span class="p">(</span><span class="s1">&#39;label&#39;</span><span class="p">),</span>
                    <span class="n">splitter</span><span class="o">=</span><span class="n">IndexSplitter</span><span class="p">(</span><span class="n">valid_idx</span><span class="p">))</span>
@@ -3878,12 +3871,6 @@ Wall time: 1min 17s
 </div>
     {% endraw %}
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Tracking-with-W&amp;B">Tracking with W&amp;B<a class="anchor-link" href="#Tracking-with-W&amp;B"> </a></h3>
-</div>
-</div>
-</div>
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -3922,12 +3909,6 @@ Wall time: 1min 17s
 </div>
     {% endraw %}
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Training">Training<a class="anchor-link" href="#Training"> </a></h3>
-</div>
-</div>
-</div>
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -4308,7 +4289,7 @@ Wall time: 1min 17s
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dblock</span> <span class="o">=</span> <span class="n">DataBlock</span><span class="p">(</span><span class="n">blocks</span> <span class="o">=</span> <span class="p">[</span><span class="n">TransformersTextBlock</span><span class="p">(</span><span class="n">pretrained_model_name</span><span class="o">=</span><span class="n">model_name</span><span class="p">),</span> <span class="n">CategoryBlock</span><span class="p">()],</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dblock</span> <span class="o">=</span> <span class="n">DataBlock</span><span class="p">(</span><span class="n">blocks</span> <span class="o">=</span> <span class="p">[</span><span class="n">TransformersTextBlock</span><span class="p">(</span><span class="n">pretrained_model_name</span><span class="o">=</span><span class="n">model_name</span><span class="p">),</span> <span class="n">PreprocCategoryBlock</span><span class="p">(</span><span class="n">vocab</span><span class="p">)],</span>
                    <span class="n">get_x</span><span class="o">=</span><span class="n">TextGetter</span><span class="p">(</span><span class="s1">&#39;sentence1&#39;</span><span class="p">,</span> <span class="s1">&#39;sentence2&#39;</span><span class="p">),</span>
                    <span class="n">get_y</span><span class="o">=</span><span class="n">ItemGetter</span><span class="p">(</span><span class="s1">&#39;label&#39;</span><span class="p">),</span>
                    <span class="n">splitter</span><span class="o">=</span><span class="n">IndexSplitter</span><span class="p">(</span><span class="n">valid_idx</span><span class="p">))</span>
@@ -4421,12 +4402,6 @@ Wall time: 1.94 s
 </div>
     {% endraw %}
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Tracking-with-W&amp;B">Tracking with W&amp;B<a class="anchor-link" href="#Tracking-with-W&amp;B"> </a></h3>
-</div>
-</div>
-</div>
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -4465,12 +4440,6 @@ Wall time: 1.94 s
 </div>
     {% endraw %}
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Training">Training<a class="anchor-link" href="#Training"> </a></h3>
-</div>
-</div>
-</div>
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -4851,7 +4820,7 @@ Wall time: 1.94 s
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dblock</span> <span class="o">=</span> <span class="n">DataBlock</span><span class="p">(</span><span class="n">blocks</span> <span class="o">=</span> <span class="p">[</span><span class="n">TransformersTextBlock</span><span class="p">(</span><span class="n">pretrained_model_name</span><span class="o">=</span><span class="n">model_name</span><span class="p">),</span> <span class="n">CategoryBlock</span><span class="p">()],</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dblock</span> <span class="o">=</span> <span class="n">DataBlock</span><span class="p">(</span><span class="n">blocks</span> <span class="o">=</span> <span class="p">[</span><span class="n">TransformersTextBlock</span><span class="p">(</span><span class="n">pretrained_model_name</span><span class="o">=</span><span class="n">model_name</span><span class="p">),</span> <span class="n">PreprocCategoryBlock</span><span class="p">(</span><span class="n">vocab</span><span class="p">)],</span>
                    <span class="n">get_x</span><span class="o">=</span><span class="n">TextGetter</span><span class="p">(</span><span class="s1">&#39;sentence1&#39;</span><span class="p">,</span> <span class="s1">&#39;sentence2&#39;</span><span class="p">),</span>
                    <span class="n">get_y</span><span class="o">=</span><span class="n">ItemGetter</span><span class="p">(</span><span class="s1">&#39;label&#39;</span><span class="p">),</span>
                    <span class="n">splitter</span><span class="o">=</span><span class="n">IndexSplitter</span><span class="p">(</span><span class="n">valid_idx</span><span class="p">))</span>
@@ -4964,12 +4933,6 @@ Wall time: 488 ms
 </div>
     {% endraw %}
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Tracking-with-W&amp;B">Tracking with W&amp;B<a class="anchor-link" href="#Tracking-with-W&amp;B"> </a></h3>
-</div>
-</div>
-</div>
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -5008,12 +4971,6 @@ Wall time: 488 ms
 </div>
     {% endraw %}
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Training">Training<a class="anchor-link" href="#Training"> </a></h3>
-</div>
-</div>
-</div>
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
