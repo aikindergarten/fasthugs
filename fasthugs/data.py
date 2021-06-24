@@ -113,7 +113,7 @@ class TokTransform(Transform):
     def __init__(self, pretrained_model_name=None, tokenizer_cls=AutoTokenizer,
                  config=None, tokenizer=None, is_lm=False,
                  padding=False, truncation=False, max_length=None,
-                 preprocessed=False, **kwargs):
+                 preprocessed=False, skip_special_tokens=False, **kwargs):
         if tokenizer is None:
             tokenizer = tokenizer_cls.from_pretrained(pretrained_model_name, config=config)
         self.tokenizer = tokenizer
@@ -134,7 +134,7 @@ class TokTransform(Transform):
         return toks
 
     def decodes(self, x:TransTensorText):
-        return TitledStrEx(self.tokenizer.decode(x.cpu(), skip_special_tokens=False))
+        return TitledStrEx(self.tokenizer.decode(x.cpu(), skip_special_tokens=self.skip_special_tokens))
 
 # Cell
 class TokBatchTransform(Transform):
@@ -331,10 +331,10 @@ class TransformersTextBlock(TransformBlock):
 # Cell
 class TransformersLMBlock(TransformBlock):
     "A `TransformBlock` for language modelling using pretrained tokenizers from Huggingface"
-    # @delegates
+    @delegates(TokTransform)
     def __init__(self, pretrained_model_name=None, tokenizer_cls=AutoTokenizer,
                  config=None, tokenizer=None, mlm=True, masking_func=None, whole_word_masking=False,
-                 mlm_probability=0.15, preprocessed=True, **kwargs):
+                 mlm_probability=0.15, preprocessed=True, group_by_len=False, **kwargs):
         tok_tfm = TokTransform(pretrained_model_name=pretrained_model_name, tokenizer_cls=tokenizer_cls,
                                config=config, tokenizer=tokenizer, return_special_tokens_mask=True, is_lm=True,
                                preprocessed=preprocessed, **kwargs)
@@ -342,12 +342,11 @@ class TransformersLMBlock(TransformBlock):
         batch_tfms = LMBatchTfm(pretrained_model_name, tokenizer_cls, config, tokenizer,
                                 mlm=mlm, masking_func=masking_func, whole_word_masking=whole_word_masking,
                                 mlm_probability=mlm_probability)
-        create_batch = compose(untuple, DataCollatorForLanguageModeling(tokenizer), to_tuple)
-        return super().__init__(dl_type=TfmdDL,
+
+        return super().__init__(dl_type=SortedDL if group_by_len else TfmdDL,
                                 type_tfms=tok_tfm,
                                 batch_tfms=batch_tfms,
-                                dls_kwargs={'create_batch': fa_convert},
-                               )
+                                dls_kwargs={'create_batch': fa_convert})
 
 # Cell
 def tokenize(batch):
