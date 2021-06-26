@@ -42,6 +42,9 @@ entries:
     - output: web,pdf
       title: Token Classification
       url: examples.token_classification.html
+    - output: web,pdf
+      title: ChitChat Bot using DialoGPT
+      url: examples.dialogpt.html
     output: web
     title: fasthugs
   output: web
