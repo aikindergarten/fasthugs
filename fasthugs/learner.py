@@ -35,6 +35,11 @@ def to_device(b, device=None):
     "Recursively put `b` on `device`. Handles `BatchEncoding`s"
     if defaults.use_cuda==False: device='cpu'
     elif device is None: device=default_device()
+    # put custom `namedtuple` on `device`
+    if (isinstance(b, tuple) and
+        hasattr(b, "_asdict") and
+        hasattr(b, "_fields")):
+        return type(b)(**{k:to_device(v) for k,v in b._asdict().items()})
     def _inner(o):
         if isinstance(o,Tensor): return o.to(device, non_blocking=True)
         elif isinstance(o,BatchEncoding): return o.to(device)
