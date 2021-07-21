@@ -36,6 +36,7 @@ def to_device(b, device=None):
     if defaults.use_cuda==False: device='cpu'
     elif device is None: device=default_device()
     # put custom `namedtuple` on `device`
+    # there might be no need in it, mb to remove
     if (isinstance(b, tuple) and
         hasattr(b, "_asdict") and
         hasattr(b, "_fields")):
@@ -49,6 +50,7 @@ def to_device(b, device=None):
 
 # Cell
 class TransCallback(Callback):
+    order = 1
     "Handles HuggingFace model inputs and outputs"
     def __init__(self, model):
         sig = signature(model.forward)
