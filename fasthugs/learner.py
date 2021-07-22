@@ -105,6 +105,32 @@ class TransLearner(Learner):
         super().__init__(dls, model, **kwargs)
         self.add_cb(TransCallback(model))
         self.predict_with_generate = predict_with_generate
+    # temporary patch to make nested_reoder work with dicts
+    @delegates(GatherPredsCallback.__init__)
+    def get_preds(self, ds_idx=1, dl=None, with_input=False, with_decoded=False, with_loss=False, act=None,
+                  inner=False, reorder=True, cbs=None, **kwargs):
+        if dl is None: dl = self.dls[ds_idx].new(shuffle=False, drop_last=False)
+        else:
+            try: len(dl)
+            except TypeError as e:
+                raise TypeError("`dl` is something other than a single `DataLoader` object")
+        if reorder and hasattr(dl, 'get_idxs'):
+            idxs = dl.get_idxs()
+            dl = dl.new(get_idxs = _ConstantFunc(idxs))
+        cb = GatherPredsCallback(with_input=with_input, with_loss=with_loss, **kwargs)
+        ctx_mgrs = self.validation_context(cbs=L(cbs)+[cb], inner=inner)
+        if with_loss: ctx_mgrs.append(self.loss_not_reduced())
+        with ContextManagers(ctx_mgrs):
+            self._do_epoch_validate(dl=dl)
+            if act is None: act = getattr(self.loss_func, 'activation', noop)
+            res = cb.all_tensors()
+            pred_i = 1 if with_input else 0
+            if res[pred_i] is not None:
+                res[pred_i] = act(res[pred_i])
+                if with_decoded: res.insert(pred_i+2, getattr(self.loss_func, 'decodes', noop)(res[pred_i]))
+            if reorder and hasattr(dl, 'get_idxs'): res = nested_reorder(res, tensor(idxs).argsort())
+            return tuple(res)
+        self._end_cleanup()
 
 # Cell
 @patch
