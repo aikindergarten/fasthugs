@@ -5,6 +5,7 @@ __all__ = ['default_splitter', 'to_device', 'nested_reorder', 'TransCallback', '
 # Cell
 from fastai.basics import *
 from fastai.text.all import TensorText
+from fastai.learner import _ConstantFunc
 from inspect import signature
 from collections import namedtuple
 from .data import TransformersTextBlock, TransTensorText
